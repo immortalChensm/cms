@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博拉网络</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery-1.12.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="js/my.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/news.js" type="text/javascript" charset="utf-8"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/my.css"/>
+</head>
+<body id="scroll-1">
+<nav class="navbar navbar-default navbar-fixed-top mynav mynavred" role="navigation">
+    <div class="container-fluid w1200">
+		<div class="navbar-header">
+			<button id="iNav" type="button" class="navbar-toggle">
+				<span class="sr-only">切换导航</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html"><img src="picture/logo-white.png" alt=""></a>
+		</div>
+		<div class="i-nav" id="example-navbar-collapse"></div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="index.html">首页</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="info.html" data-toggle="dropdown" data-hover="dropdown">关于博拉</a>
+					<ul class="dropdown-menu">
+						<li><a href="info.html">公司介绍</a></li>
+						<li><a href="milestones.html">发展历程</a></li>
+						<li><a href="honor.html">博拉荣誉</a></li>
+						<li><a href="team.html">团队文化</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="platform.html" data-toggle="dropdown" data-hover="dropdown">业务体系</a>
+					<ul class="dropdown-menu">
+						<li><a href="platform.html">服务内容</a></li>
+						<li><a href="customer.html">服务品牌</a></li>
+						<li><a href="case.html">成功案例</a></li>
+					</ul>
+				</li>
+				<li><a href="news.html">博拉动态</a></li>
+				<li><a href="join.html">加入博拉</a></li>
+				<li><a href="contact.html">联系我们</a></li>
+			</ul>
+			<img class="nav_bot_img1" src="picture/nav_bot_img1.png" alt="">
+		</div>
+    </div>
+</nav>
+<div class="container_top">
+    <div class="cont w1065">
+        <div class="add">
+		
+            <!--<div class="m110 clearfix">-->
+                <!--<div class="cont_left ">-->
+                    <!--<p>2017-03-08<span> | BOLAA</span></p>-->
+                    <!--<h2>博拉网络入选2016大数据应用解决方案提供商TOP100</h2>-->
+                    <!--<img src="picture/case_img1.png" alt="">-->
+                    <!--<p>博拉网络荣幸登上由《中国互联网周刊》评选的“2016大数据应用解决方案提供商TOP100”榜单，大数据是当前互联网+产业中一个非常重要的方向，也变得越来越炙手可热。</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+<!--
+        <div class="more" id="more">
+            加载更多
+        </div>
+-->
+        <div class="foot" style="display: none;">
+            <p>COPYRIGHT&copy;2006-2017 BOLAA.COM </p>
+        </div>
+    </div>
+
+</div>
+<img src="picture/top.png" class="gotop" id="gotop"/>
+</body>
+<script>
+    $(function () {
+        var htmlCenter = '', data=news, page = 1, pageSize = 10, startPage = 0, endPage = 0;
+        var length=data.length;
+        add_data(data);
+        function add_data(data) {
+            var dataLen = data.length;
+            endPage = endPage? page * pageSize : pageSize;
+            endPage=endPage>length?length:endPage;
+            for(var i=0; i<length; i++){
+                var conClass = i%2==0 ? 'cont_left' : 'cont_right';
+                var j = i+1;
+//                htmlCenter +=  '<div class="'+conClass+' left"><h2>'+data[i].title+'</h2><p>'+data[i].time+
+//                        '<span> | BOLAA</span></p><p>'+data[i].wenz+'</p><a href="##">查看详情</a></div>';
+                htmlCenter+='<a href="'+data[i].url+'" target="_blank"><div class="'+conClass+ ' left"><p>'+data[i].time+'<span> | BOLAA</span></p><h2>'+data[i].title+
+                    '</h2><img src="'+data[i].image+'" alt=""><p>'+data[i].wenz+'</p></div></a>';
+
+                if(j%2==0 || j == dataLen){
+                    $(".add").append('<div class="m110 clearfix">'+htmlCenter+'</div>');
+                    htmlCenter = '';
+                }
+            }
+
+        }
+//        $("#more").click(function () {
+//            page++;
+//            startPage = (page-1) * pageSize;
+//            add_data(data);
+//            if(endPage-(page)*pageSize<0){
+//                $("#more").css("display","none");
+//            }
+//            if($("#more").css('display')=='none'){
+//                $(".foot").css("display","block");
+//            }
+//        });
+    })
+</script>,
+</html>

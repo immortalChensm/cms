@@ -1,0 +1,66 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePermissionAndRole extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        //角色表
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->default("")->comment('角色名称');
+            $table->string('description')->default("")->comment('角色描述');
+
+            $table->timestamps();
+        });
+
+        //权限表
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->default("")->comment('权限名称');
+            $table->string('description')->default("")->comment('权限描述');
+
+            $table->timestamps();
+        });
+
+        //用户角色中间表
+        Schema::create('user_role', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->default(0)->comment('用户id');
+            $table->integer('role_id')->default(0)->comment('角色id');
+
+            $table->timestamps();
+        });
+
+        //角色权限中间表
+        Schema::create('role_permission', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('role_id')->default(0)->comment('角色id');
+            $table->integer('permission_id')->default(0)->comment('权限id');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+        Schema::dropIfExists('roles');
+        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('user_role');
+        Schema::dropIfExists('role_permission');
+    }
+}

@@ -1,0 +1,1 @@
+{}{"middleware":["web","web","auth.admin","can:admins"],"as":"admins.edit","uses":"App\\Http\\Controllers\\Admin\\AdminsController@edit","controller":"App\\Http\\Controllers\\Admin\\AdminsController@edit","namespace":"App\\Http\\Controllers","prefix":"\/admin","where":[]}
