@@ -25,36 +25,29 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content" >
-
-
-              <p style="padding: 5px;" id="roleList">
-              @foreach($allroles as $role)
-              <div class="icheckbox_flat-green @if($roles->contains($role))checked @endif" style="position: relative;">
-                  <input type="checkbox" @if($roles->contains($role))checked @endif name="roles[]" id="hobby1" value="{{$role->id}}" data-parsley-mincheck="2" required="" class="flat" data-parsley-multiple="hobbies" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> {{$role->name}}--{{$role->description}}
-              <br>
-              <br>
-
-
+              {{csrf_field()}}
+              @foreach($allRoles as $key=>$item)
+                  <label style="margin:5px 10px;">
+                        <input type="checkbox"  name="roleid[{{$key}}]" @if($item['status']==1) checked value="on" @else value="off" @endif data-id="{{$key}}" class="js-switch"/>{{$item['name']}}
+                  </label>
                 @endforeach
-              </p>
 
           </div>
-          <button class="btn btn-primary" id="saveRole" data-id="{{$user->id}}">保存</button>
+          <button class="btn btn-primary" onclick="history.back();" >返回</button>
+          <button class="btn btn-success" onclick="save()" data-id="{{$user->id}}">保存</button>
         </div>
       </div>
     </div>
   </div>
   <script type="text/javascript">
       $(function () {
-          $(".icheckbox_flat-green").on("click",function (e) {
-
-              if($(this).hasClass("checked")){
-                  $(this).removeClass("checked");
-                  $(this).find("input").removeAttr("checked");
+          $(".js-switch").on("click",function (e) {
+              if($(this).val()=='on'){
+                  $(this).val("off");
               }else{
-                  $(this).addClass("checked");
-                  $(this).find("input").attr("checked");
+                  $(this).val("on");
               }
+
           })
       })
 
@@ -80,6 +73,62 @@
           },'json');
           return false;
       });
+
+      function save(){
+          var permissionS = [];
+          var p = $(".js-switch"); var obj = {};
+          for(var i=0;i<p.length;i++){
+              obj[$(p).eq(i).attr("data-id")] = $(p).eq(i).val();
+
+          }
+
+          $.ajax({
+              type: 'POST',
+              url: "/admin/admins/{{$user->id}}/role",
+              dataType: 'json',
+              data: {
+                  "_token":$(":input[name=_token]").val(),
+                  "selectid":obj,
+              },
+              success: function(data){
+                  if(data.status==1){
+                      layer.msg(data.message);
+                      setTimeout(function(){//两秒后跳转
+                          window.location.href = data.url;
+                      },1000);
+                  }else{
+                      alert(data.message);
+                  }
+              },
+              error:function(data){
+                  if (data.status == 422) {
+                      //console.log(data.status); return false;
+                      var json=JSON.parse(data.responseText);
+                      json = json.errors;
+                      for ( var item in json) {
+                          for ( var i = 0; i < json[item].length; i++) {
+                              layer.msg(json[item][i],{time:1000});
+                              return ; //遇到验证错误，就退出
+                          }
+                      }
+                  } else {
+                      layer.msg('服务器连接失败',{time:1000});
+                      return ;
+                  }
+              }
+          });
+          return false;
+          function success(data) {
+              if (data.status == 0) {
+                  alert(data.message);
+              } else {
+                  window.location.href = data.url;
+              }
+          };
+
+      }
+
+
 
   </script>
   @include("admin.layout.footerjs")

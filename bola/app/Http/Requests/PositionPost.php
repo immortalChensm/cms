@@ -25,8 +25,7 @@ class PositionPost extends FormRequest
     {
         return [
             'title'   => 'required',
-            'name'  => 'required',
-            'place' => 'required',
+
             'status'  => 'required',
         ];
     }
@@ -35,8 +34,7 @@ class PositionPost extends FormRequest
     {
         return [
             'title.required'   => '请输入职位名称',
-            'name.required'  => '请输入发布人姓名',
-            'place.required' => '请输入城市地址',
+
             'status.required'  => '请选择状态',
         ];
     }

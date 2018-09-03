@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Banner;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,6 +13,12 @@ use App\Http\Requests\UpdateBannerPost;
 
 class BannerController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +53,10 @@ class BannerController extends Controller
         $title = $request->post("title");
         $url = $request->post("url");
         $status = $request->post("status");
+
+        $statusWitch = ['on'=>1,'off'=>0];
+        $status = $statusWitch[isset($request['status'])?$request['status']:'off'];
+
         if($filePath=uploadImageForBase64($image)) {
 
             $image = $filePath;
@@ -104,7 +113,11 @@ class BannerController extends Controller
         $banner       = Banner::where('id', $id)->first();
         $banner->id = $bannerRequest->post("imgid");
         $banner->title = $bannerRequest->post("title");
-        $banner->status = $bannerRequest->post("status");
+
+        $status = ['on'=>1,'off'=>0];
+        $input_status = $status[isset($bannerRequest->status)?$bannerRequest->status:'off'];
+
+        $banner->status = $input_status;
         $banner->image = $filePath;
         $banner->url = $bannerRequest->post("url");
         $banner->save() ? showMsg('1', '修改成功', URL::action('Admin\BannerController@index')) : showMsg('0', '暂无修改');
@@ -126,6 +139,16 @@ class BannerController extends Controller
 
     public function uploadImage(Request $request)
     {
-        print_r($request->all());
+
+    }
+
+    //更新状态
+    public function status(Request $request)
+    {
+        $post = $request->all();
+
+        $res  = Banner::where('id', $post['id'])->update(array('status' => $post['status']));
+
+        $res ? showMsg('1', '修改成功') : showMsg('0', '修改失败');
     }
 }

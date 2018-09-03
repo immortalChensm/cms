@@ -28,15 +28,15 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
-        $permissions = Permissions::all();
-        foreach($permissions as $permission){
-            Gate::define($permission->name,function (Admins $user)use($permission){
-                    //file_put_contents("/mnt/bola/bola/permission.log",json_encode($user,JSON_UNESCAPED_UNICODE),FILE_APPEND);
-                    //file_put_contents("/mnt/bola/bola/permission.log",json_encode($permission,JSON_UNESCAPED_UNICODE),FILE_APPEND);
-                   return $user->hasPermission($permission);
-                    //return true;
-            });
-        }
+//        $permissions = Permissions::all();
+//        foreach($permissions as $permission){
+//            Gate::define($permission->name,function (Admins $user)use($permission){
+//                    //file_put_contents("/mnt/bola/bola/permission.log",json_encode($user,JSON_UNESCAPED_UNICODE),FILE_APPEND);
+//                    //file_put_contents("/mnt/bola/bola/permission.log",json_encode($permission,JSON_UNESCAPED_UNICODE),FILE_APPEND);
+//                   return $user->hasPermission($permission);
+//                    //return true;
+//            });
+//        }
 
     }
 }

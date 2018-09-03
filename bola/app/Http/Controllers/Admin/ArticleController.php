@@ -5,18 +5,23 @@ use App\Model\Admin\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticlePost;
 use Illuminate\Support\Facades\URL;
-use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Article::orderBy('id', 'asc')->paginate(10);
+        $data = Article::search($request->title)->orderBy('id', 'asc')->paginate(10);
         return view('admin/article/index', compact('data'));
     }
 
@@ -39,6 +44,8 @@ class ArticleController extends Controller
     public function store(ArticlePost $request)
     {
         $input             = $request->except('_token','s');
+        $status = ['on'=>1,'off'=>0];
+        $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         Article::create($input) ? showMsg('1', '添加成功', URL::action('Admin\ArticleController@index')) : showMsg('0', '添加失败');
     }
 
@@ -74,7 +81,9 @@ class ArticleController extends Controller
      */
     public function update(ArticlePost $request, $id)
     {
-         $input = $request->except('_token','_method','s');
+        $input = $request->except('_token','_method','s');
+        $status = ['on'=>1,'off'=>0];
+        $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         Article::where('id', $id)->update($input) ? showMsg('1', '修改成功',URL::action('Admin\ArticleController@index')) : showMsg('0', '修改失败');
     }
 
@@ -94,6 +103,7 @@ class ArticleController extends Controller
     public function status(Request $request)
     {
         $post = $request->all();
+        //print_r($post);exit;
         $res  = Article::where('id', $post['id'])->update(array('status' => $post['status']));
         $res ? showMsg('1', '修改成功') : showMsg('0', '修改失败');
     }

@@ -11,15 +11,18 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public function index(){
 
+    public function index(){
+        if(\Auth::check()){
+            return redirect()->action('Admin\IndexController@home');
+        }
         return view('admin/login');
     }
 
     public function login(LoginPost $request){
         $input = $request->input();
         $admins = Admins::where(array('account' => $input['account'], 'status' => '1'))->first();
-        empty($admins) && showMsg('0', '账号错误');
+        empty($admins) && showMsg('0', '账号错误或已禁用');
         if (!Hash::check($input['password'], $admins->password)) {
             showMsg('0', '密码错误');
         }

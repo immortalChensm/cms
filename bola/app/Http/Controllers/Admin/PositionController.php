@@ -6,10 +6,16 @@ use App\Model\Admin\Position;
 use Illuminate\Http\Request;
 use App\Http\Requests\PositionPost;
 use Illuminate\Support\Facades\URL;
-use App\Http\Controllers\Controller;
+
 
 class PositionController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +46,8 @@ class PositionController extends Controller
     public function store(PositionPost $request)
     {
         $input             = $request->except('_token','s');
+        $status = ['on'=>1,'off'=>0];
+        $input['status'] = $status[$input['status']];
         Position::create($input) ? showMsg('1', '添加成功', URL::action('Admin\PositionController@index')) : showMsg('0', '添加失败');
     }
 
@@ -76,6 +84,8 @@ class PositionController extends Controller
     public function update(PositionPost $request, $id)
     {
          $input = $request->except('_token','_method');
+        $status = ['on'=>1,'off'=>0];
+        $input['status'] = $status[$input['status']];
         Position::where('id', $id)->update($input) ? showMsg('1', '修改成功',URL::action('Admin\PositionController@index')) : showMsg('0', '修改失败');
     }
 

@@ -41,70 +41,156 @@ var ue = UE.getEditor('content',{
       </div>
       <div class="x_content">
         <br />
-        <form method="post" action="{:U('Product/insert')}" id="postform" data-parsley-validate class="form-horizontal form-label-left">
+        <form method="post" action="{:U('Hospital/insert')}" id="postform" data-parsley-validate class="form-horizontal form-label-left">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">分类 <span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select  name="product_category_id" style="width:300px;">
-
-                        @foreach($category as $item)
-
-                            <option value="{{$item->id}}">
-                                {{str_repeat('----',$item->level)}}
-                                {{$item->name}}
-                            </option>
-
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">产品标题 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="first-name" name="title" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-
-            <div class="form-group">
-                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">产品简介</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <textarea  name="desc" class="txt" style="width:800px;"></textarea>
-                </div>
-            </div>
-
-
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">产品图片 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">医院图片 <span class="required">*</span>
             </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="hidden" id="first-name" name="image" required="required" class="form-control col-md-7 col-xs-12">
                   <input type="file" id="image">
               </div>
           </div>
-          <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">描述</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="content" name="content" class="txt" style="width:800px;"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div id="gender" class="btn-group" data-toggle="buttons">
-                  <input type="radio" name="status" value="1"> &nbsp; 开启 &nbsp;
-                  <input type="radio" name="status" value="0"> 禁用
-              </div>
-            </div>
-          </div>
 
-   
-          <div class="ln_solid"></div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院名称</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="name" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院代码</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="code" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院等级</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="grade" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">科室</label>
+                <div class="col-xs-3">
+                    <select class="form-control" required="" name="subjectid">
+                        @foreach($subject as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">专业特长</label>
+                <div class="col-xs-3">
+                    <select class="form-control" required="" id="skillid" name="skillid[]" multiple="multiple">
+                        <option value="">专业特长</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">床位数</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="bed_num" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">地址</label>
+                <div class="col-xs-3" style="width:300px !important;">
+
+
+                    <select class="form-control" required="" name="provinceid" >
+                        @foreach($province as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
+
+
+                </div>
+                <div class="col-xs-3" style="width:300px!important;">
+
+
+                    <select class="form-control" required="" name="cityid" >
+
+                            <option value=""></option>
+
+                    </select>
+
+
+                </div>
+                <div class="col-xs-3" style="width:300px!important;">
+
+
+                    <select class="form-control" required="" name="countyid" >
+
+                            <option value=""></option>
+
+                    </select>
+
+
+                </div>
+
+                {{--<div class="col-xs-3"  style="width:300px!important;">--}}
+
+
+                    {{--<select class="form-control" required="" name="townid">--}}
+
+                        {{--<option value=""></option>--}}
+
+                    {{--</select>--}}
+
+
+                {{--</div>--}}
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">详细地址</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="address" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">状态</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="ait-switch">
+                        <label>
+                            <input type="checkbox" name="status" class="js-switch" checked />
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">是否推荐</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="ait-switch">
+                        <label>
+                            <input type="checkbox" name="recommend" class="js-switch" checked />
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
               <button class="btn btn-primary" type="reset" onclick="javascript:history.back();">取消</button>
@@ -119,6 +205,7 @@ var ue = UE.getEditor('content',{
 </div>
 </div>
    @include("admin.layout.footerjs")
+   <script src="{{URL::asset('js/admin/hospital.js')}}"></script>
    <script type="text/javascript">
 
        uploadpic({
@@ -140,7 +227,7 @@ var ue = UE.getEditor('content',{
     function save(){
         $.ajax({
             type: 'POST',
-            url: "{{url('admin/product/')}}",
+            url: "{{url('admin/hospital/')}}",
             dataType: 'json',
             data: $('#postform').serializeArray(),
             success: function(data){
@@ -148,7 +235,7 @@ var ue = UE.getEditor('content',{
                     layer.msg(data.message);
                       setTimeout(function(){//两秒后跳转
                         window.location.href = data.url;
-                        },1000);                  
+                        },1000);
                 }else{
                     alert(data.message);
                 }

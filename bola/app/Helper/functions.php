@@ -30,25 +30,23 @@ function uploadImageForBase64($source)
     if(!is_dir($dir)){
         mkdir($dir);
     }
-    //data:image/png;base64,  data:image/jpeg;base64,
-    $image = $source;
-    if(preg_match('/png/',$image)){
+    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif']);
+
+    if($decoder->getFormat()=='png'){
         $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".png";
-        $image = base64_decode(str_replace("data:image/png;base64,","",$image));
     }
-
-    if(preg_match('/jpeg/',$image)){
+    if($decoder->getFormat()=='jpeg'){
         $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".jpg";
-        $image = base64_decode(str_replace("data:image/jpeg;base64,","",$image));
     }
 
 
-    if(file_put_contents($savePath,$image)) {
-
+    if(file_put_contents($savePath,$decoder->getDecodedContent())) {
         return $savePath;
     }else{
         return false;
     }
+
+
 }
 
 

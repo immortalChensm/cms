@@ -2,64 +2,57 @@
 @section("content")
   <div class="right_col" role="main">
     <!-- top tiles -->
-    <div class="row" style="width:100%;">
-      <div class="col-md-6 col-sm-6 col-xs-12" style="width:100%;">
-        <div class="x_panel" style="width:100%;">
-          <div class="x_title">
-            <h2 >菜单管理/菜单列表<small><a href="{{route('categorys.create')}}" class="btn btn-info" >添加</a></small></h2>
-            <ul class="nav navbar-right panel_toolbox" style="display:none;">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings 1</a>
-                  </li>
-                  <li><a href="#">Settings 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+              <div class="x_title">
+                  <h2>科室专长列表<small><a href="{{route('categorys.create')}}" class="btn btn-info" >添加</a></small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                  </ul>
+                  <div class="clearfix"></div>
+              </div>
+
+              <div class="x_content">
+                  <div class="table-responsive">
+                      <table class="table table-striped ait-table bulk_action">
+                          <thead>
+                          <tr class="headings">
+                              <th class="column-title" width="10%">#</th>
+                              <th class="column-title" width="20%">名称 </th>
+
+                              <th class="column-title" width="20%">创建时间 </th>
+                              <th class="column-title" width="20%">操作 </th>
+                          </tr>
+                          </thead>
+
+                          <tbody>
+
+                          @foreach($data as $item)
+                          <tr class="even pointer">
+                              <td class=" ">{{$item->id}}</th>
+                              <td class=" ">{{str_repeat('---',$item->level)}}{{$item->name}}</td>
+
+
+                              <td class=" ">{{$item->created_at}}</td>
+                              <td><a href="{{route('categorys.edit',$item->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$item->id}}">移除</a></td>
+                          </tr>
+                          @endforeach
+
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
           </div>
-          <div class="x_content">
-
-            <table class="table" width="100%">
-              <thead>
-              <tr>
-                <th>#</th>
-                <th>名称</th>
-                <th>链接</th>
-                <th>排序</th>
-                <th>创建时间</th>
-                <th>操作</th>
-              </tr>
-              </thead>
-              <tbody>
-
-              @foreach($data as $item)
-                        <td>{{$item->id}}</td>
-                      <td>{{str_repeat('---',$item->level)}}{{$item->name}}</td>
-                      <td>{{$item->link}}</td>
-                      <td>{{$item->sort}}</td>
-                      <td>{{$item->created_at}}</td>
-                      <td><a href="{{route('categorys.edit',$item->id)}}" class="btn btn-default">编辑</a><a class="delete" href="#" data-id="{{$item->id}}">移除</a></td>
-
-                  </tr>
-
-              @endforeach
-
-              </tbody>
-            </table>
-             <div class="page">
-
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
+
   </div>
   @include("admin.layout.footerjs")
     <script type="text/javascript">

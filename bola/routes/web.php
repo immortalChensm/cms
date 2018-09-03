@@ -1,35 +1,17 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-//Auth::routes();
-
-
 //后台组
 
 Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
 
-    //Route::post('/login', [ 'as' => 'login', 'uses' => 'Admin\LoginController@index']);
     Route::get('login', 'Admin\LoginController@index')->name("admin.login");
     Route::get('/', 'Admin\LoginController@index')->name("admin.login");
     Route::post('login', 'Admin\LoginController@login');
-    Route::get('index', 'Admin\IndexController@home');
 
 
     Route::group(['middleware' => 'auth.admin'], function () {
+
+        Route::get('index', 'Admin\IndexController@home');
 
         //分类管理
         Route::resource('categorys', 'Admin\CategorysController');
@@ -38,29 +20,31 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
         Route::resource('page', 'Admin\PageController');
         Route::resource('system', 'Admin\SystemController');
 
-        //新闻管理
-        Route::post('news/status', 'Admin\NewsController@status');
-        Route::resource('news', 'Admin\NewsController');
+        //医院管理
+        Route::post('hospital/status', 'Admin\HospitalController@status');
+        Route::post('hospital/{hospital}/skill', 'Admin\HospitalController@skill');
 
-        //产品分类管理
-        Route::post('product-category/status', 'Admin\ProductcategoryController@status');
-        Route::resource('product-category', 'Admin\ProductcategoryController');
-
-        //产品管理
-
-        Route::post('product/status', 'Admin\ProductsController@status');
-        Route::resource('product', 'Admin\ProductsController');
+        Route::group(['middleware' => ['permission:hospital-list|hospital-edit']],function(){
+            Route::resource('hospital', 'Admin\HospitalController');
+            Route::get('hospital/{hospital_name?}', 'Admin\HospitalController@index');
+            Route::get('region/city', 'Admin\RegionController@getCityData');
+        });
 
         //ui
         Route::get('iconui', 'Admin\IconuiController@index');
 
+        //医生管理
+        Route::post('pyhsician/{hospital}/skill', 'Admin\HospitalController@skill');
+        Route::post('pyhsician/status', 'Admin\PyhsicianController@status');
+        Route::resource('pyhsician', 'Admin\PyhsicianController');
 
+
+        //转诊申请记录
+        Route::resource('consulation', 'Admin\ConsulationController');
 
         Route::get('logout', 'Admin\LoginController@logout');
 
         //管理员模块
-       //Route::group(["middleware"=>"can:admins"],function(){
-
 
             //用户的角色列表
             Route::get("admins/{admins}/role",'Admin\AdminsController@role');
@@ -83,83 +67,27 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
             Route::post('admins/status', 'Admin\AdminsController@status');
 
             Route::resource('admins', 'Admin\AdminsController');
-        //});
+
 
         //文章分类管理模块
-        //Route::group(["middleware"=>"can:article"],function(){
-            Route::post('article/status', 'Admin\ArticleController@status');
-            Route::resource('article', 'Admin\ArticleController');
-        //});
-
-        //地址管理模块
-        //Route::group(["middleware"=>"can:address_manage_permission"],function (){
-            Route::post('address/status', 'Admin\AddressController@status');
-            Route::resource('address', 'Admin\AddressController');
-        //});
+        Route::post('article/status', 'Admin\ArticleController@status');
+        Route::post('train/status', 'Admin\TrainController@status');
+        Route::resource('article', 'Admin\ArticleController');
+        Route::resource('train', 'Admin\TrainController');
 
         //职位管理模块
-       // Route::group(["middleware"=>"can:position_manage_permission"],function (){
-            Route::post('position/status', 'Admin\PositionController@status');
-            Route::resource('position', 'Admin\PositionController');
-        //});
-
-        //品牌管理模块
-        //Route::group(['middleware'=>"can:brand_manage_permission"],function(){
-            Route::post('brand/status', 'Admin\BrandController@status');
-            Route::resource('brand', 'Admin\BrandController');
-
-            Route::post('classify/status', 'Admin\ClassifyController@status');
-            Route::resource('classify', 'Admin\ClassifyController');
-        //});
-
-        //系统设置模块
-        Route::group(["middleware"=>"can:system_set_permission"],function(){
-
-        });
+        Route::post('position/status', 'Admin\PositionController@status');
+        Route::resource('position', 'Admin\PositionController');
         //轮播器
-        //Route::group(["middleware"=>"can:banner_manage_permission"],function (){
-            Route::post('banner/status', 'Admin\BannerController@status');
-            Route::resource('banner', 'Admin\BannerController');
-
-        //});
-
-        //案例管理
-        //Route::group(['middleware'=>'can:cates_manage_permission'],function(){
-            Route::post('cates/status', 'Admin\CatesController@status');
-            Route::resource('cates', 'Admin\CatesController');
-        //});
-
-
-
-
+        Route::post('banner/status', 'Admin\BannerController@status');
+        Route::resource('banner', 'Admin\BannerController');
 
 
     });
-  
 
-    //   //测试模板
-    // Route::get('/test', 'Admin\TestController@index');
-
-    // //后台首页模板
-    // Route::get('/index', 'Admin\IndexController@index');
-
-    // Route::get('/admins', 'Admin\IndexController@admins');
-
-    // Route::get('/admins/add', 'Admin\IndexController@adminadd');
-
-    // //权限模板
-    // Route::get('/roles', 'Admin\IndexController@roles');
-
-
-    // //分类模板
-    // Route::get('/category', 'Admin\IndexController@category');
-
-    // //文章分类添加页面模板
-    // Route::get('/category/add', 'Admin\IndexController@addCategory');
 
     
 });
 
 //前台模板示例
 include('home.php');
-//Route::get("/","Home\TestController@index");

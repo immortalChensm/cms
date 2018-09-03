@@ -1,4 +1,4 @@
-@extends("layout.admin.main")
+@extends("admin.layout.main")
 @section("content")
   <div class="right_col" role="main">
 <div class="row">

@@ -28,7 +28,7 @@
 
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2>{{\Auth::user()->account}}</h2>
+
                     </div>
                      -->
                 </div>
@@ -41,7 +41,7 @@
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
+                <div class="sidebar-footer hidden-small" style="display: none;">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     </a>

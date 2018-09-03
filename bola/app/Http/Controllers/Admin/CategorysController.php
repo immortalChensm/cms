@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Model\Admin\Roles;
 use App\Http\Requests\CategorysPost;
 use App\Http\Requests\UpdateCategorysPost;
@@ -11,6 +10,12 @@ use Illuminate\Support\Facades\URL;
 use App\Model\Admin\Categorys;
 class CategorysController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *

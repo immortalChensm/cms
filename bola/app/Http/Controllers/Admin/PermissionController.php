@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 use App\Http\Requests\PermissionPost;
 use App\Http\Requests\UpdatePermissionPost;
 use App\Model\Admin\Permissions;
 use Illuminate\Support\Facades\URL;
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *

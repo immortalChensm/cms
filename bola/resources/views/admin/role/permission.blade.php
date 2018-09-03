@@ -25,61 +25,45 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content" >
+              <form method="post"  id="postform" >
+                  {{csrf_field()}}
+              @foreach($permissionS as $key=>$item)
+              <div class="form-group" style="margin:10px 5px;">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">
 
 
-              {{--<p style="padding: 5px;" id="roleList">--}}
-              {{--@foreach($allpermission as $permission)--}}
-              {{--<div class="icheckbox_flat-green @if($permissions->contains($permission))checked @endif" style="position: relative;">--}}
-                  {{--<input type="checkbox" @if($permissions->contains($permission))checked @endif name="roles[]" id="hobby1" value="{{$permission->id}}" data-parsley-mincheck="2" required="" class="flat" data-parsley-multiple="hobbies" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> {{$permission->name}}--{{$permission->description}}--}}
-              {{--<br>--}}
-              {{--<br>--}}
+                      <input type="checkbox"  class="js-switch all" @if(isset($item['select'])) checked="" value="on" @else value="off" @endif data-switchery="true" style="display: none;">
+
+                      {{$key}}</label>
+
+                  <div class="col-md-9 col-sm-9 col-xs-12">
 
 
-                {{--@endforeach--}}
-              {{--</p>--}}
+                      <div class="" >
 
+                          @foreach($item as $k=>$v)
+                              @if(is_numeric($k))
+                          <label style="margin:5px 10px;">
 
-              <p style="padding: 5px;" id="roleList">
-              @php
-                    foreach($temp as $item=>$value){
+                              <input type="checkbox"  name="permission[{{$v['id']}}]" data-id="{{$v['id']}}" class="js-switch" @if($v['permission']==1) checked value="on" @else value="off" @endif />
 
-                            $key  = explode("=",$item);
-                            $name = $key[1];
-                            echo '<div class="icheckbox_flat-green" data="permission-all" style="position: relative;">
+                              {{$v['name']}}
+                          </label>
+                              @endif
+                          @endforeach
 
+                      </div>
 
-                    <input type="checkbox" name="roles[]"   data-parsley-mincheck="2" required="" class="flat" data-parsley-multiple="hobbies" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> '.$name.'
+                  </div>
+              </div>
+                  @endforeach
 
+              </form>
 
-                    ';
-                        echo "<div style='position: relative;left:30px;'>";
-                        foreach($value as $k=>$v){
-                            $tempa  = explode("=",$v);
-                            $p_name = $tempa[0];
-                            $p_id   = $tempa[2];
-                            if(isset($permissionsArr[$p_id])){
-                                echo '<div class="icheckbox_flat-green checked " style="position: relative;left:px;">';
-                            }else{
-
-                                echo '<div class="icheckbox_flat-green  " style="position: relative;left:px;">';
-                            }
-
-
-
-                             echo '<input type="checkbox" name="roles[]"   value="'.$p_id.'" data-parsley-mincheck="2" required="" class="flat" data-parsley-multiple="hobbies" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> '.$p_name.'
-                             ';
-                        }
-                        echo "</div>";
-
-                    }
-
-
-
-              @endphp
-              </p>
 
           </div>
-          <button class="btn btn-primary" id="saveRole" data-id="{{$roleinfo->id}}">保存</button>
+          <button class="btn btn-primary"  data-id="" onclick="history.back();">返回</button>
+          <button class="btn btn-success" onclick="save()" data-id="">保存</button>
         </div>
       </div>
     </div>
@@ -87,92 +71,74 @@
   @include("admin.layout.footerjs")
   <script type="text/javascript">
 
-          $(".icheckbox_flat-green").on("click",function (e) {
+        $(".js-switch").on("click",function (e) {
+            if($(this).val()=='on'){
+                $(this).val("off");
+            }else{
+                $(this).val("on");
+            }
 
-              if($(this).attr("data")=="permission-all"){
+        })
 
-
-                  if($(this).hasClass("checked")){
-                      $(this).removeClass("checked");
-                      $(this).next("input").removeAttr("checked");
-                  }else{
-                      $(this).addClass("checked");
-                      $(this).next("input").attr("checked");
-                  }
-
-
-
-                  var nextdiv = $(this).next("div").find("div");
-
-                  for(var i=0;i<nextdiv.length;i++){
-                      if($(this).hasClass("checked")){
-                          console.log(nextdiv[i]);
-                          $(nextdiv[i]).addClass("checked");
-                          $(nextdiv[i]).find("input").attr("checked");
-                      }else{
-                          $(nextdiv[i]).removeClass("checked");
-                          $(nextdiv[i]).find("input").removeAttr("checked");
-                      }
-                  }
-              }else{
-                  if($(this).hasClass("checked")){
-                      $(this).removeClass("checked");
-                      $(this).parent().find("input").removeAttr("checked");
-
-                      var checkStatus = [];
-                      var nextdiv = $(this).parent().find("div");
-                      for(var i=0;i<nextdiv.length;i++){
-                          if($(nextdiv[i]).hasClass("checked")){
-                             ;
-                          }else{
-                              checkStatus.push($(nextdiv[i]));
-                          }
-                      }
-                      if(nextdiv.length!=checkStatus.length){
-                          $(this).parent().prev("div").removeClass("checked");
-
-                      }else{
-                          $(this).parent().prev("div").addClass("checked");
-                      }
+        var span_selectStyle = "background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;";
+        var span_unselectStyle = "background-color: rgb(255, 255, 255); border-color: rgb(223, 223, 223); box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; transition: border 0.4s, box-shadow 0.4s;";
+        var small_selectStyle = "left: 12px; transition: background-color 0.4s, left 0.2s; background-color: rgb(255, 255, 255);";
+        var small_unselectStyle = "left: 0px; transition: background-color 0.4s, left 0.2s;";
+        $(".all").on("click",function(e){
 
 
-                  }else{
-                      $(this).addClass("checked");
-                      $(this).parent().find("input").attr("checked");
+            //console.log($(this).next("span").get(0).style);
+            if($(this).val()=='on'){
+                $(this).val("off");
+            }else{
+                $(this).val("on");
+            }
 
-                      //移除所有
-                      var checkStatus = [];
-                      var nextdiv = $(this).parent().find("div");
-                     for(var i=0;i<nextdiv.length;i++){
-                         if($(nextdiv[i]).hasClass("checked")){
-                             checkStatus.push($(nextdiv[i]));
-                         }
-                     }
-                      if(nextdiv.length==checkStatus.length){
-                          $(this).parent().prev("div").addClass("checked");
+            //console.log($(this).parent().parent().find("input").length);
+            if($(this).val()=='on'){
+                for(var i=0;i<$(this).parent().parent().find("input").length;i++){
+                    $(this).parent().parent().find("input").eq(i).val("off");
+                    $(this).parent().parent().find("input").eq(i).removeAttr("checked");
+                    $(this).parent().parent().find("input").eq(i).next("span").get(0).style = span_unselectStyle;
+                    $(this).parent().parent().find("input").eq(i).next("span").eq(0).find("small").get(0).style = small_unselectStyle;
 
-                      }else{
-                          $(this).parent().prev("div").removeClass("checked");
-                      }
+                }
+            }else if($(this).val()=='off'){
+                for(var i=0;i<$(this).parent().parent().find("input").length;i++){
+                    $(this).parent().parent().find("input").eq(i).val("on");
+                    $(this).parent().parent().find("input").eq(i).attr("checked");
+                    $(this).parent().parent().find("input").eq(i).next("span").get(0).style = span_selectStyle;
+                    $(this).parent().parent().find("input").eq(i).next("span").eq(0).find("small").get(0).style = small_selectStyle;
 
-                  }
-              }
 
-          })
+                }
+            }
+        });
 
+        //all permission init status
+        // var permission_init = $(".all");
+        //
+        // for(var i=0;i<permission_init.length;i++){
+        //    // console.log($(permission_init).eq(i).parent().next("div").find("input").length);
+        //
+        //     var temp = $(permission_init).eq(i).parent().next("div").find("input");
+        //     for(var j=0;j<temp.length;j++){
+        //         if($(temp).eq(j).val() == 'on'){
+        //             $(temp).eq(j).parent().parent().parent().prev().find("input").val("on");
+        //             $(temp).eq(j).parent().parent().parent().prev().find("input").next("span").get(0).style = span_selectStyle;
+        //             $(temp).eq(j).parent().parent().parent().prev().find("input").next("span").find("small").get(0).style = small_selectStyle;
+        //         }
+        //     }
+        //     //$(permission_init).eq(i).val("off");
+        //     console.log($(permission_init).eq(i).parent().find("span"));
+        //     //$(permission_init).eq(i).next("span").get(0).style = span_unselectStyle;
+        //     //$(permission_init).eq(i).next("span").find("small").get(0).style = small_unselectStyle;
+        //
+        // }
 
       $("#saveRole").click(function(){
 
-          var permissionIds = [];
-
-          for(var i=0;i<$(".icheckbox_flat-green").length;i++){
-
-              console.log($(".icheckbox_flat-green").get(i));
-              if($($(".icheckbox_flat-green").get(i)).hasClass("checked")){
-                  permissionIds.push($($(".icheckbox_flat-green").get(i)).find("input").val());
-              }
-          }
-          $.post("/admin/roles/{{$roleinfo->id}}/permission",{'permissionIds':permissionIds,'_token':"{{csrf_token()}}"},function (data) {
+          $.post("/admin/roles/2/permission",{'permissionIds':permissionIds,'_token':"{{csrf_token()}}"},function (data) {
               if(data.status==1){
                   layer.msg(data.message, {icon: 6},function(){
                       window.location.href = data.url;
@@ -183,6 +149,60 @@
           },'json');
           return false;
       });
+
+      function save(){
+          var permissionS = [];
+          var p = $(".js-switch"); var obj = {};
+          for(var i=0;i<p.length;i++){
+              obj[$(p).eq(i).attr("data-id")] = $(p).eq(i).val();
+
+          }
+
+          $.ajax({
+              type: 'POST',
+              url: "/admin/roles/{{$current_role->id}}/permission",
+              dataType: 'json',
+              data: {
+                     "_token":$(":input[name=_token]").val(),
+                    "selectid":obj,
+              },
+              success: function(data){
+                  if(data.status==1){
+                      layer.msg(data.message);
+                      setTimeout(function(){//两秒后跳转
+                          window.location.href = data.url;
+                      },1000);
+                  }else{
+                      alert(data.message);
+                  }
+              },
+              error:function(data){
+                  if (data.status == 422) {
+                      //console.log(data.status); return false;
+                      var json=JSON.parse(data.responseText);
+                      json = json.errors;
+                      for ( var item in json) {
+                          for ( var i = 0; i < json[item].length; i++) {
+                              layer.msg(json[item][i],{time:1000});
+                              return ; //遇到验证错误，就退出
+                          }
+                      }
+                  } else {
+                      layer.msg('服务器连接失败',{time:1000});
+                      return ;
+                  }
+              }
+          });
+          return false;
+          function success(data) {
+              if (data.status == 0) {
+                  alert(data.message);
+              } else {
+                  window.location.href = data.url;
+              }
+          };
+
+      }
 
   </script>
 

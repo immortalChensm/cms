@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Page;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,6 +15,12 @@ use App\Http\Requests\UpdateBannerPost;
 use App\common\Base;
 class PageController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *

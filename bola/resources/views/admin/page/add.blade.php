@@ -79,20 +79,20 @@
                                     <textarea id="content" name="content" class="txt" style="width:800px;"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div id="gender" class="btn-group" data-toggle="buttons">
-                                        <input type="radio" name="status" value="1"> &nbsp; 开启 &nbsp;
-                                        <input type="radio" name="status" value="0"> 禁用
-                                    </div>
-                                </div>
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>--}}
+                                {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                                    {{--<div id="gender" class="btn-group" data-toggle="buttons">--}}
+                                        {{--<input type="radio" name="status" value="1"> &nbsp; 开启 &nbsp;--}}
+                                        {{--<input type="radio" name="status" value="0"> 禁用--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="reset" onclick="javascript:history.back();">取消</button>
+                                    <button class="btn btn-primary" type="reset" onclick="javascript:history.back();">返回</button>
                                     <button type="button" onclick="save()" class="btn btn-success">提交</button>
                                 </div>
                             </div>

@@ -27,17 +27,17 @@ class CategorysPost extends FormRequest
         return [
             //
             'name'=>['required','min:2',Rule::unique('categorys')->ignore('id')],
-            'link'=>'nullable|url',
+
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required'   => '请输入分类',
-            'name.min'  => '分类最少2个字符',
-            'name.unique'=>'分类已经存在',
-            'link.url'=>'链接格式不正确'
+            'name.required'   => '请输入名称',
+            'name.min'  => '名称最少2个字符',
+            'name.unique'=>'名称已经存在',
+
         ];
     }
 }

@@ -3,14 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 use App\Model\Admin\Roles;
 use App\Http\Requests\RolesPost;
 use App\Http\Requests\UpdateRolePost;
 use Illuminate\Support\Facades\URL;
-use App\Model\Admin\Permissions;
+
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+
+        //$this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -103,49 +112,58 @@ class RoleController extends Controller
     //角色的权限列表
     public function permission(Roles $role,$roleid)
     {
-        //所有权限
-        $allpermission = Permissions::all();
-        $temp = [];
-        foreach ($allpermission as $item){
-            $temp[$item->module.'='.$item->description][] = $item->title.'='.$item->action.'='.$item->id;
+        $permission = Permission::all();
+        //print_r($permission->toArray());exit;
+        $permissionS = [];
+        $current_role = Role::where("id",$roleid)->first();
+        foreach($permission as $item){
+            $permissionS[$item->group][] = [
+                "name"=>$item->title,
+                "id"=>$item->id,
+                "permission"=>($current_role->hasPermissionTo($item->name)?1:0)
+            ];
         }
-        //角色所持有的权限
-        $permissions = $role->where("id",$roleid)->first()->permissions;
-        $permissionsArr = [];
-        foreach ($permissions as $item){
-            $permissionsArr[$item->id] = $item->name;
-        }
-        //当前角色
-        $roleinfo = $role->where("id",$roleid)->first();
-        return view("admin.role.permission",compact('allpermission','permissions','roleinfo','temp','permissionsArr'));
-    }
-
-    //给角色分配或移除权限
-    public function storeOrRemovePermission(Roles $role,$roleid)
-    {
-        $roles = $role->where("id",$roleid)->first();
-
-        $myPermission = $role->where("id",$roleid)->first()->permissions;
-
-        $allpermissions = Permissions::findMany(request("permissionIds"));
-
-        $addPermissions = $allpermissions->diff($myPermission);
-        if(count($addPermissions)>0){
-            foreach($addPermissions as $permission){
-                $roles->assignPermission($permission);
-            }
-        }
-
-            $deletePermission = $myPermission->diff($allpermissions);
-
-            if(count($deletePermission)>0){
-                foreach($deletePermission as $permission){
-                    $roles->deletePermission($permission);
+        foreach($permissionS as $group=>$arr){
+            $limit = [];
+            foreach($arr as $k=>$v){
+                if($v['permission'] == 1){
+                    $limit[] = "1";
                 }
             }
-
-
-
-        showMsg('1', '保存成功',URL::action('Admin\RoleController@index'));
+            if(count($arr) == count($limit)){
+                $permissionS[$group]['select'] = $arr;
+            }else{
+                $permissionS[$group]['unselect'] = $arr;
+            }
+        }
+        //print_r($permissionS);
+        return view("admin.role.permission",compact('permissionS','current_role'));
     }
+
+    public function storeOrRemovePermission(Roles $role,$roleid)
+    {
+
+        $roleModel = Role::where("id",$roleid)->first();
+        $select_permissionid = request()->all("selectid")['selectid'];
+
+        foreach($select_permissionid as $pid=>$status){
+            if(is_numeric($pid)){
+                $permission = $this->getPermission($pid);
+                if($status=='on'){
+                    $roleModel->givePermissionTo($permission);
+                }elseif($status=='off'){
+                    $roleModel->revokePermissionTo($permission);
+                }
+
+            }
+        }
+        showMsg('1', '保存成功', URL::action('Admin\RoleController@index'));
+    }
+
+    public function getPermission($pid)
+    {
+        return Permission::where("id",$pid)->first();
+    }
+
+
 }

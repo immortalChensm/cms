@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\URL;
 use App\Model\Admin\News;
 class IconuiController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:iconuid-list']);
+    }
+
     /**
      * Display a listing of the resource.
      *

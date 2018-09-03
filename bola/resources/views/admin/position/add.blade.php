@@ -18,12 +18,12 @@ var ue = UE.getEditor('content',{
     autoHeightEnabled: true
 });
 </script>
-  <div class="right_col" role="main">
+<div class="right_col" role="main" style="height:1000px;">
 <div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="col-md-12 col-sm-12 col-xs-12" >
     <div class="x_panel">
       <div class="x_title">
-        <h2>职位添加</h2>
+        <h2>职称添加</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -52,34 +52,28 @@ var ue = UE.getEditor('content',{
               <input type="text" id="first-name" name="title" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">发布人 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="last-name" name="name" required="required" class="form-control col-md-7 col-xs-12">
+
+          {{--<div class="form-group">--}}
+            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>--}}
+            {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+              {{--<div id="gender" class="btn-group" data-toggle="buttons">--}}
+                  {{--<input type="radio" name="status" value="1"> &nbsp; 开启 &nbsp;--}}
+                  {{--<input type="radio" name="status" value="0"> 禁用--}}
+              {{--</div>--}}
+            {{--</div>--}}
+          {{--</div>--}}
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="ait-switch">
+                        <label>
+                            <input type="checkbox" name="status" class="js-switch" checked />
+                        </label>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">城市地址</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="place">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">职位描述</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="content" name="content" class="txt" style="width:800px;"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div id="gender" class="btn-group" data-toggle="buttons">
-                  <input type="radio" name="status" value="1"> &nbsp; 开启 &nbsp;
-                  <input type="radio" name="status" value="0"> 禁用
-              </div>
-            </div>
-          </div>
+
    
           <div class="ln_solid"></div>
           <div class="form-group">

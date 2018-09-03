@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\System;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\DB;
 
 class SystemController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->checkPermission();
+
+    }
     /**
      * Display a listing of the resource.
      *

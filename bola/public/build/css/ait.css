@@ -1,0 +1,23 @@
+
+table.ait-table thead{
+	background-color: #1a54a5;
+	color:#fff;
+}
+table.ait-table tr th{
+	text-align: center;
+}
+table.ait-table tr td{
+	line-height: 44px;
+	text-align: center;
+}
+.ait-search input{
+	display: inline-block;
+	width:auto;
+	margin-left:10px;
+}
+.ait-dropdown{
+	width: 10%;
+}
+.ait-switch{
+	padding-top: 6px;
+}

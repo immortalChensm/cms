@@ -21,7 +21,7 @@ var ue = UE.getEditor('content',{
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>地址添加</h2>
+        <h2>编辑</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -46,41 +46,38 @@ var ue = UE.getEditor('content',{
             <input type="hidden" name="id" value="{{$data->id}}">
             <input type="hidden" name="_method" value="PUT">
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">职位名称 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">职称名称 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" id="first-name" name="title" value="{{$data->title}}" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">发布人 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="last-name" name="name" value="{{$data->name}}" required="required" class="form-control col-md-7 col-xs-12">
+
+          {{--<div class="form-group">--}}
+            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>--}}
+            {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+              {{--<div id="gender" class="btn-group" data-toggle="buttons">--}}
+                  {{--<input type="radio" name="status"  @if ($data->status == 1)checked @endif  value="1"> &nbsp; 开启 &nbsp;--}}
+                  {{--<input type="radio" name="status"  @if ($data->status == 0)checked @endif  value="0"> 禁用--}}
+              {{--</div>--}}
+            {{--</div>--}}
+          {{--</div>--}}
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="ait-switch">
+                        <label>
+                            @if ($data->status == 1)
+                            <input type="checkbox" name="status" class="js-switch"  checked   />
+                                @else
+                                    <input type="checkbox" name="status" class="js-switch"  />
+                            @endif
+                        </label>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">城市地址</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" value="{{$data->place}}" name="place">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">职位描述</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="content" name="content" value="{{$data->content}}" class="txt" style="width:800px;"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div id="gender" class="btn-group" data-toggle="buttons">
-                  <input type="radio" name="status"  @if ($data->status == 1)checked @endif  value="1"> &nbsp; 开启 &nbsp;
-                  <input type="radio" name="status"  @if ($data->status == 0)checked @endif  value="0"> 禁用
-              </div>
-            </div>
-          </div>
-   
+
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -100,7 +97,7 @@ var ue = UE.getEditor('content',{
     function save(){
         $.ajax({
             type: 'POST',
-            url: "{{url('admin/position/')}}"+{{$data->id}},
+            url: "{{url('admin/position/')}}/"+"{{$data->id}}",
             dataType: 'json',
             data: $('#postform').serializeArray(),
             success: function(data){

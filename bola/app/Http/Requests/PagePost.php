@@ -26,7 +26,7 @@ class PagePost extends FormRequest
         return [
             'title'   => ['required','min:2',Rule::unique('pages')->ignore('id')],
             'content' => 'required',
-            'status'  => 'required',
+            //'status'  => 'required',
         ];
     }
 
@@ -36,7 +36,7 @@ class PagePost extends FormRequest
             'title.required'   => '请输入标题',
             'title.unique'   => '标题已存在',
             'content.required' => '请输入描述',
-            'status.required'  => '请选择状态',
+            //'status.required'  => '请选择状态',
         ];
     }
 }

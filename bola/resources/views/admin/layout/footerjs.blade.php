@@ -37,6 +37,7 @@
 <script src="{{URL::asset('gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 <script src="{{URL::asset('gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
 <!-- Custom Theme Scripts -->
+<script src="{{URL::asset('js/admin/status.js')}}"></script>
 <script src="{{URL::asset('gentelella/build/js/custom.js')}}"></script>
 <!-- validator -->
 <script src="{{URL::asset('gentelella/vendors/validator/validator.js')}}"></script>
@@ -139,3 +140,26 @@
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
 </script>
+
+<!---->
+<script src="{{URL::asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="{{URL::asset('vendors/moment/min/moment.min.js')}}"></script>
+<script src="{{URL::asset('vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<!-- bootstrap-datetimepicker -->
+<script src="{{URL::asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+
+<script>
+    $('#myDatepicker').datetimepicker();
+
+</script>
+<!-- Bootstrap -->
+<script src="{{URL::asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- FastClick -->
+<script src="{{URL::asset('vendors/fastclick/lib/fastclick.js')}}"></script>
+<!-- NProgress -->
+<script src="{{URL::asset('vendors/nprogress/nprogress.js')}}"></script>
+<!-- iCheck -->
+<script src="{{URL::asset('vendors/iCheck/icheck.min.js')}}"></script>
+
+<script src="{{URL::asset('vendors/switchery/dist/switchery.min.js')}}"></script>

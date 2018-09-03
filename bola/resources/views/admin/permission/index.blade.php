@@ -7,7 +7,7 @@
         <div class="x_panel" style="width:100%;">
           <div class="x_title">
               {{--<a href="{{route('permissions.create')}}" class="btn btn-info" ></a>--}}
-            <h2>权限管理/权限列表<small></small></h2>
+            <h2>权限列表<small></small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -42,7 +42,7 @@
                   <tr>
                       <td>{{$permission->id}}</td>
                       <td>{{$permission->title}}</td>
-                      <td>{{$permission->description}}</td>
+                      <td>{{$permission->group}}</td>
                       {{--<td>{{$permission->created_at}}</td>--}}
 
                       {{--<td><a href="{{route('permissions.edit',$permission->id)}}" class="btn btn-default">编辑</a><a class="delete" href="#" data-id="{{$permission->id}}">移除</a></td>--}}

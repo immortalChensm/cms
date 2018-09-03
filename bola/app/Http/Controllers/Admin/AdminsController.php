@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateAdminPost;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Roles;
+use Spatie\Permission\Models\Role;
 
 class AdminsController extends Controller
 {
@@ -86,6 +87,7 @@ class AdminsController extends Controller
         $input['password'] && ($admins->password = bcrypt($input['password']));
         $admins->status = $input['status'];
 
+
         $admins->save() ? showMsg('1', '修改成功', URL::action('Admin\AdminsController@index')) : showMsg('0', '暂无修改');
     }
 
@@ -97,7 +99,13 @@ class AdminsController extends Controller
      */
      public function destroy($id)
     {
+        $data = Admins::where('id', $id)->first();
+        if($data['account'] == 'admin'){
+            showMsg('0', '超级账号禁止删除');
+        }
+
         $res = Admins::destroy($id);
+
         $res ? showMsg('1', '删除成功') : showMsg('0', '删除失败');
     }
 
@@ -105,6 +113,11 @@ class AdminsController extends Controller
     public function status(Request $request)
     {
         $post = $request->all();
+        $data = Admins::where('id', $post['id'])->first();
+        if($data['account'] == 'admin'){
+            showMsg('0', '超级账号禁止禁用');
+        }
+
         $res  = Admins::where('id', $post['id'])->update(array('status' => $post['status']));
         $res ? showMsg('1', '修改成功') : showMsg('0', '修改失败');
     }
@@ -113,33 +126,45 @@ class AdminsController extends Controller
     //用户的权限列表
     public function role(Admins $user,$userid)
     {
-        $allroles = \App\Model\Admin\Roles::all();
-        $roles = $user->where("id",$userid)->first()->roles;
+//        $allroles = \App\Model\Admin\Roles::all();
+//        $roles = $user->where("id",$userid)->first()->roles;
+
+        $allroles = Role::all();
+
         $user = $user->where("id",$userid)->first();
-        return view("admin.admins.role",compact('roles','allroles','user'));
+        $allRoles = [];
+        foreach($allroles as $item){
+            if($user->hasRole($item->name)){
+                $allRoles[$item->id] = ["name"=>$item->name,"status"=>1];
+            }else{
+                $allRoles[$item->id] = ["name"=>$item->name,"status"=>0];
+            }
+        }
+        return view("admin.admins.role",compact('roles','allRoles','user'));
     }
 
     //给用户分配角色或移除角色
     public function storeOrRemoveRole(Admins $user,$userid)
     {
-        $users = $user->where("id",$userid)->first();
-        $role = Roles::findMany(request("roleids"));
-        $myRoules = $users->roles;
-        $addRoles = $role->diff($myRoules);
 
-        if(count($addRoles)>0){
-            foreach($addRoles as $roles){
-                $users->assignRole($roles);
+        $select_roleid = request()->all("selectid")['selectid'];
+        $userModel = $user->where("id",$userid)->first();
+        foreach($select_roleid as $pid=>$status){
+            if(is_numeric($pid)){
+                $role = $this->getRole($pid);
+                if($status=='on'){
+                    $userModel->assignRole($role);
+                }elseif($status=='off'){
+                    $userModel->removeRole($role);
+                }
+
             }
         }
-
-        $deleteRoules = $myRoules->diff($role);
-        if(count($deleteRoules)>0){
-            foreach($deleteRoules as $roles){
-                $users->deleteRole($roles);
-            }
-        }
-
         showMsg('1', '保存成功',URL::action('Admin\AdminsController@index'));
+    }
+
+    public function getRole($pid)
+    {
+        return Role::where("id",$pid)->first();
     }
 }

@@ -7,17 +7,14 @@ Route::group(['prefix' => ''], function () {
     //关于
     Route::get('info.html', 'Home\AbountController@index');
 
-     //Route::get('abount/index.html', 'Home\AbountController@index');
-    //发展历程milestones.html
-     //Route::get('abount/milestones', 'Home\AbountController@milestones');
      Route::get('milestones.html', 'Home\AbountController@milestones');
      //荣誉
 
-     //Route::get('abount/honor', 'Home\AbountController@honor');
+     //Route::get('abount/honor', 'Home\HospitalController@index');
      Route::get('honor.html', 'Home\AbountController@honor');
-     //团队
-     //Route::get('abount/team', 'Home\AbountController@team');
-     Route::get('team.html', 'Home\AbountController@team');
+     //医院联盟
+     Route::get('hospitals.html', 'Home\HospitalController@index');
+     Route::get('hospitals-details-{hospitalid}.html', 'Home\HospitalController@hospitalDetails');
 
      //服务
      //Route::get('service/index', 'Home\ServiceController@index');

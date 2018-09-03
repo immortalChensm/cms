@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,6 +56,29 @@
     <link href="{{URL::asset('gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.css')}}" rel="stylesheet">
     <link href="{{URL::asset('gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
 
+
+    <!---->
+    <link href="{{URL::asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{URL::asset('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{{URL::asset('vendors/nprogress/nprogress.css" rel="stylesheet')}}">
+    <!-- iCheck -->
+    <link href="{{URL::asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{{URL::asset('vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
+
+    <!-- bootstrap-datetimepicker -->
+    <link href="{{URL::asset('vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css')}}" rel="stylesheet">
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{URL::asset('vendors/moment/min/moment.min.js')}}"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="{{URL::asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+
+    <!-- Custom Theme Style -->
+    <link href="{{URL::asset('build/css/custom.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::asset('build/css/ait.css')}}">
 
 
 </head>

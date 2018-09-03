@@ -28,27 +28,50 @@
         <form method="post" action="{:U('Categorys/insert')}" id="postform" data-parsley-validate class="form-horizontal form-label-left">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">上级 <span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
+            {{--<div class="form-group">--}}
+                {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">科室 <span class="required">*</span>--}}
+                {{--</label>--}}
+                {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
 
-                    <select  name="parent_id" style="width:300px;">
+                    {{--<select  name="parent_id" style="width:300px;">--}}
+                        {{--<option value="0">--}}
+                            {{--科室--}}
+                        {{--</option>--}}
+                        {{--@foreach($category as $item)--}}
+
+                        {{--<option value="{{$item->id}}">--}}
+                            {{--{{str_repeat('----',$item->level)}}--}}
+                            {{--{{$item->name}}--}}
+                            {{--</option>--}}
+
+                        {{--@endforeach--}}
+                        {{--</select>--}}
+
+                {{--</div>--}}
+            {{--</div>--}}
+
+            <div class="form-group">
+                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">科室</label>
+                <div class="col-xs-3">
+
+                    <select class="form-control" name="parent_id" required="">
                         <option value="0">
-                            上级
+                            科室
                         </option>
                         @foreach($category as $item)
 
-                        <option value="{{$item->id}}">
-                            {{str_repeat('----',$item->level)}}
-                            {{$item->name}}
+                            <option value="{{$item->id}}">
+                                {{str_repeat('----',$item->level)}}
+                                {{$item->name}}
                             </option>
 
                         @endforeach
-                        </select>
+                    </select>
 
                 </div>
             </div>
+
+
 
 
           <div class="form-group">
@@ -58,21 +81,9 @@
               <input type="text" id="first-name" name="name" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">链接 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="last-name" name="link" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
 
-       <!--    <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">角色 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-            </div>
-          </div> -->
+
+
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

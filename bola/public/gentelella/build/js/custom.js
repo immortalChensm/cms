@@ -1130,6 +1130,7 @@ if (typeof NProgress != 'undefined') {
 			console.log('init_cropper');
 			
 			var $image = $('#image');
+			console.log($image.naturalWidth);
 			var $download = $('#download');
 			var $dataX = $('#dataX');
 			var $dataY = $('#dataY');
@@ -1139,7 +1140,7 @@ if (typeof NProgress != 'undefined') {
 			var $dataScaleX = $('#dataScaleX');
 			var $dataScaleY = $('#dataScaleY');
 			var options = {
-				  aspectRatio: 16 / 9,
+				  //aspectRatio: 16 / 9,
 				  preview: '.img-preview',
 				  crop: function (e) {
 					$dataX.val(Math.round(e.x));

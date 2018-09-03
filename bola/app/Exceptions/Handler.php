@@ -7,6 +7,9 @@ use app\Helper\functions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\AuthenticationException;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -52,17 +55,27 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        if(preg_match('/This action is unauthorized/',$exception->getMessage())){
 
-            if(request()->isXmlHttpRequest()){
+
+        if ($exception instanceof UnauthorizedException) {
+            // Code here ...
+            //if(request()->isXmlHttpRequest()){
                 showMsg('0', '您没有此功能的权限！无法操作');
-            }
-
-
-
-        }else{
-
+            //}
         }
+//
+//        if(preg_match('/This action is unauthorized/',$exception->getMessage())){
+//
+//            if(request()->isXmlHttpRequest()){
+//                showMsg('0', '您没有此功能的权限！无法操作');
+//            }
+//
+//
+//
+//        }else{
+//
+//        }
+
 
         return parent::render($request, $exception);
     }

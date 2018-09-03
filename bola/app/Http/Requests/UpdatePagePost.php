@@ -37,7 +37,7 @@ class UpdatePagePost extends FormRequest
         return [
             'title.required'   => '请输入标题',
             'title.unique'=>'标题已存在',
-            'content.required' => '请输入描述',
+            'content.required' => '请输入内容',
             'status.required'  => '请选择状态',
         ];
     }
