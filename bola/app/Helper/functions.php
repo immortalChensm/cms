@@ -65,4 +65,3 @@ function systemMenu()
         "banner"=>"轮播器管理"
     ];
 }
-
