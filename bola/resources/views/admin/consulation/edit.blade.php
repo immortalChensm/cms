@@ -134,6 +134,42 @@ var ue = UE.getEditor('content',{
             </div>
 
             <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">患者病情</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" value="{{$data->ill_desc}}" disabled required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">呼吸支持</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" value="{{$data->ill_breath}}" disabled required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">病房</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" value="{{$data->ill_room}}" disabled required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">转运需求</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" value="{{$data->ill_transfer}}" disabled required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">时间需求</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" value="{{$data->ill_ntime}}" disabled required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">状态</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="ait-switch">
@@ -154,8 +190,9 @@ var ue = UE.getEditor('content',{
                 <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">分配给</label>
                 <div class="col-xs-3">
                     <select class="form-control" required="" name="hospitalid">
+                        <option value="" >指定的医院</option>
                             @foreach($hospital as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{$item->id}}" @if($item->id == $data->assign_hospitalid) selected @endif>{{$item->name}}</option>
                             @endforeach
                     </select>
                 </div>

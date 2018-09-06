@@ -47,7 +47,7 @@ class PyhsicianController extends Controller
         }else{
             $whereRaw = 1;
         }
-        $data = Pyhsician::search(request()->username)->whereRaw($whereRaw)->orderBy('id', 'asc')->with(["subject","skill","position"])->paginate(10);
+        $data = Pyhsician::search(request()->username)->whereRaw($whereRaw)->where("is_validate",1)->orderBy('id', 'asc')->with(["subject","skill","position"])->paginate(10);
 
         $skillids = [];
         foreach($data as $k=>$v){

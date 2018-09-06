@@ -230,6 +230,12 @@ class UploadController
                 $fieldName = $CONFIG['videoFieldName'];
                 break;
             case 'uploadfile':
+                $config = array(
+                    "pathFormat" => $CONFIG['filePathFormat'],
+                    "maxSize" => $CONFIG['fileMaxSize'],
+                    "allowFiles" => $CONFIG['fileAllowFiles']
+                );
+                $fieldName = $CONFIG['fileFieldName'];
             default:
                 $config = array(
                     "pathFormat" => $CONFIG['filePathFormat'],

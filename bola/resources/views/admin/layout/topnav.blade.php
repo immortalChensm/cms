@@ -8,13 +8,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> 退出登录</a>
+                        {{\Auth::user()->account}}
+                        <span class=" fa fa-angle-down" onclick="window.location.href='/admin/logout'">退出登录</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-usermenu pull-right" style="display:none;">
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
 
 
                         <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> 退出登录</a></li>
                     </ul>
+
                 </li>
 
                 <li role="presentation" class="dropdown" style="display: none;">

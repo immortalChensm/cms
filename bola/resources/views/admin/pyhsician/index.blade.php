@@ -104,6 +104,7 @@
                               <th class="column-title" >科室</th>
 
                               <th class="column-title" >手机号</th>
+                              <th class="column-title" >资质链接</th>
                               <th class="column-title" >推荐</th>
 
                               <th class="column-title" >状态</th>
@@ -115,23 +116,30 @@
 
                           @foreach ($data as $news)
                               <tr class="even pointer">
-                                  <td class="column-title" >{{$news->id}}</th>
+                                  <td class="column-title" >{{$news->id}}</td>
                                   <td class="column-title" >
                                   <img src="{{request()->getSchemeAndHttpHost().$news->image}}" class="img img-responsive" style="width:100px;"/>
 
-                                  </th>
-                                  <td class="column-title" >{{$news->username}}</th>
+                                  </td>
+                                  <td class="column-title" >{{$news->username}}</td>
                                   <td class="column-title" >
                                   @foreach($news->skillitem as $item)
                                   {{$item['name']}}
                                   @endforeach
-                                  </th>
-                                  <td class="column-title" >{{$news->position->title}}</th>
-                                  <td class="column-title">{{$news->hospital_code}}</th>
-                                  <td class="column-title">{{$news->hospital->name}}</th>
-                                  <td class="column-title" >{{$news->subject->name}}</th>
+                                  </td>
+                                  <td class="column-title" >{{$news->position->title}}</td>
+                                  <td class="column-title">{{$news->hospital_code}}</td>
+                                  <td class="column-title">{{$news->hospital->name}}</td>
+                                  <td class="column-title" >{{$news->subject->name}}</td>
 
-                                  <td class="column-title" >{{$news->mobile}}</th>
+                                  <td class="column-title" >{{$news->mobile}}</td>
+                                  <td class="column-title" >
+                                    @if($news->cert)
+                                          <a href="{{request()->getSchemeAndHttpHost().$news->cert}}" class="btn btn-success btn-sm">下载</a>
+                                        @else
+                                        没有资质凭证
+                                        @endif
+                                  </td>
 
                                   {{--<td class="column-title" width="20%">{{$news->province->name.$news->city->name.$news->county->name.$news->address}}</th>--}}
                                   <td class="column-title" >

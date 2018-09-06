@@ -5,6 +5,7 @@ use App\Http\Requests\UpdateHospitalPost;
 
 use App\Model\Admin\Categorys;
 use App\Model\Admin\Hospital;
+use App\Model\Admin\Pyhsician;
 use Illuminate\Http\Request;
 use App\Http\Requests\HospitalPost;
 use Illuminate\Support\Facades\URL;
@@ -33,6 +34,21 @@ class HospitalController extends Controller
         if(request()->subjectid&&is_numeric(request()->subjectid)){
             $whereRaw.= "subjectid=".request()->subjectid." AND ";
         }
+        if(request()->provinceid&&is_numeric(request()->provinceid)){
+            $whereRaw.= "provinceid=".request()->provinceid." AND ";
+        }
+        if(request()->cityid&&is_numeric(request()->cityid)){
+            $whereRaw.= "cityid=".request()->cityid." AND ";
+        }
+        if(request()->countyid&&is_numeric(request()->countyid)){
+            $whereRaw.= "countyid=".request()->countyid." AND ";
+        }
+        if(request()->grade){
+            $whereRaw.= "grade='".request()->grade."' AND ";
+        }
+        if(request()->pccm){
+            $whereRaw.= "pccm='".request()->pccm."' AND ";
+        }
         if(request()->skillid&&is_numeric(request()->skillid)){
             $whereRaw.= "skillid LIKE '%".request()->skillid."%' AND ";
         }
@@ -49,7 +65,13 @@ class HospitalController extends Controller
             $data[$k]->skillitem = $this->getSkill($skillids)->toArray();
         }
 
-        return view('admin/product/index',compact('data','subject','province'));
+        $grade_pccm = $this->getGradeAndPccm();
+        return view('admin/product/index',compact('data','subject','province','grade_pccm'));
+    }
+
+    public function getPyhsician()
+    {
+        return Pyhsician::where("is_validate",1)->get();
     }
 
     private function getSkill($skillids)
@@ -60,6 +82,14 @@ class HospitalController extends Controller
     private function getSubjectRoom()
     {
         return Categorys::where("parent_id",0)->get();
+    }
+
+    private function getGradeAndPccm()
+    {
+        return [
+            Hospital::select(['grade'])->get(),
+            Hospital::select(['pccm'])->get()
+        ];
     }
 
 
@@ -86,7 +116,8 @@ class HospitalController extends Controller
         $category = $this->getCategorys();
         $subject = $this->getSubjectRoom();
         $province = $this->getProvince();
-        return view('admin/product/add',compact('category','subject','province'));
+        $physician = $this->getPyhsician();
+        return view('admin/product/add',compact('category','subject','province','physician'));
     }
 
     public function skill(Request $request)
@@ -141,7 +172,8 @@ class HospitalController extends Controller
         $category = $this->getCategorys();
         $subject = $this->getSubjectRoom();
         $province = $this->getProvince();
-        return view('admin.product.edit', compact('data','category','subject','province'));
+        $physician = $this->getPyhsician();
+        return view('admin.product.edit', compact('data','category','subject','province','physician'));
     }
 
     /**

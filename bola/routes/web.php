@@ -41,6 +41,7 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
 
         //转诊申请记录
         Route::resource('consulation', 'Admin\ConsulationController');
+        Route::resource('hospitalapp', 'Admin\JoinrecordController');
 
         Route::get('logout', 'Admin\LoginController@logout');
 

@@ -1,0 +1,57 @@
+/****css reset*****/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img{
+	margin:0;
+	padding:0;
+	border:none; 
+	outline-style:none;
+}
+ul,ol{
+	list-style:none;
+}
+a{
+	text-decoration:none;
+	color:#333333;
+	cursor:pointer;
+}
+a:hover{
+	text-decoration:none;
+	color:#971d25;
+}
+b,i,s,u{
+	display:inline-block;
+	font-style:normal;
+	font-weight:normal;
+	text-decoration:none;
+}
+select,input,img,button,textarea{
+	border:0;
+	outline:none;
+}
+img{
+	vertical-align:bottom;
+}
+body{
+	font:16px "MicrosoftYaHei";
+	color:#333333;
+	background:#f8f8f8;
+}
+.clearfix::before,.clearfix::after {
+    content:"";
+    display:table;
+}
+.clearfix:after{clear:both;}
+.clearfix{
+    /*overflow: hidden;*/
+    *zoom:1;/*IE/7/6*/
+}
+/*公共类*/
+.w{
+	width:1200px;
+	margin:0 auto;
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}

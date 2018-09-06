@@ -7,7 +7,13 @@ $(function (e) {
         var hospital_name = $(":input[name=hospital-name]").val();
         var subjectid = $(":input[name=subjectid]").val();
         var skillid = $("#skillid").val();
-        window.location.href = "/admin/hospital?hospitalname="+hospital_name+"&subjectid="+subjectid+"&skillid="+(skillid?skillid:"");
+
+        var provinceid = $(":input[name=provinceid]").val();
+        var cityid = $(":input[name=cityid]").val();
+        var countyid = $(":input[name=countyid]").val();
+
+
+        window.location.href = "/admin/hospital?hospitalname="+hospital_name+"&subjectid="+subjectid+"&skillid="+(skillid?skillid:"")+"&provinceid="+provinceid+"&cityid="+cityid+"&countyid="+countyid;
 
     });
     //subject
@@ -123,6 +129,9 @@ $(function (e) {
                 if(data){
                     $(element).find("option").remove();
                     var html = "";
+
+                    //index page 搜索时
+                    var location_urls = window.location.href.substring(window.location.href.indexOf("cityid")).split("=");
 
                     html+="<option value='0' >不限</option>";
 

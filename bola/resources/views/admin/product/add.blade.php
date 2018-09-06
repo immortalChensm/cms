@@ -74,7 +74,47 @@ var ue = UE.getEditor('content',{
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院等级</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="first-name" name="grade" required="required" class="form-control col-md-7 col-xs-12">
+
+
+                        <select class="form-control" required="" name="grade">
+                                <option value="示范单位">示范单位</option>
+                                <option value="优秀单位">优秀单位</option>
+                                <option value="达标单位">达标单位</option>
+                                <option value="培育单位">培育单位</option>
+
+                        </select>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">PCCM等级</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                    <select class="form-control" required="" name="pccm">
+
+                        <option value="三级甲等">三级甲等</option>
+                        <option value="三级乙等">三级乙等</option>
+                        <option value="三级丙等">三级丙等</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">剩余普通床位</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="general_seat" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">剩余ICU床位</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="icu_seat" required="required" class="form-control col-md-7 col-xs-12">
                 </div>
             </div>
 
@@ -121,7 +161,7 @@ var ue = UE.getEditor('content',{
 
 
                 </div>
-                <div class="col-xs-3" style="width:300px!important;">
+                <div class="col-xs-3" style="width:200px!important;">
 
 
                     <select class="form-control" required="" name="cityid" >
@@ -132,7 +172,7 @@ var ue = UE.getEditor('content',{
 
 
                 </div>
-                <div class="col-xs-3" style="width:300px!important;">
+                <div class="col-xs-3" style="width:200px!important;">
 
 
                     <select class="form-control" required="" name="countyid" >
@@ -156,6 +196,16 @@ var ue = UE.getEditor('content',{
 
                 {{--</div>--}}
 
+
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">街道社区</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="first-name" name="street" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
             </div>
 
             <div class="form-group">
@@ -189,11 +239,28 @@ var ue = UE.getEditor('content',{
             </div>
 
 
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">医院管理员</label>
+                <div class="col-xs-3" style="width:300px !important;">
+
+
+                    <select class="form-control" required="" name="hospital_adminid" >
+                        <option value="">选择管理员</option>
+                        @foreach($physician as $item)
+                            <option value="{{$item->id}}">{{$item->username}}</option>
+                        @endforeach
+                    </select>
+
+
+                </div>
+            </div>
+
+
 
             <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-              <button class="btn btn-primary" type="reset" onclick="javascript:history.back();">取消</button>
+              <button class="btn btn-primary" type="reset" onclick="javascript:history.back();">返回</button>
               <button type="button" onclick="save()" class="btn btn-success">提交</button>
             </div>
           </div>

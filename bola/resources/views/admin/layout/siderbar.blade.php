@@ -77,17 +77,18 @@
             @endcan
             @can("pyhsician-list")
                 <li><a><i class="fa fa-plus-circle"></i> 医生管理 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu" @if(request()->is("*/pyhsician/*") ||request()->is("*/hospital/*")) style='display:block;' @endif>
+                    <ul class="nav child_menu" @if(request()->is("*/pyhsician/*") ) style='display:block;' @endif>
 
                         <li @if(request()->is("*/pyhsician/*")) class="current-page" @endif><a href="/admin/pyhsician" >医生列表</a></li>
                     </ul>
                 </li>
             @endcan
             @can("consulation-list")
-                <li><a><i class="fa fa-book"></i> 转诊申请记录 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu" @if(request()->is("*/consulation/*") ||request()->is("*/hospital/*")) style='display:block;' @endif>
+                <li><a><i class="fa fa-book"></i> 申请记录 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu" @if(request()->is("*/consulation/*") ||request()->is("*/hospitalapp/*")) style='display:block;' @endif>
 
                         <li @if(request()->is("*/consulation/*")) class="current-page" @endif><a href="/admin/consulation" >转诊申请记录列表</a></li>
+                        <li @if(request()->is("*/hospitalapp/*")) class="current-page" @endif><a href="/admin/hospitalapp" >医联体申请列表</a></li>
                     </ul>
                 </li>
             @endcan
@@ -99,6 +100,12 @@
                     </ul>
                 </li>
                @endcan
+
+                {{--<li><a><i class="fa fa-desktop"></i> 医联体申请列表 <span class="fa fa-chevron-down"></span></a>--}}
+                    {{--<ul class="nav child_menu" @if(request()->is("*/hospitalapp/*")) style='display:block;' @endif >--}}
+                        {{--<li @if(request()->is("*/hospitalapp/*")) class="current-page" @endif><a href="/admin/system">系统设置</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
         </ul>
     </div>

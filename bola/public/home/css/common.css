@@ -1,0 +1,349 @@
+/***********头部***************/
+.header{
+    background-color:#621318;
+    height:70px;
+    width:auto;
+}
+.header_main{
+    height:70px;
+    background:#621318;
+}
+.top_foundation{
+    width:927px;
+}
+.header img.logo{
+    width:64px;
+    height:64px;
+    float:left;
+    margin-top:3px;
+}
+.header .foundation {
+    display: inline-block;
+    width: 144px;
+    font-size: 24px;
+    color: #fff;
+    line-height: 70px;
+    margin-left: 4px;
+}
+.header ul{
+    width:273px;
+    height:70px;
+}
+.header ul li{
+    height:70px;
+    float:left;
+    color:#fff;
+    font-size:18px;
+    line-height: 70px;
+    margin-right:30px;
+}
+.header ul li:last-child{
+    margin:0;
+}
+.header ul i{
+    width:22px;
+    height:22px;
+    margin-right:10px;
+    top: 5px;
+    position: relative;
+}
+.header .register{
+    background:url('../images/注册.png') no-repeat;
+}
+.header .login{
+    background:url('../images/登录.png') no-repeat;
+}
+.header .background{
+    background:url('../images/后台管理.png') no-repeat;
+}
+/***********导航栏***************/
+.nav{
+    width:auto;
+    height:70px;
+    background-color:#621318;
+}
+.nav_main {
+    background-color:#621318;
+    height:70px;
+}
+.nav ul{
+    width:927px;
+    height:70px;
+}
+.nav ul li{
+    float:left;
+    font-size:18px;
+    width:103px;
+    height:66px;
+    line-height:66px;
+    text-align: center;
+    margin-bottom:2px;
+}
+.nav ul li:first-child{
+    width:69px;
+}
+.nav ul li:nth-child(2),.nav ul li:nth-child(3){
+    width:122px;
+}
+.nav ul li a{
+    display: inline-block;
+    width:100%;
+    /*width:103px;*/
+    height:66px;
+    color:#fff;
+}
+.nav ul li a.hospital,.nav ul li a.doctor{
+    width:122px;
+}
+.nav ul li a.home{
+    width:69px;
+}
+.nav ul li a:hover{
+    color:#621318;
+    background-color:#fff;
+}
+.nav .search_totall{
+    width:273px;
+    height:70px;
+}
+.search{
+    /* margin:17px 22px 18px 0; */
+    margin:17px 0px 18px 0;
+    height:35px;
+}
+.search_main{
+    width:273px;
+    height:35px;
+    border-radius:4px;
+    background-color:#971d25;
+    position:relative;
+}
+.search_main .searchSelected{
+    width:55px;
+    height:35px;
+    background:#fff;
+    color:#111;
+    line-height:35px;
+    padding-left:9px;
+}
+.search_main .arrow_down{
+    width:14px;
+    height:8px;
+    background:url('../images/下拉.png') no-repeat;
+    position:absolute;
+    left: 45px;
+    top: 15px;
+}
+.search_main .search_content{
+    width:164px;
+    height:33px;
+    background:#fff;
+    padding-left:2px;
+}
+.nav .search_main .search_btn{
+    width:20px;
+    height:19px;
+    background:url('../images/搜索.png') no-repeat;
+    position:absolute;
+    right:4px;
+    bottom:8px;
+}
+.nav .searchTab{
+    width:55px;
+    height:71px;
+    position:absolute;
+    top:35px;
+    background:#fff;
+    z-index:10;
+    display:none;
+}
+.nav .searchTab .search_li{
+    width:55px;
+    height:71px;
+}
+.nav .searchTab .search_li li{
+    width:55px;
+    height:35px;
+    border-bottom:1px solid #4d971d25;
+}
+.nav .searchTab .search_li li:last-child{
+    border-bottom:0;
+}
+.nav .searchTab .search_li a{
+    display:block;
+    width:55px;
+    height:35px;
+    line-height:35px;
+    font-size:16px;
+    text-align:center;
+    color:#111;
+    margin-left: -3px;
+}
+.nav .searchTab .search_li a:hover{
+    background-color:#621318;
+    color:#fff;
+}
+/***********尾部***************/
+.footer1{
+    background-color:#4b4b4b;
+    width:auto;
+    height:100px;
+}
+.footer1_main{
+    height:100px;
+    background-color:#4b4b4b;
+}
+.footer1 ul{
+    height:100px;
+    line-height:100px;
+    text-align:center;
+    color:#fff;
+    margin-left:192px;
+}
+.footer1 ul li{
+    float:left;
+    width:239px;
+    margin-right:97px;
+}
+.footer1 ul li:first-child{
+    width:212px;
+}
+.footer1 ul li:last-child{
+    width:150px;
+    margin:0;
+}
+.footer1 ul i{
+    width:20px;
+    height:20px;
+    margin-right:10px;
+    line-height:100px;
+    position:relative;
+}
+.footer1 .logo{
+    width:90px;
+    height:54px;
+    background:url('../images/1-首页_07.jpg') no-repeat;
+    top:17px;
+    left:44px;
+}
+.footer1 .address{
+    background:url('../images/地址.png') no-repeat;
+    top:4px;
+}
+.footer1 .phone{
+    background:url('../images/电话.png') no-repeat;
+    top:4px;
+}
+.footer2{
+    width:auto;
+    background-color:#212121;
+    height:70px;
+}
+.footer2_main{
+    background-color:#212121;
+    height:70px;
+}
+.footer2_main p{
+    text-align:center;
+    margin:0 auto;
+    color:#fff;
+    font-size:14px;
+}
+.footer2_main p.copy{
+    padding-top:16px;
+    padding-bottom:4px;
+}
+
+/***********侧边栏***************/
+.subnav{
+    position:fixed;
+    width:60px;
+    height:184px;
+    right:5px;
+    bottom: 30%
+}
+.subnav ul.subnav_descript{
+    height:184px;
+    width:60px;
+}
+ul.subnav_descript li{
+    width:60px;
+    height:45px;
+    background-color:#f4e8e9;
+    margin-bottom:4px;
+    text-align:center;
+    padding-top:15px;
+}
+ul.subnav_descript li i.doctor{
+    width:30px;
+    height:26px;
+    background:url('../images/医生端未选中.png') no-repeat;
+}
+ul.subnav_descript li i.people{
+    width:28px;
+    height:30px;
+    background:url('../images/患者未选中.png') no-repeat;
+}
+ul.subnav_descript li i.micro{
+    width:30px;
+    height:28px;
+    background:url('../images/微信未选中.png') no-repeat;
+}
+ul.subnav_descript li:hover{
+    background-color:#971d25;
+}
+ul.subnav_descript li:hover i.doctor{
+    background:url('../images/医生端选中.png') no-repeat;
+}
+ul.subnav_descript li:hover i.people{
+    background:url('../images/患者选中.png') no-repeat;
+}
+ul.subnav_descript li:hover i.micro{
+    background:url('../images/微信选中.png') no-repeat;
+}
+ul.subnav_descript li:hover .prompt{
+    display: block;
+}
+.prompt{
+    width:100px;
+    height:150px;
+    background-color:#971d25;
+    position:relative;
+    right:123px;
+    top: -54px;
+    display:none;
+}
+.prompt img{
+    width:70px;
+    height:70px;
+    padding:23px 15px 10px 15px;
+}
+.prompt p{
+    font-size:14px;
+    width:70px;
+    height:14px;
+    line-height:14px;
+    margin:auto;
+    text-align:center;
+    margin-bottom:8px;
+}
+.prompt p:last-child{
+    width:75px;
+    margin-top:9px;
+}
+.prompt .scanning{
+    width:61px;
+    height:13px;
+    color:#333;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+}
+.subnav_descript li i.arrow_red{
+    width:15px;
+    height:30px;
+    background:url('../images/箭头红.png') no-repeat;
+    position:relative;
+    bottom:123px;
+    right:-57px;
+}

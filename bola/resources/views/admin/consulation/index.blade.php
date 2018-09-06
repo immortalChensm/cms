@@ -89,14 +89,18 @@
 
                               <th class="column-title" width="100px">提交医生 </th>
                               <th class="column-title" width="100px">医生电话 </th>
-                              <th class="column-title" width="100px">分配医院</th>
+                              <th class="column-title" width="100px">已分配医院</th>
 
                               <th class="column-title" width="200px">申请时间</th>
                               <th class="column-title" width="200px">分配时间</th>
                               <th class="column-title" width="100px">病例附件</th>
-                              <th class="column-title" >病情描述</th>
-                              <th class="column-title" >转诊要求 </th>
-                              <th class="column-title" >状态</th>
+                              <th class="column-title" width="100px">病情描述</th>
+                              <th class="column-title" width="100px">患者病情 </th>
+                              <th class="column-title" width="100px">呼吸支持 </th>
+                              <th class="column-title" width="100px">病房</th>
+                              <th class="column-title" width="100px">转运需求 </th>
+                              <th class="column-title" width="100px">时间需求 </th>
+                              <th class="column-title" width="100px">状态</th>
                               <th class="column-title" >操作</th>
                           </tr>
                           </thead>
@@ -111,22 +115,27 @@
 
                                   <td class="column-title">{{$news->pyhsician->username}}</th>
                                   <td class="column-title">{{$news->pyhsician->mobile}}</th>
-                                  <td class="column-title" >{{$news->hospital->name}}</th>
+                                  <td class="column-title" >{{isset($news->hospital->name)?$news->hospital->name:'未分配医院'}}</th>
                                   <td class="column-title" >{{$news->created_at}}</th>
 
                                   <td class="column-title" >{{$news->assign_time}}</th>
 
                                   <td class="column-title" >
                                   @if($news->case_illfile)
-                                          <a href="{{$news->case_illfile}}" >下载</a>
-                                  @endif
+                                          <a href="{{$news->case_illfile}}" class="btn-dark">下载</a>
+                                  @else
                                           没有附件
+                                  @endif
 
                                   </th>
 
 
                                   <td class="column-title" >{{str_limit($news->description,20)}}</th>
-                                  <td class="column-title" >{{str_limit($news->transfer_desc,20)}}</th>
+                                  <td class="column-title" >{{str_limit($news->ill_desc,20)}}</th>
+                                  <td class="column-title" >{{str_limit($news->ill_breath,20)}}</th>
+                                  <td class="column-title" >{{str_limit($news->ill_room,20)}}</th>
+                                  <td class="column-title" >{{str_limit($news->ill_transfer,20)}}</th>
+                                  <td class="column-title" >{{$news->ill_ntime}}</th>
                                   <td class="column-title" >
 
                                       <div class="">

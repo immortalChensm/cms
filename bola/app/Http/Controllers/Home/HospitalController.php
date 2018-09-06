@@ -57,5 +57,25 @@ class HospitalController extends Controller
     	//return view('home/abount/milestones');
     }
 
+    //获取指定地区下的医院列表
+    public function hospitals()
+    {
+        $provinceid = request()->provinceid;
+        $cityid     = request()->cityid;
+        $countyid   = request()->countyid;
+        $ret = Hospital::where(function($query)use($provinceid,$cityid,$countyid){
+            if($provinceid){
+                $query->where("provinceid",$provinceid);
+            }
+            if($cityid){
+                $query->where("cityid",$cityid);
+            }
+            if($countyid){
+                $query->where("countyid",$countyid);
+            }
+        })->get();
+        return $ret;
+    }
+
 
 }

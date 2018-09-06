@@ -14,13 +14,14 @@ class IndexController extends Controller
 
     public function index()
     {
-        $banner = DB::table('banner')->where(['status'=>'1'])->get();
-        $article = DB::table('article')->where(['status'=>'1','is_recommend'=>'1'])->paginate(3);
-        foreach ($article as $key => $val) {
-            $article[$key]->image = $this->get_image($val->content,'img')['html'][0];
-            $article[$key]->created_at = date("Y-m-d",strtotime($val->created_at));
-        }
-        return view('home/index/index', compact('banner','article'));
+//        $banner = DB::table('banner')->where(['status'=>'1'])->get();
+//        $article = DB::table('article')->where(['status'=>'1','is_recommend'=>'1'])->paginate(3);
+//        foreach ($article as $key => $val) {
+//            $article[$key]->image = $this->get_image($val->content,'img')['html'][0];
+//            $article[$key]->created_at = date("Y-m-d",strtotime($val->created_at));
+//        }
+
+        return view('home/index/index');
     }
 
     

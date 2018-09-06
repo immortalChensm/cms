@@ -8,7 +8,7 @@
         }
         .search-header li{
             float: left;
-            margin:1px 10px;
+            margin:1px 1px;
         }
         .search-header li div label{
             font-size:18px;
@@ -56,28 +56,45 @@
 
                           </li>
 
-                          <li>
+                          <li style="margin:0;">
                               <div class="col-xs-3" style="width:200px!important;">
 
 
                                   <select class="form-control" required="" name="provinceid" >
+                                      <option value="">选择省份</option>
                                       @foreach($province as $item)
-                                          <option value="{{$item->id}}">{{$item->name}}</option>
+                                          <option value="{{$item->id}}" @if(request()->provinceid==$item->id) selected @endif >{{$item->name}}</option>
                                       @endforeach
                                   </select>
+
 
 
                               </div>
 
                           </li>
 
-                          <li>
+                          <li style="margin:0;">
                               <div class="col-xs-3" style="width:200px!important;">
 
 
                                   <select class="form-control" required="" name="cityid" >
 
-                                      <option value=""></option>
+                                      <option value="">选择市</option>
+
+                                  </select>
+
+
+                              </div>
+
+                          </li>
+
+                          <li style="margin:0;">
+                              <div class="col-xs-3" style="width:200px!important;">
+
+
+                                  <select class="form-control" required="" name="countyid" >
+
+                                      <option value="">选择县区</option>
 
                                   </select>
 
@@ -90,10 +107,32 @@
                               <div class="col-xs-3" style="width:200px!important;">
 
 
-                                  <select class="form-control" required="" name="countyid" >
+                                  <select class="form-control" required="" name="grade" >
 
-                                      <option value=""></option>
+                                      <option value="">医院等级</option>
+                                      <option value="示范单位" @if(request()->grade == '示范单位') selected @endif>示范单位</option>
+                                      <option value="优秀单位" @if(request()->grade == '优秀单位') selected @endif>优秀单位</option>
+                                      <option value="达标单位" @if(request()->grade == '达标单位') selected @endif>达标单位</option>
+                                      <option value="培育单位" @if(request()->grade == '培育单位') selected @endif>培育单位</option>
 
+
+                                  </select>
+
+
+                              </div>
+
+                          </li>
+
+                          <li>
+                              <div class="col-xs-3" style="width:200px!important;">
+
+
+                                  <select class="form-control" required="" name="pccm" >
+
+                                      <option value="">PCCM等级</option>
+                                      <option value="三级甲等"  @if(request()->pccm == '三级甲等') selected @endif>三级甲等</option>
+                                      <option value="三级乙等"  @if(request()->pccm == '三级乙等') selected @endif>三级乙等</option>
+                                      <option value="三级丙等"  @if(request()->pccm == '三级丙等') selected @endif>三级丙等</option>
                                   </select>
 
 
@@ -196,13 +235,13 @@
                   </div>
               </div>
               <div class="page">
-                  {!! $data->appends(['hospitalname'=>request()->hospitalname,'subjectid'=>request()->subjectid,'skillid'=>request()->skillid])->links() !!}
+                  {!! $data->appends(['hospitalname'=>request()->hospitalname,'subjectid'=>request()->subjectid,'skillid'=>request()->skillid,"provinceid"=>request()->provinceid,"cityid"=>request()->cityid,"countyid"=>request()->countyid,"grade"=>request()->grade,"pccm"=>request()->pccm])->links() !!}
               </div>
           </div>
       </div>
   </div>
     @include("admin.layout.footerjs")
-    <script src="{{URL::asset('js/admin/hospital.js')}}"></script>
+    <script src="{{URL::asset('js/admin/hospital_search.js')}}"></script>
     <script type="text/javascript">
         //index page
 
