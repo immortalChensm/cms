@@ -11,13 +11,23 @@ class Controller extends BaseController
     //
     use Helpers;
 
-    public function success($ret)
+    public function success($msg,$data)
     {
-        return ['status'=>1,'msg'=>'请求成功','result'=>$ret];
+        return ['status_code'=>1,'message'=>$msg,'data'=>$data];
     }
 
-    public function error()
+    public function error($msg)
     {
-        return ['status'=>0,'msg'=>'请求失败'];
+        return ['status_code'=>0,'message'=>$msg];
+    }
+
+    public function checkLogin()
+    {
+        $user = \Auth::guard("api")->user();
+        if(isset($user->id) && !empty($user->id)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

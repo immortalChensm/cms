@@ -20,9 +20,9 @@ class ArticleController extends Controller
                 $temp['created_at'] = date("Y-m-d",strtotime($item['created_at']));
                 $data[] = $temp;
             }
-            return $this->response->array($this->success($data));
+            return $this->success("获取成功",$data);
         }else{
-            return $this->response->array($this->error());
+            return $this->error("获取失败");
         }
     }
 
@@ -31,9 +31,9 @@ class ArticleController extends Controller
         $ret = Article::where("id",$articleid)->where("status",1)->first();
         if($ret){
             $ret->created_at = date("Y-m-d",strtotime($ret->created_at));
-            return $this->response->array($this->success($ret));
+            return $this->success("获取成功",$ret);
         }else{
-            return $this->response->array($this->error());
+            return $this->error("获取失败");
         }
     }
 }

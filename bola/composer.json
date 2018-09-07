@@ -12,7 +12,8 @@
         "laravel/tinker": "~1.0",
         "melihovv/base64-image-decoder": "^0.1.0",
         "nicolaslopezj/searchable": "^1.10",
-        "spatie/laravel-permission": "^2.17"
+        "spatie/laravel-permission": "^2.17",
+        "tymon/jwt-auth": "1.0.0-rc.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
