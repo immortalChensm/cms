@@ -53,7 +53,6 @@ $api->version('v1', [
             $api->post("verifycode","VerifycodeController@code");
     });
 
-
     //refresh token
     $api->get("refresh/token","AuthenticationController@update");
 
