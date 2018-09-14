@@ -102,7 +102,7 @@ span{
 	position: relative;
 	height: 70px;
 	color: #FFFFFF;
-	font-weight: bold;
+	font-weight: 500;
 }
 
 .head-ud ul{
@@ -112,19 +112,15 @@ span{
 	margin-left: -15px;
 	height: 70px;
 	width: 900px;
+	cursor: pointer;
 }
 .head-ud ul li{
 	float:left;
-	/* padding:15px 15px 18px 15px ; */
 	display: inline;
 	width: auto;
 }
-/* .head-ud ul li:hover{
-	background: #FFFFFF;
-	color: #621318;
-	
-} */
-.head-ud ul li a{
+
+.head-ud ul li {
 	display: block;
 	color: #FFFFFF;
 	height: 66px;
@@ -144,7 +140,7 @@ span{
 	background: #FFFFFF;
 	color: #621318;
 }
-.head-ud ul li a:hover{
+.head-ud ul li:hover{
 	background: #FFFFFF;
 	color: #621318;
 	text-decoration: none;
@@ -166,7 +162,7 @@ span{
 	color: #621318;
 } */
 
-.head-ud .xuanzhong a{
+.head-ud .xuanzhong{
 	color: #621318;
 	background: #FFFFFF;
 }
@@ -267,55 +263,53 @@ span{
 .yltyy a{
 	color: #971d25;
 }
+
 .xiala{
+	display: inline-block;
 	position: absolute;
-	z-index: 9999;
-	list-style:none;
-	top: 140px;
-	left: 352px;
-	color: #333333;
-	height: 200px;
 	background-color: #ffffff;
+	z-index: 98;
+	color: #333333;
+	cursor: pointer;
 	box-shadow: 0px 4px 10px 0px 
-		rgba(36, 36, 36, 0.3);
-		font-size: 16px;
-		
-		
+rgba(36, 36, 36, 0.3);
+	font-size: 16px;
+	display: none;
+	margin-left: -16px;
+	
 }
-.xiala li{
+.xiala1{
 	height: 40px;
-	margin-left: -40px;
-	padding-left: 10px;
+	   line-height: 40px;
+	   padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 10px;
 }
-.xiala li:hover{
+.xiala1:hover{
 	background-color: #621318;
 	color: #ffffff;
 }
+
 .xiala2{
+	display: inline-block;
 	position: absolute;
-	z-index: 9999;
-	list-style:none;
-	top: 140px;
-	left: 805px;
-	color: #333333;
-	height: 80px;
 	background-color: #ffffff;
+	z-index: 98;
+	color: #333333;
+	cursor: pointer;
 	box-shadow: 0px 4px 10px 0px 
-		rgba(36, 36, 36, 0.3);
-		font-size: 16px;
-		
-		
+rgba(36, 36, 36, 0.3);
+	font-size: 16px;
+	display: none;
+	margin-left: -16px;
+	width: 104px;
 }
-.xiala2 li{
+.xiala3{
 	height: 40px;
-	margin-left: -40px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 10px;
+	   line-height: 40px;
+	   padding-left: 18px;
+	padding-right: 10px;
 }
-.xiala2 li:hover{
+.xiala3:hover{
 	background-color: #621318;
 	color: #ffffff;
 }

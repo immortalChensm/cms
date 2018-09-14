@@ -228,5 +228,9 @@ return [
         ],
 
     ],
+    //每页显示几条
+    'pagesize'=>env("PAGESIZE"),
+    //最多页码显示
+    'setMaxPagesToShow'=>env("SETMAXPAGESTOSHOW"),
 
 ];

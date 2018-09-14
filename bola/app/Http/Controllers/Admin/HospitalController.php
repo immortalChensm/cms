@@ -57,7 +57,7 @@ class HospitalController extends Controller
         }else{
             $whereRaw = 1;
         }
-        $data = Hospital::search(request()->hospitalname)->whereRaw($whereRaw)->orderBy('id', 'asc')->with(["subject","province","city","county","town","skill"])->paginate(10);
+        $data = Hospital::search(request()->hospitalname)->whereRaw($whereRaw)->orderBy('id', 'asc')->with(["subject","province","city","county","town","skill"])->paginate(2);
 
         $skillids = [];
         foreach($data as $k=>$v){

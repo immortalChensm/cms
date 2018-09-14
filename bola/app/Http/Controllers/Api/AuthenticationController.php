@@ -81,7 +81,6 @@ class AuthenticationController extends Controller
         if (!$token = auth("api")->attempt(['mobile'=>$request->mobile,'password'=>$request->password])) {
             return $this->error('账号或密码错误');
         }
-
         //验证医生是否可以登录
         if(auth("api")->user()->physician->status==0){
             return $this->error('此账号已经禁用');

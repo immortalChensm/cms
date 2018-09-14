@@ -12,23 +12,23 @@ class HospitalController extends Controller
     function hospitals()
     {
         $keyword  = request()->keyword;
-        $province  = request()->province;
-        $city  = request()->city;
-        $county  = request()->county;
+        $provinceid  = request()->province;
+        $cityid  = request()->city;
+        $countyid  = request()->county;
         $recommend  = request()->recommend;
-        $provinceid = "";
-        $cityid = "";
-        $countyid = "";
-        if ($province){
-            $provinceid = Db::table("region")->where("name","{$province}")->value("id");
-        }
-        if ($city){
-            $cityid = Db::table("region")->where("name","{$city}")->value("id");
-        }
-        if ($county){
-            $countyid = Db::table("region")->where("name","{$county}")->value("id");
-
-        }
+//        $provinceid = "";
+//        $cityid = "";
+//        $countyid = "";
+//        if ($province){
+//            $provinceid = Db::table("region")->where("name","{$province}")->value("id");
+//        }
+//        if ($city){
+//            $cityid = Db::table("region")->where("name","{$city}")->value("id");
+//        }
+//        if ($county){
+//            $countyid = Db::table("region")->where("name","{$county}")->value("id");
+//
+//        }
         $whereRaw = "";
         if ($keyword){
             $whereRaw = "name LIKE '%{$keyword}%' OR grade LIKE '%{$keyword}%' OR pccm LIKE '%{$keyword}%' ";
@@ -51,24 +51,39 @@ class HospitalController extends Controller
                 $query->where("recommend",$recommend);
             }
 
-        })->whereRaw($whereRaw)->with("doctors")->orderBy("created_at")->paginate(25);
+        })->whereRaw($whereRaw)->with("doctors")->orderBy("created_at")->paginate(config("api.pagesize"));
         foreach($ret as $k=>$item){
             $item->doctors_num = count($item->doctors);
+            $item->subject = $item->subject;
             $ret[$k] = $item;
+
             unset($item->doctors);
         }
-        return $this->success("获取成功",$ret?:'');
+        if($ret){
+            return $this->success("获取成功",$ret?:'');
+        }else{
+            return $this->error("参数错误请求失败");
+        }
+
+
     }
 
     function details($hospitalid){
         $ret = Hospital::where("id",$hospitalid)->with("doctors")->first();
+        if(!$ret){
+            return $this->error("参数错误请求失败");
+        }
         $ret->subject = $ret->subject->name;
         $ret->skill   = $this->getSkill(explode(",",$ret->skillid));
         foreach($ret->doctors as $k=>$item){
             $item->hospital = $item->hospital;
             $ret->doctors[$k] = $item;
         }
-        return $this->success("获取成功",$ret?:'');
+        if($ret){
+            return $this->success("获取成功",$ret?:'');
+        }else{
+            return $this->error("参数错误请求失败");
+        }
     }
 
     private function getSkill($id)
@@ -93,6 +108,10 @@ class HospitalController extends Controller
                 $query->where("countyid",$countyid);
             }
         })->get();
-        return $this->success("获取成功",$ret?:'');
+        if($ret){
+            return $this->success("获取成功",$ret?:'');
+        }else{
+            return $this->error("参数错误请求失败");
+        }
     }
 }

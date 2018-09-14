@@ -1,81 +1,73 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-use App\Model\Admin\Hospital;
-use App\Model\Admin\Page;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use JasonGrimes\Paginator;
 
 class HospitalController extends Controller
 {
-	//医院联盟列表
-    public function index()
+
+    function hospitals()
     {
-        $keyword  = request()->keyword;
-        $hospital = "";
-        $zoneid   = "";
-        $whereRaw = "";
-        if ($keyword){
-            $zone = Db::table("region")->where("name","LIKE","%{$keyword}%")->first();
-            if($zone){
-               $zoneid = $zone->id;
-                switch ($zone->level){
-                    case 3:
-                        $whereRaw = "countyid = '{$zoneid}'";
-                        break;
-                    case 2:
-                        $whereRaw = "cityid = '{$zoneid}'";
-                        break;
-                    case 1:
-                        $whereRaw = "provinceid = '{$zoneid}'";
-                        break;
-                    default:;
-                }
-            }else{
-                //按医院名称查询
-                $whereRaw = "name LIKE '%{$keyword}%'";
-            }
+        $param = [
+            'page'=>request()->page?:1,
+            'keyword'=>request()->keyword?:'',
+            'province'=>request()->province?:'',
+            'city'=>request()->city?:'',
+            'county'=>request()->county?:'',
+        ];
+        $hospital = $this->getApi("GET","hospitals",$param)['body']['data'];
+        $totalItems = $hospital['total'];
+        $itemsPerPage = $hospital['per_page'];
+        $currentPage = $hospital['current_page'];
+
+        $link = "?";
+
+        if(request()->keyword){
+            $link.= 'keyword='.request()->keyword."&";
         }
-        if(empty($whereRaw)){
-            $whereRaw = "1";
+        if(request()->province){
+            $link.= 'province='.request()->province."&";
         }
-        $ret = Hospital::where("status",1)->whereRaw($whereRaw)->with("doctors")->orderBy("created_at")->paginate(25);
-        print_r($ret->toArray());
-        return $ret;
-        //return view('home/abount/index');
+        if(request()->city){
+            $link.= 'city='.request()->city."&";
+        }
+        if(request()->county){
+            $link.= 'county='.request()->county."&";
+        }
+        if(strlen($link)>1){
+            $link = substr($link,0,-1);
+            $urlPattern = $link.'&page=(:num)';
+        }else{
+            $link = "";
+            $urlPattern = '?page=(:num)';
+        }
+
+        $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+        $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
+        $provinceS = $this->getProvince();
+        return view('home/index/hospitals',compact('hospital','paginator','provinceS'));
     }
 
-
-    //医院详情
-    public function hospitalDetails($hospitalid){
-
-        echo $hospitalid;
-        $ret = Hospital::where("id",$hospitalid)->with("doctors")->first();
-        print_r($ret->toArray());
-        return $ret->toArray();
-    	//return view('home/abount/milestones');
-    }
-
-    //获取指定地区下的医院列表
-    public function hospitals()
+    function getCityData()
     {
-        $provinceid = request()->provinceid;
-        $cityid     = request()->cityid;
-        $countyid   = request()->countyid;
-        $ret = Hospital::where(function($query)use($provinceid,$cityid,$countyid){
-            if($provinceid){
-                $query->where("provinceid",$provinceid);
-            }
-            if($cityid){
-                $query->where("cityid",$cityid);
-            }
-            if($countyid){
-                $query->where("countyid",$countyid);
-            }
-        })->get();
-        return $ret;
+        if(request()->areaid!=0){
+            $this->region_parent_id = request()->areaid;
+            $ret = $this->getCity();
+            showMsg("success",$ret);
+        }
+
     }
 
+    function hospitalsDetails()
+    {
+        $hospitalid = request()->id;
+        $hospital = $this->getApi("GET","hospitals/details/".$hospitalid,[]);
+        if($hospital['body']['status_code']==1){
+            $data = $hospital['body']['data'];
+        }
+        return view('home/index/hospitals_details',compact('data'));
+    }
 
 }

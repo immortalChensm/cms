@@ -1,321 +1,77 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/bootstrap@3.3.7/css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/app.css')}} "/>
+@extends("home.public.main")
+@section("title")
+    联盟医院列表
+@endsection
+@section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/hospitallist.css')}}"/>
-    <title>联盟医院列表</title>
+@endsection
 
-</head>
-<body>
-<div class="">
-    <div class="head">
-        <div class="head-up container">
-            <div class="head-up-l ">
-                <img src="{{ URL::asset('home/img/logo01.jpg')}}" >
-                <span class="fs24">医联体基金会</span>
-            </div>
-            <div class="head-up-r">
-                <div class="head-icon">
-                    <img src="{{ URL::asset('home/img/xiaotx.png')}}" >
-                    <span><a href="19personalcenter.html">刘勇</a></span>
-                </div>
-                <div class="head-icon">
-                    <img src="{{ URL::asset('home/img/icon03.png')}}" >
-                    <span><a href="">后台</a></span>
-                </div>
-            </div>
-        </div>
-        <div class="head-ud container">
-            <ul>
-                <li class="fs18"><a href="01home.html">首页</a></li>
-                <li class="fs18 xuanzhong"><a href="09hospitallist.html">医联体医院</a></li>
-                <li class="fs18"><a href="11doctorlist.html">医联体医生</a></li>
-                <li class="fs18"><a href="13referralapplication.html">转诊申请</a></li>
-                <li class="fs18"><a href="15teachtrain.html">教学培训</a></li>
-                <li class="fs18"><a href="17information.html">最新资讯</a></li>
-                <li id="button3" class="fs18">远程中心</li>
-                <li class="fs18"><a href="22aboutus.html">关于我们</a></li>
-            </ul>
-        </div>
-    </div>
+@section("content")
     <div class="context">
         <div class="yltyy container">
             您现在的位置：<a href="01home.html"> 首页</a> > 医联体医院
         </div>
         <div class="yylist container">
+
+            {{csrf_field()}}
             <div class="city">
-                <select name="">
+                <select name="province">
+
                     <option value="">请选择省份</option>
-                    <option value="">yyy</option>
+                    @foreach($provinceS as $item)
+                    <option value="{{$item->id}}" @if(request()->province == $item->id) selected @endif>{{$item->name}}</option>
+                    @endforeach
                 </select>
-                <select name="">
+                <select name="city">
                     <option value="">请选择城市</option>
-                    <option value="">yyy</option>
+
                 </select>
-                <select name="">
+                <select name="county">
                     <option value="">请选择区/县</option>
-                    <option value="">吴中区</option>
-                    <option value="">工业园区</option>
-                    <option value="">新区</option>
+
                 </select>
             </div>
             <div class="searchk">
-                <input type="text" placeholder="地区、医院名称"/>
-                <button type="button"></button>
+                <input type="text" placeholder="地区、医院名称" value="{{request()->keyword}}" name="keyword"/>
+                <button type="button" id="search"></button>
             </div>
             <div class="yylistt">
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
 
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
+                @foreach($hospital['data'] as $item)
+                <div class="yylistt-xq" data-id="{{$item['id']}}">
+                    <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" style="width:270px;height:203px;">
                     <div class="yym">
-                        北京协和医院
+                        {{$item['name']}}
                     </div>
                     <div class="keshi">
-                        呼吸科
+                        {{$item['subject']['name']}}
                     </div>
                     <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
+                        <span class="yscw-l"><span class="num"> {{$item['doctors_num']}}</span>名医生</span>
+                        <span class="yscw-r"><span class="num">{{$item['bed_num']}}</span>床位</span>
                     </div>
                 </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
+                @endforeach
 
-                <div class="yylistt-xq">
-                    <img src="{{ URL::asset('home/img/270203.png')}}" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="../img/270203.png" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="../img/270203.png" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-
-                <div class="yylistt-xq">
-                    <img src="../img/270203.png" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="../img/270203.png" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="../img/270203.png" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
-                <div class="yylistt-xq">
-                    <img src="../img/270203.png" >
-                    <div class="yym">
-                        北京协和医院
-                    </div>
-                    <div class="keshi">
-                        呼吸科
-                    </div>
-                    <div class="yscw">
-                        <span class="yscw-l"><span class="num">8</span>名医生</span>
-                        <span class="yscw-r"><span class="num">30</span>床位</span>
-                    </div>
-                </div>
             </div>
             <div class="fenye">
                 <ul class="pagination">
-                    <li class="shangyiye"><a href="#">上一页</a></li>
-                    <li class="yi"><a href="#">1</a></li>
-                    <li class="er"><a href="#">2</a></li>
-                    <li class="san"><a href="#">3</a></li>
-                    <li class="si"><a href="#">4</a></li>
-                    <li class="wu"><a href="#">5</a></li>
-                    <span class="diandiandian">...</span>
-                    <li class="xiayiye"><a href="#">下一页</a></li>
+
+                    <li class="shangyiye"><a href="{{$paginator->getPrevUrl()}}">上一页</a></li>
+
+                    @foreach($paginator->getPages() as $page)
+                    <li class="yi"><a href="{{$page['url']}}">{{$page['num']}}</a></li>
+
+                    @endforeach
+
+                    <li class="xiayiye"><a href="{{$paginator->getNextUrl()}}">下一页</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="foot-t">
-        <div class="foot-t1">
-            <img src="{{ URL::asset('home/img/logo03.jpg')}}"/>
-            <span>呼吸专科医联体</span>
-        </div>
-        <div class="foot-t2">
-            <img src="{{ URL::asset('home/img/adress.png')}}"/>
-            <span>江苏省苏州市工业园区松涛街</span>
-        </div>
-        <div class="foot-t3">
-            <img src="{{ URL::asset('home/img/tel.png')}}"/>
-            <span>0512-56898145</span>
-        </div>
-    </div>
-    <div class="foot-u fs14">
-        <p>Copyright 2017  All Rights Reserved.</p>
-        <p>京ICP 备 05067313号-1 文保网安备案号：1101010023 京卫网审字【2014】第39号</p>
-    </div>
+@endsection
 
-</div>
-
-<script src="{{ URL::asset('home/js/jquery.min.js')}}"  charset="utf-8"></script>
-<script src="{{ URL::asset('home/bootstrap@3.3.7/js/bootstrap.min.js')}}" charset="utf-8"></script>
-
-</body>
-</html>
+@section("footerjs")
+    <script src="{{ URL::asset('home/js/hospital.js')}}" type="text/javascript" charset="utf-8"></script>
+@endsection

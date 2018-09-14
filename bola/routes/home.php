@@ -1,9 +1,15 @@
 <?php
 Route::group(['prefix' => ''], function () {
+
+
      Route::get('/', 'Home\IndexController@index');
      Route::get('/index.html', 'Home\IndexController@index');
-     Route::get('/hospitals.html', 'Home\IndexController@hospitals');
-     Route::get('/hospitaldetail.html', 'Home\IndexController@hospitalsDetails');
+
+     //医院模块
+     Route::get('/hospitals.html', 'Home\HospitalController@hospitals');
+     Route::get('/hospital/detail/{id}.html', 'Home\HospitalController@hospitalsDetails');
+
+
      Route::get('/doctorlist.html', 'Home\IndexController@doctors');
      Route::get('/doctordetail.html', 'Home\IndexController@doctorsDetails');
      Route::get('/referralapplication.html', 'Home\IndexController@referralapplication');
@@ -25,6 +31,11 @@ Route::group(['prefix' => ''], function () {
      Route::get('/aboutus.html', 'Home\IndexController@aboutus');
      Route::get('/register.html', 'Home\IndexController@register');
      Route::get('/login.html', 'Home\IndexController@login');
+
+
+
+    Route::get('/region/city', 'Home\IndexController@getCityData');
+
 
 //     //获取验证码
 //     Route::post('verifycode', 'Home\VerifycodeController@code');

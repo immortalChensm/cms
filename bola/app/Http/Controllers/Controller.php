@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -37,5 +39,48 @@ class Controller extends BaseController
     public function getCity()
     {
         return Db::table("region")->where("parent_id",$this->region_parent_id)->get();
+    }
+
+    public function getApi($type='GET',$api,$param)
+    {
+        $client = new Client([
+            'base_uri' => env("API_HOST"),
+            'timeout'  => env("API_TIMEOUT")
+        ]);
+
+        if($type=='GET'){
+            try{
+                $response = $client->get($api,['query'=>$param]);
+            }catch (RequestException  $exception){
+
+                if($exception->getCode() == 500 && $exception->getMessage() == 'Trying to get property of non-object'){
+                    return [
+                        'code'=>$exception->getCode(),
+                        'msg'=>"传递参数错误",
+                        'body'=>$exception->getResponse()->getBody()->getContents(),
+                    ];
+                }
+
+
+            }
+
+        }elseif($type=='POST'){
+            try{
+                $response = $client->post($api,['body'=>$param]);
+            }catch (RequestException  $exception){
+                if($exception->getCode() == 500 && $exception->getMessage() == 'Trying to get property of non-object'){
+                    return [
+                        'code'=>$exception->getCode(),
+                        'msg'=>"传递参数错误",
+                        'body'=>$exception->getResponse()->getBody()->getContents(),
+                    ];
+                }
+            }
+
+        }
+
+        return [
+            'body'=>json_decode($response->getBody()->getContents(),true),
+        ];
     }
 }
