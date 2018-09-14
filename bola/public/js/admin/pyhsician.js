@@ -58,7 +58,8 @@ $(function (e) {
                     }
 
                     for(var i=0;i<data.length;i++){
-                        options+="<option value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        //options+="<option value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        options+="<option value='"+data[i].id+"-"+data[i].name+"' >"+data[i].name+"</option>";
                     }
 
 
@@ -66,8 +67,12 @@ $(function (e) {
                     $("#skillid").append($(options));
 
                     for(var k=0;k<$("#skillid").find("option").length;k++){
-                        if(selects[$("#skillid").find("option").eq(k).val()]){
+                        if(selects[$("#skillid").find("option").eq(k).val().split('-')[0]]){
                             $("#skillid").find("option").eq(k).get(0).selected = "selected";
+
+                            $("#skillid_bak").append("<option value='"+$("#skillid").find("option").eq(k).val().split('-')[0]+"'>"+$("#skillid").find("option").eq(k).val().split('-')[1]+"</option>");
+
+
                         }
                     }
 
@@ -88,5 +93,34 @@ $(function (e) {
 
         });
     }
+
+    //专长处理
+    $("#skillid").on("change",function(e){
+
+        var temp = $(e.target).val()[0].split("-");
+
+        var selecteds = $("#skillid_bak").find("option");
+        var Skills = [];
+        for(var i=0;i<selecteds.length;i++){
+            Skills[$(selecteds).eq(i).val()] = $(selecteds).eq(i).val();
+        }
+        if(temp[0] && !Skills[temp[0]]){
+            $("#skillid_bak").append("<option value='"+temp[0]+"'>"+temp[1]+"</option>");
+        }else{
+
+        }
+
+
+
+    });
+
+    $("#skillid_bak").on("change",function(){
+        var hasSelects = $("#skillid_bak").find("option");
+        for(var j=0;j<hasSelects.length;j++){
+            if($(hasSelects).eq(j).val() == $(this).val()){
+                $(hasSelects).eq(j).remove();
+            }
+        }
+    });
 
 })

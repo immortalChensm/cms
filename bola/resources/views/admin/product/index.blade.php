@@ -130,12 +130,18 @@
                                   <select class="form-control" required="" name="pccm" >
 
                                       <option value="">PCCM等级</option>
-                                      <option value="三级甲等"  @if(request()->pccm == '三级甲等') selected @endif>三级甲等</option>
-                                      <option value="三级乙等"  @if(request()->pccm == '三级乙等') selected @endif>三级乙等</option>
-                                      <option value="三级丙等"  @if(request()->pccm == '三级丙等') selected @endif>三级丙等</option>
+                                      <option value="三甲"  @if(request()->pccm == '三甲') selected @endif>三甲</option>
+                                      <option value="三乙"  @if(request()->pccm == '三乙') selected @endif>三乙</option>
+                                      <option value="三丙"  @if(request()->pccm == '三丙') selected @endif>三丙</option>
+
+                                      <option value="二甲"  @if(request()->pccm == '二甲') selected @endif>二甲</option>
+                                      <option value="二乙"  @if(request()->pccm == '二乙') selected @endif>二乙</option>
+                                      <option value="二丙"  @if(request()->pccm == '二丙') selected @endif>二丙</option>
+
+                                      <option value="一甲"  @if(request()->pccm == '一甲') selected @endif>一甲</option>
+                                      <option value="一乙"  @if(request()->pccm == '一乙') selected @endif>一乙</option>
+                                      <option value="一丙"  @if(request()->pccm == '一丙') selected @endif>一丙</option>
                                   </select>
-
-
                               </div>
 
                           </li>
@@ -179,9 +185,9 @@
 
                           <tbody>
 
-                          @foreach ($data as $news)
+                          @foreach ($data as $key=>$news)
                               <tr class="even pointer">
-                                  <td class="column-title" >{{$news->id}}</th>
+                                  <td class="column-title" >{{$key+1}}</th>
                                   <td class="column-title" >
                                   <img src="{{request()->getSchemeAndHttpHost().$news->image}}" class="img img-responsive" style="width:100px;"/>
 

@@ -1,0 +1,644 @@
+
+
+.banner{
+	position: relative;
+}
+.banner-l{
+	width: 860px;
+	padding-top: 8px;
+	position: absolute;
+}
+.carousel-indicators{
+	margin-bottom: -10px;
+	
+}
+.carousel-indicators li{
+	 width:40px !important;
+	 border: 0px !important;
+	 border-radius: 0 !important;
+	 height:6px !important;
+	 background-color: #621318;
+	 margin-left: 6px;
+	 
+}
+.carousel-indicators li.active{
+	background-color: #fff;
+	margin-left: 6px;
+	margin-bottom: 1px;
+}
+.context{
+	width: 100%;
+	margin-bottom: 138px;
+	
+}
+.banner-r-up{
+	margin-top: 8px;
+	width: 330px;
+	height: 210px;
+	position: absolute;
+	display: inline-block;
+	right: 0;
+	border: solid 1px #f1f1f1;
+}
+
+.banner-r-up img{
+	padding-left: 13px;
+	padding-top: 27px;
+}
+.banner-r-up span{
+	display: block;
+	font-family: "microsoft yahei";
+	font-size: 16px;
+	padding-left: 20px;
+}
+.banner-r-up-input{
+	position: absolute;
+	display: inline-block;
+	width: 140px;
+	top: 10px;
+	right: 30px;
+}
+.banner-r-up input{
+	width: 160px;
+	height: 44px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 12px 0px 
+		rgba(151, 29, 37, 0.15);
+	margin-top: 30px;
+	color: #333333;
+	font-family: "microsoft yahei";
+}
+.banner-r-up input:hover{
+	width: 160px;
+	height: 44px;
+	border: solid 1px #c1c1c1;
+	margin-top: 30px;
+	color: #333333;
+	font-family: "microsoft yahei";
+}
+.andriod{
+	background-image: url(../img/andriod.png);
+	background-repeat: no-repeat;
+	background-position-x: 8px;
+	background-position-y: 8px;
+	padding-left: 32px;
+}
+.ios{
+	background-image: url(../img/ios.png);
+	background-repeat: no-repeat;
+	background-position-x: 8px;
+	background-position-y: 6px;
+	padding-left: 32px;
+}
+
+.banner-r-ud{
+	width: 330px;
+	height: 277px;
+	border: solid 1px #f1f1f1;
+	position: absolute;
+	display: inline-block;
+	right: 0;
+	margin-top: 230px;
+}
+
+.banner-r-ud-label{
+	height: 41px;
+	text-align: center;
+	line-height: 41px;
+	font-size: 20px;
+	border-bottom: 1px solid #e0bbbd;
+	width: 308px;
+	margin-left: 10px;
+	margin-bottom: -10px;
+}
+
+.jxpx{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.jxpx:hover {
+	color: #971d25;
+}
+.jxpxk{
+	width: 60px;
+	height: 40px;
+	border-bottom: 2px solid #971d25;
+	margin-left: 10px;
+    margin-top: -40px;
+	position: absolute;
+	opacity: 0;
+}
+.jxpxk:hover{
+	opacity: 1;
+}
+
+
+/*.jxpx:hover:after {
+    content: "";
+    position: absolute;
+    top: 38px;
+    left: 24%;
+    right: 60%;
+    width: 18%;
+    height: 2px;
+    background: #971d25;
+} */
+
+
+.zxzx{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#zxzxcon{
+	display: none;
+}
+.zxzx:hover {
+	color: #971d25;
+}
+/*.zxzx:hover:after {
+    content: "";
+    position: absolute;
+    top: 38px;
+    left: 59%;
+    right: 60%;
+    width: 18%;
+    height: 2px;
+    background: #971d25;
+} */
+.banner-r-ud-u{
+	margin-top: 37px;
+}
+.banner-r-ud-u img{
+	position: absolute;
+	width: 100px;
+	height: 75px;
+	margin-left: 11px;
+	margin-top: -11px;
+	padding-top: 4px;
+}
+.banner-r-ud-u span{
+	font-size: 18px;
+	word-wrap: break-word; 
+	width:187px;
+	height: 54px;
+	line-height: 27px;
+	margin-left: 127px;
+	margin-top: 32px;
+	overflow:hidden;
+	-webkit-line-clamp:2; 
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+-webkit-box-orient:vertical;
+}
+.banner-r-ud-u:hover{
+	color: #971d25;
+}
+.ckgd{
+	position: absolute;
+	right: 10px;
+	bottom: 22px;
+	height: 14px;
+	text-decoration: underline;
+	font-size: 14px;
+	line-height: 24px;
+	color: #999999;
+}
+.context-first{
+	margin-top: 630px;
+	position: relative;
+}
+.context-first-l{
+	width: 533px;
+	height: 400px;
+	position: absolute;
+}
+.context-first-r{
+	position: absolute;
+	margin-left: 611px;
+	
+}
+.context-first-rt{
+	padding-top: 20px;
+	height: 80px;
+	bottom: 0;
+	font-family: "microsoft yahei";
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 60px;
+	color: #971d25;
+	border-bottom: 1px solid #e0bbbd;
+}
+.context-first-r span{
+	padding-top: 5px;
+	display: block;
+	width: 576px;
+	height: 232px;
+	font-family: "microsoft yahei";
+	font-size: 16px;
+	line-height: 27px;
+	color: #333333;
+}
+.context-first-r a{
+	position: absolute;
+	font-size: 18px;
+	color: #ffffff;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	background-color: #971d25;
+	border-radius: 4px;
+	text-align: center;
+	right: 0;
+	top: 364px;
+}
+.context-first-r a:hover{
+	text-decoration: none;
+}
+
+.context-second{
+	margin-top: 520px;
+}
+.context-second .lmys{
+	margin-left: 545px;
+	width: 95px;
+	height: 24px;
+	font-size: 24px;
+	font-family: "microsoft yahei";
+	font-weight: bold;
+	line-height: 60px;
+	color: #111111;	
+}
+.context-second .lmys img{
+	margin-top: -3px;
+	margin-left: 9px;
+}
+.context-second .lmys:hover{
+	text-decoration: none;
+}
+.context-second-ft{
+	width: 1200px;
+	margin-top: 35px;
+	z-index: -1;
+}
+.context-second-ft img{
+	width: 378px;
+	height: 285px;
+}
+.context-second-ft .imgr1{
+	
+	float: left;
+}
+.context-second-ft .imgr2{
+	margin-left: 30px;
+	float: left;
+}
+.context-second-ft .imgr3{
+	margin-left: 30px;
+	float: left;
+}
+.context-second-st{
+	width: 1200px;
+	height: 160px;
+	z-index: 1;
+	margin-top: 245px;
+	margin-bottom: 120px;
+}
+
+.fc{
+	margin-left: 39px;
+	margin-right: 39px;
+	position: absolute;
+	width: 300px;
+	height: 160px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 12px 0px 
+		rgba(42, 42, 42, 0.15);
+		overflow: hidden;
+}
+.fct:hover{
+	color: #971d25;
+	background: url(../img/jux02.png) no-repeat;
+}
+.fct{
+	position: absolute;
+	left: -10px;
+	background: url(../img/jux01.png) no-repeat;
+	right: 0;
+	margin-top: 20px;
+}
+
+.biaoti{
+	
+	width: 109px;
+	height: 18px;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 19px;
+	margin-left: 30px;
+}
+
+
+.neir{
+	width: 257px;
+	height: 64px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #333333;
+	margin-left: 20px;
+	margin-top: 55px;
+}
+.fc2{
+	overflow: hidden;
+	margin-left: -745px;
+	position: absolute;
+	display: inline-block;
+	width: 300px;
+	height: 160px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 12px 0px 
+		rgba(42, 42, 42, 0.15);
+}
+.fc3{
+	overflow: hidden;
+	margin-left: -340px;
+	margin-right: 39px;
+	position: absolute;
+	display: inline-block;
+	width: 300px;
+	height: 160px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 12px 0px 
+		rgba(42, 42, 42, 0.15);
+}
+.context-third{
+	width: 100%;
+	height: 504px;
+	background-color: #f8f8f8;
+}
+.context-third-con{
+	margin-top: 16px;
+}
+.context-third-con-t a{
+	text-align: center;
+	width: 95px;
+	height: 24px;
+	font-size: 24px;
+	font-family: "microsoft yahei";
+	font-weight: bold;
+	line-height: 60px;
+	color: #111111;
+	margin-left: 545px;
+}
+.context-third-con-t img{
+	margin-top: -3px;
+	margin-left: 9px;
+}
+.context-third-con-t a:hover{
+	text-decoration: none;
+}
+.context-third-con-u{
+	margin-top: 36px;
+	width: 1300px;
+}
+.jieshao{
+	display: inline-block;
+	margin-right: 24px;
+	padding-top: 20px;
+	width: 278px;
+	height: 340px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 12px 0px 
+		rgba(42, 42, 42, 0.15);
+}
+.jieshao img{
+	width: 140px;
+	height: 140px;
+	border-radius: 70px;
+}
+.jieshao p{
+	width: 37px;
+	height: 50px;
+	line-height: 50px;
+	font-family: "microsoft yahei";
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 60px;
+	color: #333333;
+	margin-left: 121px;
+}
+.jieshaor{
+	width: 240px;
+	height: 63px;
+	font-family: "microsoft yahei";
+	font-size: 16px;
+	line-height: 24px;
+	color: #333333;
+	margin-left: 20px;
+}
+
+
+
+
+.xuanfu{
+	width: 177px;
+	height: 194px;
+	position: fixed;
+    right: 0;
+    top: 45%;
+    z-index: 98;
+}
+.xuanfu-l{
+	position: relative;
+}
+.xuanfu-l2{
+	position: relative;
+	top: 61px;
+}
+.xuanfu-l3{
+	position: relative;
+	top: 124px;
+}
+#item{
+	display: none;
+}
+#item2{
+	display: none;
+}
+#item3{
+	display: none;
+}
+.diban{
+	width: 100px;
+	height: 150px;
+	background-color: #971d25;
+}
+.jiantou{
+	width: 30px;
+	height: 30px;
+	background: url(../img/jux3.png) no-repeat;
+	position: absolute;
+	right: 62px;
+	top: 25px;
+}
+.img{
+	position: absolute;
+	top: 23px;
+	left: 15px;
+}
+.jqqd{
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	font-size: 14px;
+	color: #333333;
+	font-weight: bold;
+}
+.smxz{
+	position: absolute;
+	top: 100px;
+	left: 21px;
+	font-size: 14px;
+	color: #ffffff;
+}
+.ysd{
+	position: absolute;
+	top: 120px;
+	left: 16px;
+	font-size: 14px;
+	color: #ffffff;
+}
+.xuanfu-r{
+	right: 0;
+	width: 60px;
+	height: 180px;
+	text-align: center;
+	position: absolute;
+	bottom: 4px;
+
+}
+.doctor{
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	background: url(../img/doctorwei.png) no-repeat #f4e8e9 center;
+}
+.doctor:hover{
+	
+	background: url(../img/doctorxuan.png) no-repeat #971d25 center;
+}
+.patient{
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 2px;
+	background: url(../img/patient.png) no-repeat #f4e8e9 center;
+}
+.patient:hover{
+	
+	background: url(../img/patientxuan.png) no-repeat #971d25 center;
+}
+.wechat{
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 2px;
+	background: url(../img/wechatwei.png) no-repeat #f4e8e9 center;
+}
+.wechat:hover{
+	
+	background: url(../img/wechatxuan.png) no-repeat #971d25 center;
+}
+
+/*弹窗1*/
+.tanchuang1{
+	display: none;
+}
+.tanchuang2{
+	display: none;
+}
+.tanchuang3{
+	display: none;
+}
+.tanc{
+	width: 100%;
+	height: 2700px;
+	opacity: 0.5;
+	background-color: #5a5a5a;
+	position: absolute;
+	top: 0;
+	z-index: 999;
+}
+.tc{
+	width: 500px;
+	height: 200px;
+	background-color: #ffffff;
+	border-radius: 4px;
+	margin: 0 auto;
+	position: absolute;
+	top: 331px;
+	left: 710px;
+	z-index: 9999;
+}
+.tc .closee{
+	top: 20px;
+	right: 20px;
+	position: absolute;
+	z-index: 99999;
+}
+.qidai{
+	margin-top: 50px;
+	text-align: center;
+	font-size: 24px;
+	color: #333333;
+}
+.qidai span{
+	padding-left: 16px;
+}
+.butt button{
+	width: 120px;
+	height: 40px;
+	background-color: #971d25;
+	border-radius: 4px;
+	font-size: 16px;
+	color: #ffffff;
+	margin-top: 36px;
+	border: 0;
+}
+
+.ybj{
+	margin-left: 15px;
+}
+.ysxq-gr{
+	width: 380px;
+	height: 190px;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 12px 0px 
+		rgba(42, 42, 42, 0.15);
+	margin-top: 40px;
+	margin-left: 5px;
+	margin-right: 10px;
+	display: inline-block;
+	
+}
+.ysxq-gr img{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.ysxq-grjs{
+	display: inline-block;
+	position: absolute;
+	padding-left: 20px;
+	padding-top: 40px;
+}
+.ysxq-grjs span{
+	font-size: 18px;
+	color: #333333;
+	font-weight: bold;
+	margin-top: 40px;
+}
+
+.ysxq-grjs p{
+	width: 214px;
+	font-size: 16px;
+	padding-top: 15px;
+}

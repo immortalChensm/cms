@@ -2,6 +2,9 @@ $(function (e) {
 
     //search-header style
 
+    //init select
+
+
     $(".search").click(function (e) {
 
         var hospital_name = $(":input[name=hospital-name]").val();
@@ -158,9 +161,43 @@ $(function (e) {
                         }
 
                         html+="<option value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        //console.log(html);
 
                     }
+                    //console.log(html);
                     $(selectHtml).append($(html));
+
+                    var city_urls = window.location.href.substring(window.location.href.indexOf("cityid")).split("=");
+                    var county_urls = window.location.href.substring(window.location.href.indexOf("countyid")).split("=");
+                    var cityid = /\d+/.exec(city_urls[1]);
+                    var countyid = /\d+/.exec(county_urls[1]);
+
+                    var citys = $(":input[name=cityid]").find("option");
+                    var countys = $(":input[name=countyid]").find("option");
+
+                    for(var i=0;i<citys.length;i++){
+
+                        if(cityid!=null && cityid[0]){
+                            if(cityid[0] == $(citys).eq(i).val() && !$(citys).eq(i).is(":selected")){
+                                $(citys).eq(i).remove();
+
+                            }
+                        }
+                    }
+
+                    for(var i=0;i<countys.length;i++){
+
+                        if(countyid!=null && countyid[0]){
+                            if(countyid[0] == $(countys).eq(i).val() && !$(countys).eq(i).is(":selected")){
+
+
+                                $(countys).eq(i).remove();
+
+
+
+                            }
+                        }
+                    }
                 }
 
             },
@@ -211,7 +248,7 @@ $(function (e) {
         }
 
     }
-
+    //
 
 
 })

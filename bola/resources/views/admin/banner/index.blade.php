@@ -56,9 +56,9 @@
 
                           <tbody>
 
-                          @foreach ($data as $banner)
+                          @foreach ($data as $key=>$banner)
                               <tr class="even pointer">
-                                  <td class=" ">{{$banner->id}}</th>
+                                  <td class=" ">{{$key+1}}</th>
                                   <td class=" ">{{$banner->title}}</th>
                                   <td class=" ">{{$banner->url}}</th>
                                   <td class=" "><img src="{{request()->getSchemeAndHttpHost().$banner->image}}" style="width:100px;"/></td>

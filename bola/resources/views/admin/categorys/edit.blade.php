@@ -52,26 +52,26 @@
                 {{--</div>--}}
             {{--</div>--}}
 
-            <div class="form-group">
-                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">科室</label>
-                <div class="col-xs-3">
+            {{--<div class="form-group">--}}
+                {{--<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">科室</label>--}}
+                {{--<div class="col-xs-3">--}}
 
-                    <select class="form-control" name="parent_id" required="">
-                        <option value="0">
-                            科室
-                        </option>
-                        @foreach($categorys as $item)
+                    {{--<select class="form-control" name="parent_id" required="">--}}
+                        {{--<option value="0">--}}
+                            {{--科室--}}
+                        {{--</option>--}}
+                        {{--@foreach($categorys as $item)--}}
 
-                            <option value="{{$item->id}}" @if($category->parent_id==$item->id) selected @endif>
-                                {{str_repeat('----',$item->level)}}
-                                {{$item->name}}
-                            </option>
+                            {{--<option value="{{$item->id}}" @if($category->parent_id==$item->id) selected @endif>--}}
+                                {{--{{str_repeat('----',$item->level)}}--}}
+                                {{--{{$item->name}}--}}
+                            {{--</option>--}}
 
-                        @endforeach
-                    </select>
+                        {{--@endforeach--}}
+                    {{--</select>--}}
 
-                </div>
-            </div>
+                {{--</div>--}}
+            {{--</div>--}}
 
 
             <div class="form-group">

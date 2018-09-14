@@ -32,7 +32,8 @@ class AdminsController extends Controller
      */
     public function create()
     {
-        return view('admin.admins.add');
+        $role = \App\Model\Admin\Role::all();
+        return view('admin.admins.add',compact('role'));
     }
 
     /**
@@ -46,7 +47,19 @@ class AdminsController extends Controller
 
         $input             = $request->except('_token', 'password_confirmation','s');
         $input['password'] = bcrypt($input['password']);
-        Admins::create($input) ? showMsg('1', '添加成功', URL::action('Admin\AdminsController@index')) : showMsg('0', '添加失败');
+        $roleid = $input['roleid'];
+        unset($input['roleid']);
+        if( $user = Admins::create($input)){
+            $role = $this->getRole($roleid);
+            $user->assignRole($role);
+            showMsg('1', '添加成功', URL::action('Admin\AdminsController@index'));
+        }else{
+            showMsg('0', '添加失败');
+        }
+
+
+        // ? showMsg('1', '添加成功', URL::action('Admin\AdminsController@index')) : showMsg('0', '添加失败');
+
     }
 
     /**

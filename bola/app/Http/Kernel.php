@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         "auth.index"=>\App\Http\Middleware\AuthHome::class,
         'role'=>RoleMiddleware::class,
         'permission'=>PermissionMiddleware::class,
-
+        'jwt.auth' => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+        "auth.api"=>\App\Http\Middleware\AuthApi::class,
     ];
 }

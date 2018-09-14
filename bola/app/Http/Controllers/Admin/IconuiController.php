@@ -14,7 +14,7 @@ class IconuiController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:iconuid-list']);
+        //$this->middleware(['permission:iconuid-list']);
     }
 
     /**

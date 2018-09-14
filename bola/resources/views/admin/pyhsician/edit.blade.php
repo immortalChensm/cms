@@ -87,6 +87,12 @@
                         <option value="">专业特长</option>
 
                     </select>
+
+                    <select class="form-control" required="" id="skillid_bak" name="skillid_bak[]" multiple="multiple">
+                        <option value=""></option>
+
+                    </select>
+
                 </div>
             </div>
 

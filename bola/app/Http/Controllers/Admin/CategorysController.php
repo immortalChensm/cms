@@ -24,7 +24,8 @@ class CategorysController extends Controller
     public function index()
     {
         //
-        $data = $this->getCategorys();
+        //$data = $this->getCategorys();
+        $data = Categorys::where("parent_id",0)->paginate(20);
         return view("admin.categorys.index",compact('data'));
     }
 
@@ -102,9 +103,9 @@ class CategorysController extends Controller
         //
         $category       = Categorys::where('id', $id)->first();
         $category->name = $Postrequest->post("name");
-        $category->link = $Postrequest->post("link");
-        $category->parent_id = $Postrequest->post("parent_id");
-        $category->sort = $Postrequest->post("sort");
+        //$category->link = $Postrequest->post("link");
+        //$category->parent_id = $Postrequest->post("parent_id");
+        //$category->sort = $Postrequest->post("sort");
         $category->save() ? showMsg('1', '修改成功', URL::action('Admin\CategorysController@index')) : showMsg('0', '暂无修改');
     }
 

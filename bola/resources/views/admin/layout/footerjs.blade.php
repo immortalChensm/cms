@@ -130,7 +130,7 @@
 
 <!-- Initialize datetimepicker -->
 <script>
-   
+
 
     $("#datetimepicker6").on("dp.change", function(e) {
         $('#datetimepicker7').data("DateTimePicker").minDate(e.date);

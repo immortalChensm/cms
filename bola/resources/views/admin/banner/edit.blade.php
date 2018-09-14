@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="img-container" style="width: 100%;">
-                        <img id="image" src="{{request()->getSchemeAndHttpHost().$banner->image}}" alt="Picture" class="cropper-hidden"><div class="cropper-container cropper-bg" style="display:none;width: 662px; height: 516px;"><div class="cropper-wrap-box"><div class="cropper-canvas" style="width: 339.981px; height: 191.239px; left: 14.5261px; top: -3.13255px;"><img src="https://colorlib.com/polygon/gentelella/images/cropper.jpg" style="width: 339.981px; height: 191.239px; margin-left: 0px; margin-top: 0px; transform: none;"></div></div><div class="cropper-drag-box cropper-modal cropper-crop"></div><div class="cropper-crop-box" style="width: 398.213px; height: 223.995px; left: 6.01818px; top: 0px;"><span class="cropper-view-box"><img src="https://colorlib.com/polygon/gentelella/images/cropper.jpg" style="width: 339.981px; height: 191.239px; margin-left: 8.50796px; margin-top: -3.13255px; transform: none;"></span><span class="cropper-dashed dashed-h"></span><span class="cropper-dashed dashed-v"></span><span class="cropper-center"></span><span class="cropper-face cropper-move"></span><span class="cropper-line line-e" data-action="e"></span><span class="cropper-line line-n" data-action="n"></span><span class="cropper-line line-w" data-action="w"></span><span class="cropper-line line-s" data-action="s"></span><span class="cropper-point point-e" data-action="e"></span><span class="cropper-point point-n" data-action="n"></span><span class="cropper-point point-w" data-action="w"></span><span class="cropper-point point-s" data-action="s"></span><span class="cropper-point point-ne" data-action="ne"></span><span class="cropper-point point-nw" data-action="nw"></span><span class="cropper-point point-sw" data-action="sw"></span><span class="cropper-point point-se" data-action="se"></span></div></div>
+                        <img id="image" src="{{request()->getSchemeAndHttpHost().$banner->image}}" alt="Picture" class="cropper-hidden">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -592,6 +592,8 @@
                 }
             };
 
+
+            $(".cropper-container").hide();
 
         }
     </script>

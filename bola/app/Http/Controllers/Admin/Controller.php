@@ -48,6 +48,7 @@ class Controller extends BaseController
         $this->action = explode("@",$action);
         $permission = Permission::whereRaw("action LIKE '%".$action."%'")->OrWhere("action",request()->route()->action['controller'])->first();
         if(!in_array($this->action[1],['skill'])){
+
             $this->middleware(['permission:'.$permission->name]);
         }
 

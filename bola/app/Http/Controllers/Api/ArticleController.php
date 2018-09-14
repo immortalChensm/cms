@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Model\Admin\Banner;
 use Illuminate\Http\Request;
 use App\Model\Admin\Article;
 class ArticleController extends Controller
@@ -35,5 +36,11 @@ class ArticleController extends Controller
         }else{
             return $this->error("获取失败");
         }
+    }
+
+    function banners()
+    {
+        $ret = Banner::where("status",1)->get();
+        return $this->success("获取成功",$ret?:'');
     }
 }

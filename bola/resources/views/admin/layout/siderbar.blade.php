@@ -50,20 +50,29 @@
 
                 @if(auth()->user()->can('position-list') || auth()->user()->can('subject-list') )
                 <li><a><i class="fa fa-list-ul"></i>分组管理 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu" @if(request()->is("*/categorys/*") || request()->is("*/position/*")) style='display:block;' @endif>
+                    <ul class="nav child_menu" @if(request()->is("*/categorys/*") || request()->is("*/position/*") || request()->is("*/skill/*")) style='display:block;' @endif>
                         @can("subject-list")
-                        <li @if(request()->is("*/categorys/*")) class="current-page" @endif><a href="/admin/categorys" >科室专长列表</a></li>
+                        <li @if(request()->is("*/categorys/*")) class="current-page" @endif><a href="/admin/categorys" >科室列表</a></li>
+                        @endcan
+                        @can("subject-list")
+                            <li @if(request()->is("*/skill/*")) class="current-page" @endif><a href="/admin/skill" >专长列表</a></li>
                         @endcan
                             @can("position-list")
                         <li @if(request()->is("*/position/*")) class="current-page" @endif><a href="/admin/position">职称列表</a></li>
-                                @endcan
+                            @endcan
                     </ul>
                 </li>
             @endif
             @can("page-list")
                 <li><a><i class="fa fa-sitemap"></i> 网站管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" @if(request()->is("*/page/*")) style='display:block;' @endif>
-                        <li @if(request()->is("*/page/*")) class="current-page" @endif><a href="/admin/page">单页列表</a></li>
+
+                        <li @if(request()->is("*//admin/page/7/edit/*")) class="current-page" @endif><a href="/admin/page/7/edit">联系我们</a></li>
+                        <li @if(request()->is("*//admin/page/6/edit/*")) class="current-page" @endif><a href="/admin/page/6/edit">关于我们</a></li>
+                        <li @if(request()->is("*//admin/page/8/edit/*")) class="current-page" @endif><a href="/admin/page/8/edit">医联体加入流程</a></li>
+                        <li @if(request()->is("*//admin/page/9/edit/*")) class="current-page" @endif><a href="/admin/page/9/edit">转诊申请流程</a></li>
+                        <li @if(request()->is("*//admin/page/10/edit/*")) class="current-page" @endif><a href="/admin/page/10/edit">加入PCCM流程</a></li>
+
                     </ul>
                 </li>
             @endcan
@@ -88,7 +97,7 @@
                     <ul class="nav child_menu" @if(request()->is("*/consulation/*") ||request()->is("*/hospitalapp/*")) style='display:block;' @endif>
 
                         <li @if(request()->is("*/consulation/*")) class="current-page" @endif><a href="/admin/consulation" >转诊申请记录列表</a></li>
-                        <li @if(request()->is("*/hospitalapp/*")) class="current-page" @endif><a href="/admin/hospitalapp" >医联体申请列表</a></li>
+                        <li @if(request()->is("*/hospitalapp/*")) class="current-page" @endif><a href="/admin/hospitalapp" >申请列表</a></li>
                     </ul>
                 </li>
             @endcan

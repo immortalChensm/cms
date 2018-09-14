@@ -6,7 +6,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
               <div class="x_title">
-                  <h2>科室专长列表<small><a href="{{route('categorys.create')}}" class="btn btn-info" >添加</a></small></h2>
+                  <h2>科室列表<small><a href="{{route('categorys.create')}}" class="btn btn-info" >添加</a></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -34,10 +34,11 @@
 
                           <tbody>
 
-                          @foreach($data as $item)
+                          @foreach($data as $key=>$item)
                           <tr class="even pointer">
-                              <td class=" ">{{$item->id}}</th>
-                              <td class=" ">{{str_repeat('---',$item->level)}}{{$item->name}}</td>
+                              <td class=" ">{{$key+1}}</th>
+                              {{--<td class=" ">{{str_repeat('---',$item->level)}}{{$item->name}}</td>--}}
+                              <td class=" ">{{$item->name}}</td>
 
 
                               <td class=" ">{{$item->created_at}}</td>

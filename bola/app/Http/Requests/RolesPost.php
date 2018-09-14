@@ -27,7 +27,7 @@ class RolesPost extends FormRequest
         return [
             //
             'name'=>['required','min:2',Rule::unique('roles')->ignore('id')],
-            'description'=>'required'
+            //'description'=>'required'
         ];
     }
 
@@ -37,7 +37,7 @@ class RolesPost extends FormRequest
             'name.required'   => '请输入角色',
             'name.min'  => '角色最少2个字符',
             'name.unique'=>'角色已经存在',
-            'description.required' => '请输入描述',
+            //'description.required' => '请输入描述',
         ];
     }
 }

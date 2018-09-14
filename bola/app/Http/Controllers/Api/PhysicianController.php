@@ -12,6 +12,7 @@ class PhysicianController extends Controller
     function physician()
     {
         $keyword  = request()->keyword;
+        $recommend  = request()->recommend;
         $hospital = "";
         $zoneid   = "";
         $whereRaw = "";
@@ -29,7 +30,12 @@ class PhysicianController extends Controller
         if(empty($whereRaw)){
             $whereRaw = "1";
         }
-        $ret = Pyhsician::where("status",1)->whereRaw($whereRaw)->orderBy("created_at")->paginate(25);
+        $ret = Pyhsician::where(function($query)use($recommend){
+            $query->where("status",1);
+            if($recommend){
+                $query->where("recommend",$recommend);
+            }
+        })->whereRaw($whereRaw)->orderBy("created_at")->paginate(25);
         $data = [];
         foreach($ret as $k=>$item){
             $data[$k]['username'] = $item->username;

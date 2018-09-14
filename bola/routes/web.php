@@ -15,6 +15,7 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
 
         //分类管理
         Route::resource('categorys', 'Admin\CategorysController');
+        Route::resource('skill', 'Admin\SkillController');
         Route::any('uploads/index', 'Admin\UploadController@baidu')->name("upload.config");
         //单页管理
         Route::resource('page', 'Admin\PageController');

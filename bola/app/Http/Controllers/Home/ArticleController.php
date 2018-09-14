@@ -13,11 +13,11 @@ class ArticleController extends Controller
 	//列表
     public function index()
     {
-        $keyword  = request()->keyword;
-        $ret = Article::where("status",1)->where("title","LIKE","%{$keyword}%")->orderBy("created_at")->paginate(25);
-        print_r($ret->toArray());
-        return $ret;
-        //return view('home/abount/index');
+//        $keyword  = request()->keyword;
+//        $ret = Article::where("status",1)->where("title","LIKE","%{$keyword}%")->orderBy("created_at")->paginate(25);
+//        print_r($ret->toArray());
+//        return $ret;
+        return view('home/abount/index');
     }
 
 

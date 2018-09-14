@@ -41,12 +41,32 @@
               <input type="text" id="last-name" name="password" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
+
+
+
+
           <div class="form-group">
             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">确认密码</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="password_confirmation">
             </div>
           </div>
+
+            <div class="form-group">
+                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">角色</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                    <select class="form-control" required="" name="roleid">
+                        @foreach($role as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
+
+
+                </div>
+            </div>
+
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">是否开启</label>
             <div class="col-md-6 col-sm-6 col-xs-12">

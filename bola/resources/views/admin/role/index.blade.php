@@ -55,9 +55,9 @@
 
                           <tbody>
 
-                          @foreach ($roles as $role)
+                          @foreach ($roles as $key=>$role)
                               <tr class="even pointer">
-                                  <td class=" ">{{$role->id}}</th>
+                                  <td class=" ">{{$key+1}}</th>
                                   <td class=" ">{{$role->name}}</th>
                                   <td class=" ">{{$role->created_at}}</th>
 

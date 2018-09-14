@@ -63,7 +63,7 @@ class SystemController extends Controller
                 $temp['value'] = $value;
                 //$insertData[] = $temp;
                 $isset = Db::table("config")->where("name",$field)->first();
-                if($isset->name==$field){
+                if(isset($isset->name)&&$isset->name==$field){
                     Db::table("config")->where("name",$field)->update([
                         "name"=>$field,
                         "value"=>$value

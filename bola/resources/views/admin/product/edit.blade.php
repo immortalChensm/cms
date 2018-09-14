@@ -88,6 +88,10 @@ var ue = UE.getEditor('content',{
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select class="form-control" required="" name="grade">
+
+
+                            <option value="" @if($data->grade == '') selected @endif>医院等级</option>
+
                         <option value="示范单位" @if($data->grade == '示范单位') selected @endif>示范单位</option>
                         <option value="优秀单位" @if($data->grade == '优秀单位') selected @endif>优秀单位</option>
                         <option value="达标单位" @if($data->grade == '达标单位') selected @endif>达标单位</option>
@@ -103,9 +107,20 @@ var ue = UE.getEditor('content',{
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select class="form-control" required="" name="pccm">
 
-                        <option value="三级甲等"  @if($data->pccm == '三级甲等') selected @endif>三级甲等</option>
-                        <option value="三级乙等"  @if($data->pccm == '三级乙等') selected @endif>三级乙等</option>
-                        <option value="三级丙等"  @if($data->pccm == '三级丙等') selected @endif>三级丙等</option>
+
+                        <option value="" @if($data->pccm == '') selected @endif>PCCM等级</option>
+
+                        <option value="三甲"  @if($data->pccm == '三甲') selected @endif>三甲</option>
+                        <option value="三乙"  @if($data->pccm == '三乙') selected @endif>三乙</option>
+                        <option value="三丙"  @if($data->pccm == '三丙') selected @endif>三丙</option>
+
+                        <option value="二甲"  @if($data->pccm == '二甲') selected @endif>二甲</option>
+                        <option value="二乙"  @if($data->pccm == '二乙') selected @endif>二乙</option>
+                        <option value="二丙"  @if($data->pccm == '二丙') selected @endif>二丙</option>
+
+                        <option value="一甲"  @if($data->pccm == '一甲') selected @endif>一甲</option>
+                        <option value="一乙"  @if($data->pccm == '一乙') selected @endif>一乙</option>
+                        <option value="一丙"  @if($data->pccm == '一丙') selected @endif>一丙</option>
 
                     </select>
                 </div>
@@ -147,6 +162,12 @@ var ue = UE.getEditor('content',{
                         <option value="">专业特长</option>
 
                     </select>
+
+                    <select class="form-control" required="" id="skillid_bak" name="skillid_bak[]" multiple="multiple">
+                        <option value=""></option>
+
+                    </select>
+
                 </div>
             </div>
 

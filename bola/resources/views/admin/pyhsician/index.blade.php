@@ -114,9 +114,9 @@
 
                           <tbody>
 
-                          @foreach ($data as $news)
+                          @foreach ($data as $key=>$news)
                               <tr class="even pointer">
-                                  <td class="column-title" >{{$news->id}}</td>
+                                  <td class="column-title" >{{$key+1}}</td>
                                   <td class="column-title" >
                                   <img src="{{request()->getSchemeAndHttpHost().$news->image}}" class="img img-responsive" style="width:100px;"/>
 

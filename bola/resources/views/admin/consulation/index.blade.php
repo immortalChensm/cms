@@ -95,11 +95,15 @@
                               <th class="column-title" width="200px">分配时间</th>
                               <th class="column-title" width="100px">病例附件</th>
                               <th class="column-title" width="100px">病情描述</th>
-                              <th class="column-title" width="100px">患者病情 </th>
-                              <th class="column-title" width="100px">呼吸支持 </th>
-                              <th class="column-title" width="100px">病房</th>
-                              <th class="column-title" width="100px">转运需求 </th>
-                              <th class="column-title" width="100px">时间需求 </th>
+
+
+                              {{--<th class="column-title" width="100px">患者病情 </th>--}}
+                              {{--<th class="column-title" width="100px">呼吸支持 </th>--}}
+                              {{--<th class="column-title" width="100px">病房</th>--}}
+                              {{--<th class="column-title" width="100px">转运需求 </th>--}}
+                              {{--<th class="column-title" width="100px">时间需求 </th>--}}
+                              <th class="column-title" width="100px">转诊要求</th>
+
                               <th class="column-title" width="100px">状态</th>
                               <th class="column-title" >操作</th>
                           </tr>
@@ -107,9 +111,9 @@
 
                           <tbody>
 
-                          @foreach ($data as $news)
+                          @foreach ($data as $key=>$news)
                               <tr class="even pointer">
-                                  <td class="column-title" >{{$news->id}}</th>
+                                  <td class="column-title" >{{$key+1}}</th>
                                   <td class="column-title" >{{$news->name}}</th>
                                   <td class="column-title" >{{$news->mobile}}</th>
 
@@ -131,11 +135,23 @@
 
 
                                   <td class="column-title" >{{str_limit($news->description,20)}}</th>
-                                  <td class="column-title" >{{str_limit($news->ill_desc,20)}}</th>
-                                  <td class="column-title" >{{str_limit($news->ill_breath,20)}}</th>
-                                  <td class="column-title" >{{str_limit($news->ill_room,20)}}</th>
-                                  <td class="column-title" >{{str_limit($news->ill_transfer,20)}}</th>
-                                  <td class="column-title" >{{$news->ill_ntime}}</th>
+
+                                  {{----}}
+                                  {{--<td class="column-title" >{{str_limit($news->ill_desc,20)}}</th>--}}
+                                  {{--<td class="column-title" >{{str_limit($news->ill_breath,20)}}</th>--}}
+                                  {{--<td class="column-title" >{{str_limit($news->ill_room,20)}}</th>--}}
+                                  {{--<td class="column-title" >{{str_limit($news->ill_transfer,20)}}</th>--}}
+                                  {{--<td class="column-title" >{{$news->ill_ntime}}</th>--}}
+
+                                  <td class="column-title" width="400px">
+                                      <p>患者病情：{{str_limit($news->ill_desc,20)}}<br />
+                                         呼吸支持：{{str_limit($news->ill_breath,20)}}<br />
+                                         病房支持：{{str_limit($news->ill_room,20)}}<br />
+                                         转运需求：{{str_limit($news->ill_transfer,20)}}<br />
+                                         病房需求：{{$news->ill_ntime}}</p>
+                                  </th>
+
+
                                   <td class="column-title" >
 
                                       <div class="">
@@ -151,7 +167,7 @@
                                       </div>
 
                                   </td>
-                                  <td ><a href="{{route('consulation.edit',$news->id)}}" class="btn btn-success btn-sm">处理</a><!--<a class="delete btn btn-danger btn-sm" href="#" data-id="{{$news->id}}">移除</a>--></td>
+                                  <td ><a href="{{route('consulation.edit',$news->id)}}" class="btn btn-success btn-sm">处理</a> <button type="button" onclick="save(this)" data-type="cancel" data-id="{{$news->id}}" class="btn btn-success">拒绝申请</button><!--<a class="delete btn btn-danger btn-sm" href="#" data-id="{{$news->id}}">移除</a>--></td>
                               </tr>
                           @endforeach
 
@@ -219,6 +235,53 @@
                 return false;
             })
 
+
+            function save(btn){
+                $.ajax({
+                    type: 'PATCH',
+                    url : "{{url('admin/consulation/')}}/"+$(btn).attr("data-id"),
+                    dataType: 'json',
+                    data: {
+                        id:$(btn).attr("data-id"),
+
+                        type:'cancel',
+                        _token:"{{csrf_token()}}"
+                    },
+                    success: function(data){
+                        if(data.status==1){
+                            layer.msg(data.message);
+                            setTimeout(function(){//两秒后跳转
+                                window.location.href = data.url;
+                            },1000);
+                        }else{
+                            alert(data.message);
+                        }
+                    },
+                    error:function(data){
+                        if (data.status == 422) {
+                            var json=JSON.parse(data.responseText);
+                            json = json.errors;
+                            for ( var item in json) {
+                                for ( var i = 0; i < json[item].length; i++) {
+                                    layer.msg(json[item][i],{time:1000});
+                                    return ; //遇到验证错误，就退出
+                                }
+                            }
+                        } else {
+                            layer.msg('服务器连接失败',{time:1000});
+                            return ;
+                        }
+                    }
+                });
+                return false;
+                function success(data) {
+                    if (data.status == 0) {
+                        alert(data.message);
+                    } else {
+                        window.location.href = data.url;
+                    }
+                };
+            }
 
 
         </script>

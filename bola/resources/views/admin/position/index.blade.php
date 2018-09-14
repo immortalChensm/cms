@@ -33,9 +33,9 @@
 
                           <tbody>
 
-                          @foreach ($data as $position)
+                          @foreach ($data as $key=>$position)
                               <tr class="even pointer">
-                                  <td class=" ">{{$position->id}}</th>
+                                  <td class=" ">{{$key+1}}</th>
                                   <td class=" ">{{$position->title}}</th>
 
                                   <td>

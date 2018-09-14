@@ -1,0 +1,94 @@
+.context{
+	width: 100%;
+	height: 770px;
+	background-color: #f8f8f8;
+}
+.navigation{
+	width: 1200px;
+	height: 41px;
+	border-bottom: 1px solid #971d25;
+	margin-top: 50px;
+}
+.navigation ul{
+	list-style:none;
+	margin: 0px;
+    padding: 0px;
+	margin-left: -1px;
+}
+.navigation ul li{
+	float:left;
+	width: 160px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 1px;
+}
+.navigation ul li a:hover{
+	background-color: #971d25;
+	color: #ffffff;
+	text-decoration: none;
+}
+.xgmm a{
+	display: block;
+	background-color: #971d25;
+	color: #ffffff;
+}
+.zhszl a{
+	display: block;
+	color: #971d25;
+	background-color: #eee2e2;
+}
+.zzjl a{
+	display: block;
+	color: #971d25;
+	background-color: #eee2e2;
+}
+.zhsz{
+	width: 1200px;
+	height: 400px;
+	background-color: #ffffff;
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+.zhsz input{
+	width: 300px;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #e0e0e0;
+	background-color:#ffffff;
+	margin-left: 2px;
+	padding-left: 12px;
+	font-size: 16px;
+	margin-top: 20px;
+}
+.zhsz a{
+	color: red;
+}
+.oldpsw{
+	margin-left: 423px;
+}
+
+.newpsw{
+	margin-left: 423px;
+}
+
+.confirmpsw{
+	margin-left: 405px;
+}
+
+.button1{
+	text-align: center;
+	margin-top: 50px;
+}
+.button1 button{
+	width: 200px;
+	height: 40px;
+	background-color: #971d25;
+	border-radius: 4px;
+	font-size: 16px;
+	color: #ffffff;
+	border: 0;
+}

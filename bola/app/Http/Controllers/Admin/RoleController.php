@@ -53,6 +53,7 @@ class RoleController extends Controller
     {
         //
         $input = $request->except('_token','s');
+        $input['guard_name'] = "admin";
         Roles::create($input) ? showMsg('1', '添加成功', URL::action('Admin\RoleController@index')) : showMsg('0', '添加失败');;
     }
 
@@ -92,7 +93,7 @@ class RoleController extends Controller
         //
         $role       = Roles::where('id', $id)->first();
         $role->name = $RolesPostrequest->post("name");
-        $role->description = $RolesPostrequest->post("description");
+
         $role->save() ? showMsg('1', '修改成功', URL::action('Admin\RoleController@index')) : showMsg('0', '暂无修改');
     }
 

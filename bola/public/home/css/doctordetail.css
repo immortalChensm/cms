@@ -1,0 +1,66 @@
+.context{
+	width: 100%;
+	height: 770px;
+	background-color: #f8f8f8;
+	
+}
+.yyxq{
+	height: 611px;
+	background-color: #ffffff;
+	margin-top: 30px;
+	margin: 0 auto;
+	width: 1200px;
+	
+}
+.doctorxq{
+	width: 1200px;
+	height: 480px;
+	background-color: #ffffff;
+	margin-top: 30px;
+}
+.doctorxq img{
+	width: 264px;
+	height: 400px;
+}
+.ysxq-gr{
+	margin-top: 38px;
+	margin-left: 30px;
+}
+.ysxq-grjs{
+	display: inline-block;
+	position: absolute;
+	margin-left: 30px;
+}
+.keshi{
+	font-size: 16px;
+	margin-top: 15px;
+}
+p span{
+	font-weight: bold;
+}
+.zytc{
+	border-bottom: 1px solid #cccccc;
+	font-size: 16px;
+	width: 856px;
+	height: 50px;
+	margin-top: 15px;
+}
+.xingming{
+	font-size: 24px;
+	color: #333333;
+	font-weight: bold;
+}
+.yym{
+	font-size: 20px;
+	color: #333333;
+	line-height: 50px;
+	height: 55px;
+}
+.xqjs{
+	width: 860px;
+	font-size: 16px;
+	line-height: 30px;
+	letter-spacing: 0px;
+	color: #333333;
+	margin-top: 20px;
+}

@@ -23,7 +23,7 @@
               <div class="x_title">
                   <h2>
                       <ul class="search-header">
-                          <li>医联体申请/列表</li>
+                          <li>申请/列表</li>
                           {{--<li><small ><a  class="btn btn-info search" >搜索</a></small></li>--}}
                       </ul>
 
@@ -50,15 +50,16 @@
                               <th class="column-title" width="100px">手机号 </th>
 
                               <th class="column-title" width="100px">申请凭证 </th>
+                              <th class="column-title" width="100px">申请类型</th>
                               <th class="column-title" width="100px">状态</th>
                               <th class="column-title" >操作</th>
                           </tr>
                           </thead>
 
                           <tbody>
-                                @foreach($join as $item)
+                                @foreach($join as $key=>$item)
                                     <tr>
-                                    <td class="column-title" >{{$item->id}}</td>
+                                    <td class="column-title" >{{$key+1}}</td>
                                     <td class="column-title" >{{$item->username}}</td>
                                     <td class="column-title" >{{$item->mobile}}</td>
                                     <td class="column-title" >
@@ -70,6 +71,18 @@
 
 
                                     </td>
+                                        <td class="column-title" >
+                                            @if($item->type == 1)
+                                                医联体申请
+                                            @elseif($item->type == 2)
+                                                PCCM申请
+                                            @elseif($item->type == 3)
+                                                教学培训申请
+                                            @endif
+
+
+                                        </td>
+
                                     <td class="column-title" >
                                         @if($item->status == 0)
                                             待处理

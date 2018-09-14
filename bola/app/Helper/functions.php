@@ -30,7 +30,7 @@ function uploadImageForBase64($source)
     if(!is_dir($dir)){
         mkdir($dir);
     }
-    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif']);
+    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif','jpg']);
 
     if($decoder->getFormat()=='png'){
         $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".png";

@@ -94,9 +94,17 @@ var ue = UE.getEditor('content',{
 
                     <select class="form-control" required="" name="pccm">
 
-                        <option value="三级甲等">三级甲等</option>
-                        <option value="三级乙等">三级乙等</option>
-                        <option value="三级丙等">三级丙等</option>
+                        <option value="三甲">三甲</option>
+                        <option value="三乙">三乙</option>
+                        <option value="三丙">三丙</option>
+
+                        <option value="二甲">二甲</option>
+                        <option value="二乙">二乙</option>
+                        <option value="二丙">二丙</option>
+
+                        <option value="一甲">一甲</option>
+                        <option value="一乙">一乙</option>
+                        <option value="一丙">一丙</option>
 
                     </select>
                 </div>
@@ -137,6 +145,12 @@ var ue = UE.getEditor('content',{
                         <option value="">专业特长</option>
 
                     </select>
+
+                    <select class="form-control" required="" id="skillid_bak" name="skillid_bak[]" multiple="multiple">
+                        <option value=""></option>
+
+                    </select>
+
                 </div>
             </div>
 
