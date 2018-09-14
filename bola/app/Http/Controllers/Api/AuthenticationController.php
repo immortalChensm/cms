@@ -83,7 +83,7 @@ class AuthenticationController extends Controller
         }
 
         //验证医生是否可以登录
-        if(auth("api")->user()->status==0){
+        if(auth("api")->user()->physician->status==0){
             return $this->error('此账号已经禁用');
         }
 
