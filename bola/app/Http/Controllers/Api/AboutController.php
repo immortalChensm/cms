@@ -11,9 +11,11 @@ class AboutController extends Controller
     {
         $ret = Page::all();
         if($ret){
-            return $this->response->array(['status'=>1,'msg'=>'请求成功','result'=>$ret]);
+
+            return $this->success("获取成功",$ret);
         }else{
-            return $this->response->array(['status'=>0,'msg'=>'请求失败']);
+
+            return $this->error("获取成功");
         }
 
     }

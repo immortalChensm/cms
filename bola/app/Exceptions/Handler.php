@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Dingo\Api\Exception\ValidationHttpException;
 use Exception;
 use app\Helper\functions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -55,27 +56,14 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-
-
         if ($exception instanceof UnauthorizedException) {
-            // Code here ...
-            //if(request()->isXmlHttpRequest()){
                 showMsg('0', '您没有此功能的权限！无法操作');
-            //}
-        }
-//
-//        if(preg_match('/This action is unauthorized/',$exception->getMessage())){
-//
-//            if(request()->isXmlHttpRequest()){
-//                showMsg('0', '您没有此功能的权限！无法操作');
-//            }
-//
-//
-//
-//        }else{
-//
-//        }
 
+        }
+
+        if ($exception instanceof ResourceException) {
+            showMsg('0', '数据未提交，验证错误');
+        }
 
         return parent::render($request, $exception);
     }

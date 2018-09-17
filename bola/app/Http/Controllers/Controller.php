@@ -66,13 +66,13 @@ class Controller extends BaseController
 
         }elseif($type=='POST'){
             try{
-                $response = $client->post($api,['body'=>$param]);
+                $response = $client->post($api,['form_params'=>$param]);
             }catch (RequestException  $exception){
-                if($exception->getCode() == 500 && $exception->getMessage() == 'Trying to get property of non-object'){
+                if($exception->getCode() == 500  && $exception->getMessage() == 'Trying to get property of non-object' || $exception->getCode() == 422){
                     return [
-                        'code'=>$exception->getCode(),
+                        'code'=>200,
                         'msg'=>"传递参数错误",
-                        'body'=>$exception->getResponse()->getBody()->getContents(),
+                        'body'=>json_decode($exception->getResponse()->getBody()->getContents(),true),
                     ];
                 }
             }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c522729d28171b709062f8c7414b24a6",
+    "content-hash": "40426a225219e6d4ace3c3dac57d2206",
     "packages": [
         {
             "name": "dingo/api",
@@ -706,6 +706,54 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "hshn/base64-encoded-file",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hshn/base64-encoded-file.git",
+                "reference": "c2f3cf314dcf311ad0ce0807332e3c2f6b068e7b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hshn/base64-encoded-file/zipball/c2f3cf314dcf311ad0ce0807332e3c2f6b068e7b",
+                "reference": "c2f3cf314dcf311ad0ce0807332e3c2f6b068e7b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/http-foundation": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "symfony/form": "~2.7|~3.0"
+            },
+            "suggest": {
+                "symfony/form": "to use base64_encoded_file type"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hshn\\Base64EncodedFile\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shota Hoshino",
+                    "email": "lga0503@gmail.com"
+                }
+            ],
+            "description": "Provides handling base64 encoded files, and the integration of symfony/form",
+            "time": "2016-02-17T13:11:32+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

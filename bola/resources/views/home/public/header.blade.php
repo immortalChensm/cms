@@ -33,25 +33,25 @@
                 <li class="fs18 xuanzhong" id="dhyy">
                     医联体医院
                     <div class="xiala" id="xiala">
-                        <div class="xiala1">医联体医院</div>
-                        <div class="xiala1">加入医联体流程</div>
-                        <div class="xiala1">加入医联体</div>
-                        <div class="xiala1">加入PCCM流程</div>
-                        <div class="xiala1">加入PCCM</div>
+                        <div class="xiala1" onclick="window.location.href='/hospitals.html'">医联体医院</div>
+                        <div class="xiala1" onclick="window.location.href='/joinprocess.html'">加入医联体流程</div>
+                        <div class="xiala1" onclick="window.location.href='/joinylt.html'">加入医联体</div>
+                        <div class="xiala1" onclick="window.location.href='/joinpccmorocess.html'">加入PCCM流程</div>
+                        <div class="xiala1" onclick="window.location.href='/joinpccm.html'">加入PCCM</div>
                     </div>
                 </li>
-                <li class="fs18">医联体医生</li>
+                <li class="fs18" onclick="window.location.href='/doctors.html'">医联体医生</li>
                 <li class="fs18" id="dhzz">
                     转诊申请
                     <div class="xiala2" id="xiala2">
-                        <div class="xiala3">转诊申请</div>
+                        <div class="xiala3" onclick="window.location.href='/application.html'">转诊申请</div>
                         <div class="xiala3">申请流程</div>
                     </div>
                 </li>
-                <li class="fs18">教学培训</li>
-                <li class="fs18">科研项目</li>
+                <li class="fs18" onclick="window.location.href='/teachtrain.html'">教学培训</li>
+                <li class="fs18" onclick="window.location.href='/information.html'">科研项目</li>
                 <li id="button3" class="fs18">远程中心</li>
-                <li class="fs18">关于我们</li>
+                <li class="fs18" onclick="window.location.href='/aboutus.html'">关于我们</li>
             </ul>
         </div>
     </div>

@@ -26,25 +26,31 @@ function showMsg($status, $message = '', $url = '', $data = array())
 function uploadImageForBase64($source)
 {
     $dir = "./Uploads/".date("Ymd")."/";
+//
+//    if(!is_dir($dir)){
+//        mkdir($dir);
+//    }
+//    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif','jpg','xlsx']);
+//
+//    if($decoder->getFormat()=='png'){
+//        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".png";
+//    }
+//    if($decoder->getFormat()=='jpeg'){
+//        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".jpg";
+//    }
 
-    if(!is_dir($dir)){
-        mkdir($dir);
-    }
-    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif','jpg']);
-
-    if($decoder->getFormat()=='png'){
-        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".png";
-    }
-    if($decoder->getFormat()=='jpeg'){
-        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".jpg";
-    }
 
 
-    if(file_put_contents($savePath,$decoder->getDecodedContent())) {
-        return $savePath;
-    }else{
-        return false;
-    }
+    $base64File = new \Hshn\Base64EncodedFile\HttpFoundation\File\Base64EncodedFile($source);
+
+    echo $base64File->getExtension();
+
+
+//    if(file_put_contents($savePath,$decoder->getDecodedContent())) {
+//        return $savePath;
+//    }else{
+//        return false;
+//    }
 
 
 }
@@ -54,7 +60,9 @@ function configsystem()
 {
     return [
         "system"=>'系统名称',
-        'webtitle'=>'网站标题'
+        'webtitle'=>'公司名称',
+        'address'=>'公司地址',
+        'phone'=>'公司电话',
     ];
 }
 

@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use JasonGrimes\Paginator;
-class TrainController extends Controller
+class InfoController extends Controller
 {
 	//列表
-    public function teachtrain()
+    public function information()
     {
         $param = [
             'page'=>request()->page?:1,
             'keyword'=>request()->keyword?:'',
         ];
-        $train= $this->getApi("GET","trains",$param)['body']['data'];
+        $train= $this->getApi("GET","scienceproject",$param)['body']['data'];
 
         $totalItems = $train['total'];
         $itemsPerPage = $train['per_page'];
@@ -40,20 +40,20 @@ class TrainController extends Controller
 
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
         $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
-        $nav = "教学培训";
-        return view('home/index/teachtrain',compact('train','paginator','nav'));
+        $nav = "科研项目";
+        return view('home/index/information',compact('train','paginator','nav'));
     }
 
 
-    function teachtraindetail($id)
+    function informationdetail($id)
     {
         $doctorid = request()->id;
-        $doctor = $this->getApi("GET","trains/details/".$doctorid,[]);
+        $doctor = $this->getApi("GET","scienceproject/details/".$doctorid,[]);
         if($doctor['body']['status_code']==1){
             $data = $doctor['body']['data'];
         }
         //print_r($data);
-        return view('home/index/train_details',compact('data'));
+        return view('home/index/info_details',compact('data'));
 
     }
 

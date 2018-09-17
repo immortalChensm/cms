@@ -13,12 +13,19 @@ class Controller extends BaseController
 
     public function success($msg,$data)
     {
-        return ['status_code'=>1,'message'=>$msg,'data'=>$data];
+        $data = ['status_code'=>1,'message'=>$msg,'data'=>$data];
+        //header();
+        //// 响应类型
+        //header('Access-Control-Allow-Methods:POST');
+        //// 响应头设置
+        //header('Access-Control-Allow-Headers:x-requested-with,content-type');
+        return $this->response->array($data)->withHeader('Access-Control-Allow-Origin','*')->withHeader('Access-Control-Allow-Methods','GET,POST')->withHeader('Access-Control-Allow-Headers','x-requested-with,content-type');
     }
 
     public function error($msg)
     {
-        return ['status_code'=>0,'message'=>$msg];
+        $data = ['status_code'=>0,'message'=>$msg];
+        return $this->response->array($data)->withHeader('Access-Control-Allow-Origin','*')->withHeader('Access-Control-Allow-Methods','GET,POST')->withHeader('Access-Control-Allow-Headers','x-requested-with,content-type');
     }
 
     public function checkLogin()

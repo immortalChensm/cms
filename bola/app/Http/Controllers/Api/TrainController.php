@@ -10,7 +10,7 @@ class TrainController extends Controller
     function trains()
     {
         $keyword  = request()->keyword;
-        $ret = Train::where("status",1)->where("title","LIKE","%{$keyword}%")->orderBy("created_at")->paginate(25);
+        $ret = Train::where("status",1)->where("title","LIKE","%{$keyword}%")->orderBy("created_at")->paginate(2);
         if($ret){
             return $this->success('请求成功',$ret);
         }else{

@@ -67,6 +67,7 @@ class HospitalController extends Controller
         if($hospital['body']['status_code']==1){
             $data = $hospital['body']['data'];
         }
+        //print_r($data);
         return view('home/index/hospitals_details',compact('data'));
     }
 

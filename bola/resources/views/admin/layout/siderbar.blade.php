@@ -35,7 +35,7 @@
 
                 @if(auth()->user()->can('train-list') || auth()->user()->can('article-list') )
             <li><a><i class="fa fa-file-text-o"></i> 资讯管理 <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu" @if(request()->is("*/article/*")) style='display:block;' @endif>
+                <ul class="nav child_menu" @if(request()->is("*/article/*") || request()->is("*/train/*")) style='display:block;' @endif>
                     @can("article-list")
                     <li @if(request()->is("*/article/*")) class="current-page" @endif><a href="/admin/article">最新资讯管理</a></li>
                     @endcan

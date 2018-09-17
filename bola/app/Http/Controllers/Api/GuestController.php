@@ -21,8 +21,8 @@ class GuestController extends Controller
             $certPath=uploadImageForBase64($request->cert);
         }
         $data['cert'] = isset($certPath)?$certPath:'';
-        if(Joinrecord::create($data)){
-            return $this->success("添加成功",[]);
+        if($record=Joinrecord::create($data)){
+            return $this->success("添加成功",$record);
         }else{
             return $this->error("添加失败");
         }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/bola/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/bola/baidu" isTestSource="false" packagePrefix="baidu\" />
+      <sourceFolder url="file://$MODULE_DIR$/bola/app" isTestSource="false" packagePrefix="App\" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/dingo/api" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/dingo/blueprint" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/dnoegel/php-xdg-base-dir" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/egulias/email-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/erusev/parsedown" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/fideloper/proxy" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/filp/whoops" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/fzaninotto/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/hshn/base64-encoded-file" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/jakub-onderka/php-console-color" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/jakub-onderka/php-console-highlighter" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/jasongrimes/paginator" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/league/fractal" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/melihovv/base64-image-decoder" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/mtdowling/cron-expression" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/namshi/jose" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/nicolaslopezj/searchable" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpdocumentor/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpspec/prophecy" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/php-token-stream" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/phpunit/phpunit-mock-objects" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/code-unit-reverse-lookup" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/resource-operations" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/spatie/laravel-permission" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/css-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/debug" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/http-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/polyfill-php56" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/polyfill-php70" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/polyfill-util" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/routing" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/thanks" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/tijsverkoyen/css-to-inline-styles" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/tymon/jwt-auth" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/vlucas/phpdotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/webmozart/assert" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

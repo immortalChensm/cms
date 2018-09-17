@@ -10,25 +10,49 @@ Route::group(['prefix' => ''], function () {
      Route::get('/hospital/detail/{id}.html', 'Home\HospitalController@hospitalsDetails');
 
 
-     Route::get('/doctorlist.html', 'Home\IndexController@doctors');
-     Route::get('/doctordetail.html', 'Home\IndexController@doctorsDetails');
-     Route::get('/referralapplication.html', 'Home\IndexController@referralapplication');
+     //医生模块
+     Route::get('/doctors.html', 'Home\DoctorsController@doctors');
+     Route::get('/doctor/detail/{id}.html', 'Home\DoctorsController@doctorsDetails');
+
+     //转诊申请
+     Route::get('/application.html', 'Home\ApplicationreferraController@referralapplication');
+
+
      Route::get('/submitsuccess.html', 'Home\IndexController@submitsuccess');
-     Route::get('/teachtrain.html', 'Home\IndexController@teachtrain');
-     Route::get('/teachtraindetail.html', 'Home\IndexController@teachtraindetail');
-     Route::get('/information.html', 'Home\IndexController@information');
-     Route::get('/informationdetail.html', 'Home\IndexController@informationdetail');
+
+     //教学培训
+     Route::get('/teachtrain.html', 'Home\TrainController@teachtrain');
+     Route::get('/teachtrain/detail/{id}.html', 'Home\TrainController@teachtraindetail');
+
+    //科研项目
+     Route::get('/information.html', 'Home\InfoController@information');
+     Route::get('/information/detail/{id}.html', 'Home\InfoController@informationdetail');
+
+
+     //关于我们
+     Route::get('/aboutus.html', 'Home\IndexController@aboutus');
+
+     //加入医联体
+     Route::get('/joinprocess.html', 'Home\IndexController@joinprocess');
+     Route::get('/joinylt.html', 'Home\IndexController@joinylt');
+
+     Route::get('/joinpccmorocess.html', 'Home\IndexController@joinpccmorocess');
+     Route::get('/joinpccm.html', 'Home\IndexController@joinpccm');
+     Route::post('/joinpccm', 'Home\IndexController@Submitjoinpccm');
+
+
+
      Route::get('/personalcenter.html', 'Home\IndexController@personalcenter');
      Route::get('/alterpsw.html', 'Home\IndexController@alterpsw');
      Route::get('/referralrecord.html', 'Home\IndexController@referralrecord');
      Route::get('/bed.html', 'Home\IndexController@bed');
      Route::get('/jinxiuapplication.html', 'Home\IndexController@jinxiuapplication');
-     Route::get('/joinpccm.html', 'Home\IndexController@joinpccm');
-     Route::get('/joinpccmorocess.html', 'Home\IndexController@joinpccmorocess');
-     Route::get('/joinprocess.html', 'Home\IndexController@joinprocess');
-     Route::get('/joinylt.html', 'Home\IndexController@joinylt');
+
+
+
+
      Route::get('/referralapplicationprocess.html', 'Home\IndexController@referralapplicationprocess');
-     Route::get('/aboutus.html', 'Home\IndexController@aboutus');
+
      Route::get('/register.html', 'Home\IndexController@register');
      Route::get('/login.html', 'Home\IndexController@login');
 

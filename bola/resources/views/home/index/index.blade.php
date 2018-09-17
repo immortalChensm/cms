@@ -1,57 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/bootstrap@3.3.7/css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/app.css')}} "/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/home.css')}} "/>
-    <title>首页</title>
-</head>
-<body>
-<div class="">
-    <div class="head">
-        <div class="head-up container">
-            <div class="head-up-l ">
-                <img src="{{ URL::asset('homeimg/logo01.jpg')}}" >
-                <span class="fs24">医联体基金会</span>
-            </div>
-            <div class="head-up-r">
-                <div class="head-icon">
-                    <img src="{{ URL::asset('homeimg/icon01.png')}}" >
-                    <span><a href="02register.html">注册</a></span>
-                </div>
-                <div class="head-icon">
-                    <img src="{{ URL::asset('homeimg/icon02.png')}}" >
-                    <span><a href="03login.html">登录</a></span>
-                </div>
-                <div class="head-icon">
-                    <img src="{{ URL::asset('homeimg/icon03.png')}}" >
-                    <span><a href="">后台</a></span>
-                </div>
-            </div>
-        </div>
-        <div class="head-ud container">
-            <ul>
-                <li class="fs18 xuanzhong"><a>首页</a></li>
-                <li class="fs18"><a >医联体医院</a></li>
-                <li class="fs18"><a >医联体医生</a></li>
-                <li class="fs18"><a >转诊申请</a></li>
-                <li class="fs18"><a >教学培训</a></li>
-                <li class="fs18"><a >科研项目</a></li>
-                <li id="button3" class="fs18">远程中心</li>
-                <li class="fs18"><a >关于我们</a></li>
-            </ul>
-
-            <div class="search">
-                <select class="select">
-                    <option class="option" value="医院">医院</option>
-                    <option class="option" value="医生">医生</option>
-                </select>
-                <input class="input" type="text" placeholder="医院/医生">
-                <button class="button"></button>
-            </div>
-        </div>
-    </div>
+@extends("home.public.main")
+@section("title")
+    申请加入医联体
+@endsection
+@section("css")
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/home.css')}}"/>
+@endsection
+@section("content")
     <div class="context">
         <div class="banner container">
             <div class="banner-l">
@@ -67,23 +21,23 @@
                     <!-- 轮播（Carousel）项目 -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="{{ URL::asset('home/img/400198504.png')}}" alt="First slide">
+                            <img src="../img/400198504.png" alt="First slide">
 
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('home/img/Banner2.png')}}" alt="Second slide">
+                            <img src="../img/Banner2.png" alt="Second slide">
 
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('home/img/Banner3.png')}}" alt="Third slide">
+                            <img src="../img/Banner3.png" alt="Third slide">
 
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('home/img/400198504.png')}}" alt="Four slide">
+                            <img src="../img/400198504.png" alt="Four slide">
 
                         </div>
                         <div class="item">
-                            <img src="{{ URL::asset('home/img/Banner2.png')}}" alt="Five slide">
+                            <img src="../img/Banner2.png" alt="Five slide">
 
                         </div>
                     </div>
@@ -92,7 +46,7 @@
             </div>
             <div class="banner-r">
                 <div class="banner-r-up">
-                    <img src="{{ URL::asset('home/img/erweima.png')}}" >
+                    <img src="../img/erweima.png" >
                     <span>扫描下载移动版</span>
                     <div class="banner-r-up-input">
                         <input id="button7" class="btn andriod" value="下载Android版" />
@@ -130,24 +84,9 @@
                 </div>
             </div>
         </div>
-        <div class="context-first container">
-            <div class="context-first-l">
-                <img src="{{ URL::asset('home/img/VCG41588683715.png')}}"/>
-            </div>
-            <div class="context-first-r">
-                <div class="context-first-rt">
-                    医联体是什么？
-                </div>
-                <span >
-							区域医联体(曾称“医院集团”)是很多单位已经做出的整合医疗资源的探索，有助于发挥医联体内优质医疗资源的作用，推动区域内常见、多发疾病的分级诊疗，提升基层单位的医疗能力与水平。但是，由于区域医联体内自身专科水平的限制，难于解决某专科疑难危重疾病的诊治问题。因此，区域医联体基本上属于“普及型”医联体，其覆盖范围亦仅限于局部地区。<br />
-							针对现阶段我国医疗资源总量不足，同时存在严重的碎片化、不均衡和非同质的状况，探索发挥优质专科资源的作用，在全国范围内提高对某专科疾病的诊治水平,不均衡和非同质的状况，探索发挥优质专科资源的作用，在全国范围内提高对某专科疾病的诊治水平不均,衡和非同质的状况，探索发挥优质专科资源的....
-						</span>
-                <a href="22aboutus.html">查看更多</a>
-            </div>
-        </div>
 
         <div class="context-second container">
-            <a class="lmys" href="09hospitallist.html">联盟医院 <img src="{{ URL::asset('home/img/gengduo.png')}}" /></a>
+            <a class="lmys" href="09hospitallist.html">联盟医院 <img src="../img/gengduo.png" /></a>
             <div class="context-second-ft">
                 <img class="imgr1" src="../img/VCG21c5d61410c.png"/>
                 <img class="imgr2" src="../img/VCG21c5d61410c.png"/>
@@ -188,7 +127,7 @@
         <div class="context-third">
             <div class="context-third-con container">
                 <div class="context-third-con-t">
-                    <a href="11doctorlist.html">联盟医生 <img src="{{ URL::asset('home/img/gengduo.png')}}" /></a>
+                    <a href="11doctorlist.html">联盟医生 <img src="../img/gengduo.png" /></a>
                 </div>
                 <div class="context-third-con-u">
                     <div class="ybj">
@@ -207,28 +146,28 @@
                             </div>
                         </div>
                         <div class="ysxq-gr">
-                            <img src="{{ URL::asset('home/img/man3.png')}}" >
+                            <img src="../img/man3.png" >
                             <div class="ysxq-grjs">
                                 <span>王鑫</span>
                                 <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
                             </div>
                         </div>
                         <div class="ysxq-gr">
-                            <img src="{{ URL::asset('home/img/man1.png')}}" >
+                            <img src="../img/man1.png" >
                             <div class="ysxq-grjs">
                                 <span>王鑫</span>
                                 <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
                             </div>
                         </div>
                         <div class="ysxq-gr">
-                            <img src="{{ URL::asset('home/img/man2.png')}}" >
+                            <img src="../img/man2.png" >
                             <div class="ysxq-grjs">
                                 <span>王鑫</span>
                                 <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
                             </div>
                         </div>
                         <div class="ysxq-gr">
-                            <img src="{{ URL::asset('home/img/man3.png')}}" >
+                            <img src="../img/man3.png" >
                             <div class="ysxq-grjs">
                                 <span>王鑫</span>
                                 <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
@@ -246,7 +185,7 @@
         <div class="xuanfu-l" id="item">
             <div class="diban"></div>
             <div class="jiantou"></div>
-            <img class="img" src="{{ URL::asset('home/img/erweima7070.png')}}" alt="">
+            <img class="img" src="../img/erweima7070.png" alt="">
             <div class="jqqd">敬请期待!</div>
             <div class="smxz">扫描下载</div>
             <div class="ysd">医生端APP</div>
@@ -254,7 +193,7 @@
         <div class="xuanfu-l2" id="item2">
             <div class="diban"></div>
             <div class="jiantou"></div>
-            <img class="img" src="{{ URL::asset('home/img/erweima7070.png')}}" alt="">
+            <img class="img" src="../img/erweima7070.png" alt="">
             <div class="jqqd">敬请期待!</div>
             <div class="smxz">扫描下载</div>
             <div class="ysd">医生端APP</div>
@@ -262,7 +201,7 @@
         <div class="xuanfu-l3" id="item3">
             <div class="diban"></div>
             <div class="jiantou"></div>
-            <img class="img" src="{{ URL::asset('home/img/erweima7070.png')}}" alt="">
+            <img class="img" src="../img/erweima7070.png" alt="">
             <div class="jqqd">敬请期待!</div>
             <div class="smxz">扫描下载</div>
             <div class="ysd">医生端APP</div>
@@ -282,9 +221,9 @@
 
         </div>
         <div class="tc">
-            <img id="close01" class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
+            <img id="close01" class="closee" src="../img/close.png"/>
             <div class="qidai">
-                <img src="{{ URL::asset('home/img/loudou.png')}}"/>
+                <img src="../img/loudou.png"/>
                 <span>即将上线，敬请期待...</span>
                 <div class="butt">
                     <button  id="close02">确定</button>
@@ -299,9 +238,9 @@
 
         </div>
         <div class="tc">
-            <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
+            <img class="closee" src="../img/close.png"/>
             <div class="qidai">
-                <img src="{{ URL::asset('home/img/xinxi.png')}}"/>
+                <img src="../img/xinxi.png"/>
                 <span>请完善账户信息</span>
                 <div class="butt">
                     <button>去完善</button>
@@ -316,9 +255,9 @@
 
         </div>
         <div class="tc">
-            <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
+            <img class="closee" src="../img/close.png"/>
             <div class="qidai">
-                <img src="{{ URL::asset('home/img/chongshi.png')}}"/>
+                <img src="../img/chongshi.png"/>
                 <span>请登录账号后重试</span>
                 <div class="butt">
                     <button>登录</button>
@@ -328,22 +267,167 @@
 
         </div>
     </div>
-    <ul class="xiala">
-        <li>医联体医院</li>
-        <li>加入医联体流程</li>
-        <li>加入医联体</li>
-        <li>加入PCCM流程</li>
-        <li>加入PCCM</li>
-    </ul>
-    <ul class="xiala2">
-        <li>科研项目</li>
-        <li>申请</li>
+    <div class="tanchuang4">
+        <div class="tanc">
 
-    </ul>
-    <script src="{{ URL::asset('home/js/jquery.min.js')}}"  charset="utf-8"></script>
-    <script src="{{ URL::asset('home/bootstrap@3.3.7/js/bootstrap.min.js')}}" charset="utf-8"></script>
-    <script src="{{ URL::asset('home/js/home.js')}}"  charset="utf-8"></script>
-    <script src="{{ URL::asset('home/js/app.js')}}" charset="utf-8"></script>
+        </div>
+        <div class="tc">
+            <img class="closee" src="../img/close.png"/>
+            <div class="qidai">
+                <img src="../img/chongshi.png"/>
+                <span>暂无权限</span>
+                <div class="butt">
+                    <button>登录</button>
+                </div>
 
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ URL::asset('home/js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ URL::asset('home/bootstrap@3.3.7/js/bootstrap.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ URL::asset('home/js/app.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script>
+
+        //悬浮窗效果
+
+        //鼠标移动到医生端，敬请期待小框显示
+        document.getElementById("doctor").onmouseover = function(){
+            document.getElementById("item").style.display = "block";
+        };
+        //鼠标移开，敬请期待小框隐藏
+        document.getElementById("doctor").onmouseout = function(){
+            document.getElementById("item").style.display = "none";
+        };
+
+
+        //鼠标移动到病人端，敬请期待小框显示
+        document.getElementById("patient").onmouseover = function(){
+            document.getElementById("item2").style.display = "block";
+        };
+        //鼠标移开，敬请期待小框隐藏
+        document.getElementById("patient").onmouseout = function(){
+            document.getElementById("item2").style.display = "none";
+        };
+
+
+
+        //鼠标移动到微信端，敬请期待小框显示
+        document.getElementById("wechat").onmouseover = function(){
+            document.getElementById("item3").style.display = "block";
+        };
+        //鼠标移开，敬请期待小框隐藏
+        document.getElementById("wechat").onmouseout = function(){
+            document.getElementById("item3").style.display = "none";
+        };
+
+
+
+        //点击远程中心，敬请期待弹框显示
+        document.getElementById("button3").onclick = function(){
+            document.getElementById("tanc01").style.display = "block";
+        };
+        //点击下载Android版，敬请期待弹框显示
+        document.getElementById("button7").onclick = function(){
+            document.getElementById("tanc01").style.display = "block";
+        };
+        //点击下载Iphone版，敬请期待弹框显示
+        document.getElementById("button8").onclick = function(){
+            document.getElementById("tanc01").style.display = "block";
+        };
+
+
+
+        //点击x，敬请期待弹框隐藏
+        document.getElementById("close01").onclick = function(){
+            document.getElementById("tanc01").style.display = "none";
+        };
+        //点击确认，敬请期待弹框隐藏
+        document.getElementById("close02").onclick = function(){
+            document.getElementById("tanc01").style.display = "none";
+        };
+
+        //轮播定时3秒
+        $(function(){
+            $('#myCarousel').carousel({interval:3000});
+        })
+
+        //首页教学培训，最新资讯点击切换
+        document.getElementById("jxpx").onclick = function(){
+            document.getElementById("jxpxcon").style.display = "block";
+            document.getElementById("zxzxcon").style.display = "none";
+            document.getElementById("jxpx").style.cssText="color:#971d25";
+            document.getElementById("jxpxk").style.cssText="opacity: 1";
+
+            document.getElementById("zxzx").style.cssText="color:#333333";
+            document.getElementById("zxzxk").style.cssText="opacity: 0";
+        };
+        document.getElementById("zxzx").onclick = function(){
+            document.getElementById("jxpxcon").style.display = "none";
+            document.getElementById("zxzxcon").style.display = "block";
+            document.getElementById("jxpx").style.cssText="color:#333333";
+            document.getElementById("jxpxk").style.cssText="opacity: 0";
+
+            document.getElementById("zxzx").style.cssText="color:#971d25;";
+            document.getElementById("zxzxk").style.cssText="opacity: 1";
+        };
+
+        //
+        document.getElementById("dhyy").onmouseover = function(){
+            document.getElementById("xiala").style.display = "block";
+        };
+        //
+        document.getElementById("dhyy").onmouseout = function(){
+            document.getElementById("xiala").style.display = "none";
+        };
+        document.getElementById("dhzz").onmouseover = function(){
+            document.getElementById("xiala2").style.display = "block";
+        };
+        //
+        document.getElementById("dhzz").onmouseout = function(){
+            document.getElementById("xiala2").style.display = "none";
+        };
+    </script>
 </body>
-</html>
+
+<style>
+    .ybj{
+        margin-left: 15px;
+    }
+    .ysxq-gr{
+        width: 380px;
+        height: 190px;
+        background-color: #ffffff;
+        box-shadow: 1px 1px 12px 0px
+        rgba(42, 42, 42, 0.15);
+        margin-top: 40px;
+        margin-left: 5px;
+        margin-right: 10px;
+        display: inline-block;
+
+    }
+    .ysxq-gr img{
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    .ysxq-grjs{
+        display: inline-block;
+        position: absolute;
+        padding-left: 20px;
+        padding-top: 40px;
+    }
+    .ysxq-grjs span{
+        font-size: 18px;
+        color: #333333;
+        font-weight: bold;
+        margin-top: 40px;
+    }
+
+    .ysxq-grjs p{
+        width: 214px;
+        font-size: 16px;
+        padding-top: 15px;
+    }
+
+@endsection

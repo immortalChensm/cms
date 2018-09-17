@@ -9,7 +9,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="01home.html"> 首页</a> > 医联体医院
+            您现在的位置：<a href="/"> 首页</a> > 医联体医院
         </div>
         <div class="yylist container">
 

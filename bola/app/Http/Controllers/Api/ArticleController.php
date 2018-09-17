@@ -21,7 +21,7 @@ class ArticleController extends Controller
                 $temp['created_at'] = date("Y-m-d",strtotime($item['created_at']));
                 $data[] = $temp;
             }
-            return $this->success("获取成功",$data);
+            return $this->success("获取成功",$ret);
         }else{
             return $this->error("获取失败");
         }

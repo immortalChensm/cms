@@ -64,7 +64,7 @@
                                     <td class="column-title" >{{$item->mobile}}</td>
                                     <td class="column-title" >
                                         @if($item->cert)
-                                            <a href="{{$item->cert}}" class="btn btn-info btn-sm">下载</a>
+                                            <a href="{{request()->getSchemeAndHttpHost().$item->cert}}" class="btn btn-info btn-sm">下载</a>
                                             @else
                                             没有附件
                                             @endif

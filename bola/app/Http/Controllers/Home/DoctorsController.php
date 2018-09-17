@@ -1,53 +1,58 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-use App\Model\Admin\Hospital;
-use App\Model\Admin\Page;
-use App\Model\Admin\Pyhsician;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use JasonGrimes\Paginator;
 class DoctorsController extends Controller
 {
-	//医院联盟列表
-    public function index()
+
+    function doctors()
     {
-        $keyword  = request()->keyword;
-        $hospital = "";
-        $zoneid   = "";
-        $whereRaw = "";
-        if ($keyword){
-            $zone = Db::table("categorys")->where("name","LIKE","%{$keyword}%")->first();
-            if($zone){
-               $zoneid = $zone->id;
-               $whereRaw = "subjectid = '{$zoneid}'";
+        $param = [
+            'page'=>request()->page?:1,
+            'keyword'=>request()->keyword?:'',
+            'recommend'=>request()->recommend?:'',
+        ];
+        $doctors= $this->getApi("GET","physicians",$param)['body']['data'];
 
-            }else{
-                //按医生查询
-                $whereRaw = "username LIKE '%{$keyword}%'";
-            }
+        $totalItems = $doctors['total'];
+        $itemsPerPage = $doctors['per_page'];
+        $currentPage = $doctors['current_page'];
+
+        $link = "?";
+
+        if(request()->keyword){
+            $link.= 'keyword='.request()->keyword."&";
         }
-        if(empty($whereRaw)){
-            $whereRaw = "1";
+        if(request()->recommend){
+            $link.= 'recommend='.request()->recommend."&";
         }
-        $ret = Pyhsician::where("status",1)->whereRaw($whereRaw)->orderBy("created_at")->paginate(25);
-        print_r($ret->toArray());
-        return $ret;
-        //return view('home/abount/index');
+
+        if(strlen($link)>1){
+            $link = substr($link,0,-1);
+            $urlPattern = $link.'&page=(:num)';
+        }else{
+            $link = "";
+            $urlPattern = '?page=(:num)';
+        }
+
+        $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+        $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
+        return view('home/index/doctors',compact('doctors','paginator'));
     }
 
+    function doctorsDetails($id)
+    {
+        $doctorid = request()->id;
+        $doctor = $this->getApi("GET","physician/details/".$doctorid,[]);
+        if($doctor['body']['status_code']==1){
+            $data = $doctor['body']['data'];
+        }
+        //print_r($data);
+        return view('home/index/doctors_details',compact('data'));
 
-    //医生详情
-    public function doctorsDetails($doctorid){
-
-        $ret = Pyhsician::where("id",$doctorid)->where("status",1)->with(["subject","skill","position"])->first();
-        print_r($ret->toArray());
-        return $ret->toArray();
-    	//return view('home/abount/milestones');
     }
-
-
-
 
 }

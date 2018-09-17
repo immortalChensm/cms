@@ -9,10 +9,10 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="/"> 首页</a> > 医联体医院 > 北京协和医院
+            您现在的位置：<a href="/"> 首页</a> > 医联体医院 > {{$data['name']}}
         </div>
         <div class="yyxq">
-            <img class="yyxqimg" src="{{request()->getSchemeAndHttpHost().$data['image']}}" >
+            <img class="yyxqimg" src="{{request()->getSchemeAndHttpHost().$data['image']}}" style="max-width: 720px;max-height: 541px;">
             <div class="yyxq-xq">
                 <div class="hosp">
                     <img src="{{ URL::asset('home/img/hospital.png')}}" >
@@ -42,69 +42,17 @@
         </div>
         <div class="ysxq container">
             <div class="ybj">
+
+                @foreach($data['doctors'] as $item)
                 <div class="ysxq-gr">
-                    <img src="../img/man1.png" >
+                    <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" style="width:99px;height:150px;">
                     <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
+                        <span>{{$item['username']}}</span>
+                        <p>{{str_limit($item['introduction'],80)}}</p>
                     </div>
                 </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man2.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man3.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man1.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man2.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man3.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man1.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man2.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
-                <div class="ysxq-gr">
-                    <img src="../img/man3.png" >
-                    <div class="ysxq-grjs">
-                        <span>王鑫</span>
-                        <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                    </div>
-                </div>
+                    @endforeach
+
             </div>
         </div>
     </div>
