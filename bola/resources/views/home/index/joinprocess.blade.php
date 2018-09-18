@@ -68,7 +68,7 @@
                 @endforeach
             </div>
             <div class="">
-                <button type="button">立即申请</button>
+                <button type="button" onclick="window.location.href='/joinylt.html'">立即申请</button>
             </div>
         </div>
     </div>

@@ -97,6 +97,9 @@ $api->version('v1', [
     $api->get("provinces",'CommonController@province');
     $api->get("citytown/{pid}",'CommonController@city');
 
+
+    $api->get("getAllCity",'CommonController@getPcity');
+
 });
 //
 //$api->version('v2', [

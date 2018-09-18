@@ -44,6 +44,14 @@ class ArticleController extends Controller
     public function store(ArticlePost $request)
     {
         $input             = $request->except('_token','s');
+
+        if($request['image']){
+            $imageFile = uploadImageForBase64($request['image']);
+            $input['image'] = $imageFile;
+        }else{
+            unset($input['image']);
+        }
+
         $status = ['on'=>1,'off'=>0];
         $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         Article::create($input) ? showMsg('1', '添加成功', URL::action('Admin\ArticleController@index')) : showMsg('0', '添加失败');
@@ -82,6 +90,14 @@ class ArticleController extends Controller
     public function update(ArticlePost $request, $id)
     {
         $input = $request->except('_token','_method','s');
+
+        if($request['image']){
+            $imageFile = uploadImageForBase64($request['image']);
+            $input['image'] = $imageFile;
+        }else{
+            unset($input['image']);
+        }
+
         $status = ['on'=>1,'off'=>0];
         $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         Article::where('id', $id)->update($input) ? showMsg('1', '修改成功',URL::action('Admin\ArticleController@index')) : showMsg('0', '修改失败');

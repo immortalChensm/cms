@@ -13,11 +13,11 @@
         <div class="shenqing container">
             <div class="patientname">
                 <span>病人姓名:<a href="">*</a></span>
-                <input type="text" placeholder="请输入病人姓名"/>
+                <input type="text" placeholder="请输入病人姓名" name="name"/>
             </div>
             <div class="patienttel">
                 <span>病人电话:<a href="">*</a></span>
-                <input type="text" placeholder="请输入病人电话"/>
+                <input type="text" placeholder="请输入病人电话" name="mobile"/>
             </div>
             <div class="patientdescribe">
                 <span>病情描述:<a href="">*</a></span>

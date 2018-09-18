@@ -10,50 +10,16 @@ class IndexController extends Controller
 
     function index()
     {
-        return view('home/index/index');
+
+        $hospital = $this->getApi("GET","hospitals",['recommend'=>1])['body']['data'];
+        $doctors  = $this->getApi("GET","physicians",['recommend'=>1])['body']['data'];
+        $banner   = $this->getApi("GET","banners",[])['body']['data'];
+        $train    = $this->getApi("GET","trains",[])['body']['data'];
+        $article  = $this->getApi("GET","scienceproject",[])['body']['data'];
+        $num = ['First','Second','Third','Four','Five'];
+        return view('home/index/index',compact('hospital','doctors','banner','num','train','article'));
     }
-//
-//    function hospitals()
-//    {
-//        $param = [
-//            'page'=>request()->page?:1,
-//            'keyword'=>request()->keyword?:'',
-//            'province'=>request()->province?:'',
-//            'city'=>request()->city?:'',
-//            'county'=>request()->county?:'',
-//        ];
-//        $hospital = $this->getApi("GET","hospitals",$param)['body']['data'];
-//        $totalItems = $hospital['total'];
-//        $itemsPerPage = $hospital['per_page'];
-//        $currentPage = $hospital['current_page'];
-//
-//        $link = "?";
-//
-//        if(request()->keyword){
-//            $link.= 'keyword='.request()->keyword."&";
-//        }
-//        if(request()->province){
-//            $link.= 'province='.request()->province."&";
-//        }
-//        if(request()->city){
-//            $link.= 'city='.request()->city."&";
-//        }
-//        if(request()->county){
-//            $link.= 'county='.request()->county."&";
-//        }
-//        if(strlen($link)>1){
-//            $link = substr($link,0,-1);
-//            $urlPattern = $link.'&page=(:num)';
-//        }else{
-//            $link = "";
-//            $urlPattern = '?page=(:num)';
-//        }
-//
-//        $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
-//        $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
-//        $provinceS = $this->getProvince();
-//        return view('home/index/hospitals',compact('hospital','paginator','provinceS'));
-//    }
+
 //
 //    function getCityData()
 //    {
@@ -110,25 +76,13 @@ class IndexController extends Controller
 //        return view('home/index/informationdetail');
 //    }
 //
-//    function personalcenter()
-//    {
-//        return view('home/index/personalcenter');
-//    }
+
 //
-//    function alterpsw()
-//    {
-//        return view('home/index/alterpsw');
-//    }
+
 //
-//    function referralrecord()
-//    {
-//        return view('home/index/referralrecord');
-//    }
+
 //
-//    function bed()
-//    {
-//        return view('home/index/bed');
-//    }
+
 //
 //    function jinxiuapplication()
 //    {
@@ -146,11 +100,16 @@ class IndexController extends Controller
 //
 
 //
-//    function referralapplicationprocess()
-//    {
-//        return view('home/index/referralapplicationprocess');
-//    }
+    function referralapplicationprocess()
+    {
+        $data = $this->getContact();
+        return view('home/index/referralapplicationprocess',compact('data'));
+    }
 
+    function referralrecord()
+    {
+        return view('home/index/referralrecord');
+    }
     function aboutus()
     {
         $data = $this->getContact();
@@ -194,6 +153,8 @@ class IndexController extends Controller
     {
         if(request()->post("type")=='pccm'){
             $type = 2;
+        }elseif(request()->post("type")=='hospital'){
+            $type = 1;
         }
         $data = [
             'username'=>request()->post("username"),
@@ -214,7 +175,9 @@ class IndexController extends Controller
 
     function register()
     {
-        return view('home/index/register');
+        $ret = $this->getApi("GET","getAllCity",[]);
+        $zone = $ret['body']['data'];
+        return view('home/index/register',compact('zone'));
     }
 
     function login()
@@ -222,5 +185,165 @@ class IndexController extends Controller
         return view('home/index/login');
     }
 
+    function doLogin()
+    {
+        $data = [
+            'mobile'=>request()->post("mobile"),
+            'password'=>request()->post("password"),
+
+        ];
+        $ret = $this->getApi("POST","login",$data);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            session(['user'=>$result]);
+            session(['message'=>'恭喜您登录成功！']);
+            session(['title'=>'登录成功']);
+            if($result['user']['physician']['is_validate']==1){
+                session(['url'=>'/']);
+            }else{
+                session(['url'=>'/user/center.html']);
+            }
+            showMsg(1,'登录成功');
+        }else{
+            showMsg(0,$ret['body']);
+        }
+    }
+
+    function doRegister()
+    {
+        $ret = $this->getApi("POST","authentication",request()->post());
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            session(['user'=>$result]);
+            session(['url'=>'/user/center.html']);
+            session(['message'=>'恭喜您注册成功！']);
+            session(['title'=>'注册成功']);
+            showMsg(1,$result);
+        }else{
+            showMsg(0,$ret['body']);
+        }
+
+    }
+
+    function loginSuccess()
+    {
+        return view('home/index/loginsuccess');
+    }
+
+    //个人中心
+    function User()
+    {
+        if(request()->session()->has("user")){
+            $profile = $this->getApi("GET","user/profile",['token'=>session("user")['access_token']]);
+
+            if($profile['body']['status_code']==1){
+                $profiledata = $profile['body']['data'];
+
+            }else{
+                $profiledata = [];
+            }
+            //print_r($profiledata);
+            return view('home/index/personalcenter',compact('profiledata'));
+        }else{
+            return redirect("/login.html");
+        }
+
+    }
+
+    function alterpsw()
+    {
+        return view('home/index/alterpsw');
+    }
+
+    function password()
+    {
+        $param = request()->post();
+        $param = array_merge(['token'=>session("user")['access_token']],$param);
+        $ret = $this->getApi("POST","user/resetpassword",$param);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,$ret['body']);
+        }
+    }
+
+    //获取专业特长
+    function skills()
+    {
+        $ret = $this->getApi("GET","user/profile/skills/".request()->skillid,['token'=>session("user")['access_token']]);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,'获取失败');
+        }
+    }
+
+    //注册资料完善
+    function profile()
+    {
+        $param = request()->post();
+        $param = array_merge(['token'=>session("user")['access_token']],$param);
+        $ret = $this->getApi("POST","user/profile",$param);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,'提交失败');
+        }
+    }
+
+    //获取验证码
+    function getCode()
+    {
+        $ret = $this->getApi("POST","verifycode",['mobile'=>request()->mobile]);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,'获取失败');
+        }
+    }
+
+    function getAllZone()
+    {
+        $ret = $this->getApi("POST","getAllCity",[]);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,'获取失败');
+        }
+    }
+
+    function zoneHospital()
+    {
+        $ret = $this->getApi("GET","zone/hospitals",['cityid'=>request()->cityid]);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,'获取失败');
+        }
+    }
+
+    function bed()
+    {
+        return view('home/index/bed');
+    }
+
+    function bedStore()
+    {
+        $param = request()->post();
+        $param = array_merge(['token'=>session("user")['access_token']],$param);
+        $ret = $this->getApi("POST","user/bednum",$param);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            showMsg(1,$result);
+        }else{
+            showMsg(0,$ret['body']);
+        }
+    }
 
 }

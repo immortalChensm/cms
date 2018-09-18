@@ -107,7 +107,9 @@ class PyhsicianController extends Controller
         }
 
         $input['image'] = $imageFile;
-        $input['skillid'] = implode(",",$input['skillid']);
+        //$input['skillid'] = implode(",",$input['skillid']);
+        $input['skillid'] = implode(",",$input['skillid_bak']);
+        unset($input['skillid_bak']);
         $status = ['on'=>1,'off'=>0];
         $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         $input['recommend'] = $status[isset($input['recommend'])?$input['recommend']:'off'];
@@ -161,7 +163,9 @@ class PyhsicianController extends Controller
         }else{
             unset($input['image']);
         }
+        //$input['skillid'] = implode(",",$input['skillid_bak']);
         $input['skillid'] = implode(",",$input['skillid_bak']);
+        unset($input['skillid_bak']);
         $status = ['on'=>1,'off'=>0];
         $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         $input['recommend'] = $status[isset($input['recommend'])?$input['recommend']:'off'];

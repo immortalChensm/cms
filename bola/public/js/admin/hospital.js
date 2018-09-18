@@ -83,7 +83,7 @@ $(function (e) {
                         if(selects[$("#skillid").find("option").eq(k).val().split('-')[0]]){
                             $("#skillid").find("option").eq(k).get(0).selected = "selected";
 
-                            $("#skillid_bak").append("<option value='"+$("#skillid").find("option").eq(k).val().split('-')[0]+"'>"+$("#skillid").find("option").eq(k).val().split('-')[1]+"</option>");
+                            $("#skillid_bak").append("<option value='"+$("#skillid").find("option").eq(k).val().split('-')[0]+"' selected>"+$("#skillid").find("option").eq(k).val().split('-')[1]+"</option>");
                         }
                     }
 
@@ -252,7 +252,7 @@ $(function (e) {
         }
         console.log(Skills);
         if(temp[0] && !Skills[temp[0]]){
-            $("#skillid_bak").append("<option value='"+temp[0]+"'>"+temp[1]+"</option>");
+            $("#skillid_bak").append("<option value='"+temp[0]+"' selected>"+temp[1]+"</option>");
         }else{
 
         }

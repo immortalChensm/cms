@@ -1,52 +1,78 @@
 @extends("home.public.main")
 @section("title")
-    申请加入医联体
+    首页
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/home.css')}}"/>
 @endsection
+@section("search")
+    <div class="search">
+        <select class="select">
+            <option class="option" value="医院">医院</option>
+            <option class="option" value="医生">医生</option>
+        </select>
+        <input class="input" type="text" placeholder="医院/医生">
+        <button class="button"></button>
+    </div>
+    @endsection
 @section("content")
+
     <div class="context">
         <div class="banner container">
             <div class="banner-l">
                 <div id="myCarousel" class="carousel slide ">
                     <!-- 轮播（Carousel）指标 -->
+
+
                     <ol class="carousel-indicators" >
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                        <li data-target="#myCarousel" data-slide-to="4"></li>
+
+                        @foreach($banner as $key=>$item)
+                        <li data-target="#myCarousel" data-slide-to="{{$key}}" @if($key==0) class="active" @endif ></li>
+                        @endforeach
+                        {{--<li data-target="#myCarousel" data-slide-to="1" class="active"></li>--}}
+                        {{--<li data-target="#myCarousel" data-slide-to="2"></li>--}}
+                        {{--<li data-target="#myCarousel" data-slide-to="3"></li>--}}
+                        {{--<li data-target="#myCarousel" data-slide-to="4"></li>--}}
+                        {{----}}
+
                     </ol>
+
+
                     <!-- 轮播（Carousel）项目 -->
                     <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="../img/400198504.png" alt="First slide">
+
+                        @foreach($banner as $key=>$item)
+                        <div class="item @if($key == 1) active @endif">
+                            <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" alt="{{$num[$key]}} slide">
 
                         </div>
-                        <div class="item">
-                            <img src="../img/Banner2.png" alt="Second slide">
+                        @endforeach
 
-                        </div>
-                        <div class="item">
-                            <img src="../img/Banner3.png" alt="Third slide">
+                        {{--<div class="item">--}}
+                            {{--<img src="../img/Banner2.png" alt="Second slide">--}}
 
-                        </div>
-                        <div class="item">
-                            <img src="../img/400198504.png" alt="Four slide">
+                        {{--</div>--}}
+                        {{--<div class="item">--}}
+                            {{--<img src="../img/Banner3.png" alt="Third slide">--}}
 
-                        </div>
-                        <div class="item">
-                            <img src="../img/Banner2.png" alt="Five slide">
+                        {{--</div>--}}
+                        {{--<div class="item">--}}
+                            {{--<img src="../img/400198504.png" alt="Four slide">--}}
 
-                        </div>
+                        {{--</div>--}}
+                        {{--<div class="item">--}}
+                            {{--<img src="../img/Banner2.png" alt="Five slide">--}}
+
+                        {{--</div>--}}
+
+
                     </div>
 
                 </div>
             </div>
             <div class="banner-r">
                 <div class="banner-r-up">
-                    <img src="../img/erweima.png" >
+                    <img src="{{ URL::asset('home/img/erweima.png')}}" >
                     <span>扫描下载移动版</span>
                     <div class="banner-r-up-input">
                         <input id="button7" class="btn andriod" value="下载Android版" />
@@ -60,119 +86,166 @@
                         <label id="zxzx" class="zxzx">最新资讯<div id="zxzxk" class="jxpxk"></div></label>
                     </div>
                     <div class="" id="jxpxcon">
+
+                        @foreach($train['data'] as $key=>$item)
+                            @if($key<2)
                         <div class="banner-r-ud-u">
-                            <img src="../img/VCG4188023609.png" >
-                            <span>北京协和医院开展2018年第二届技能大赛大赛大赛大赛</span>
+                            <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" >
+                            <span>{{$item['title']}}</span>
                         </div>
-                        <div class="banner-r-ud-u">
-                            <img src="../img/VCG4188023609.png" >
-                            <span>北京协和医院开展2018年第二届技能大赛fffffffffff</span>
-                        </div>
-                        <a href="15teachtrain.html" class="ckgd">查看更多</a>
+                            @endif
+                        @endforeach
+                        {{--<div class="banner-r-ud-u">--}}
+                            {{--<img src="../img/VCG4188023609.png" >--}}
+                            {{--<span>北京协和医院开展2018年第二届技能大赛fffffffffff</span>--}}
+                        {{--</div>--}}
+
+
+                        <a href="/teachtrain.html" class="ckgd">查看更多</a>
+
+
                     </div>
                     <div class="" id="zxzxcon">
+
+                        @foreach($article['data'] as $key=>$item)
+                            @if($key<2)
                         <div class="banner-r-ud-u">
-                            <img src="../img/VCG4188023609.png" >
-                            <span>市疾控中心：未采购相关批次问题疫苗fffffffffffff</span>
+                            <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" >
+                            <span>{{$item['title']}}</span>
                         </div>
-                        <div class="banner-r-ud-u">
-                            <img src="../img/erweima.png" >
-                            <span>北京协和医院举办第四批“组团式”援藏医疗队欢送会</span>
-                        </div>
-                        <a href="17information.html" class="ckgd">查看更多</a>
+                            @endif
+                        @endforeach
+                        {{--<div class="banner-r-ud-u">--}}
+                            {{--<img src="../img/erweima.png" >--}}
+                            {{--<span>北京协和医院举办第四批“组团式”援藏医疗队欢送会</span>--}}
+                        {{--</div>--}}
+
+
+                        <a href="/information.html" class="ckgd">查看更多</a>
+
+
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="context-second container">
-            <a class="lmys" href="09hospitallist.html">联盟医院 <img src="../img/gengduo.png" /></a>
+            <a class="lmys" href="/hospitals.html">联盟医院 <img src="{{ URL::asset('home/img/gengduo.png')}}" /></a>
+
             <div class="context-second-ft">
-                <img class="imgr1" src="../img/VCG21c5d61410c.png"/>
-                <img class="imgr2" src="../img/VCG21c5d61410c.png"/>
-                <img class="imgr3" src="../img/VCG21c5d61410c.png"/>
+
+                @foreach($hospital['data'] as $key=>$item)
+                    @if($key<3)
+                <img class="imgr{{$key+1}}" src="{{ request()->getSchemeAndHttpHost().$item['image']}}" />
+                    @endif
+                @endforeach
+                {{--<img class="imgr2" src="{{ URL::asset('home/img/VCG21c5d61410c.png')}}"/>--}}
+                {{--<img class="imgr3" src="{{ URL::asset('home/img/VCG21c5d61410c.png')}}"/>--}}
+
+
             </div>
+
             <div class="context-second-st">
-                <div class="fc">
+                @foreach($hospital['data'] as $key=>$item)
+                    @if($key<3)
+                <div class="fc{{$key+1}}">
                     <div class="fct">
                         <!--<img class="tubiao" src="img/jux01.png"/>-->
                         <span class="tubiao"></span>
-                        <span class="biaoti">北京协和医院</span>
+                        <span class="biaoti">{{$item['name']}}</span>
                     </div>
                     <div class="neir">
-                        北京协和医院是一所位于北京市东城区，集医疗、科研、教学为一体的大型综合医院....
+                        {{str_limit($item['introduction'],80)}}
                     </div>
                 </div>
-                <div class="fc2">
-                    <div class="fct">
-                        <span class="tubiao"></span>
-                        <span class="biaoti">北京协和医院</span>
-                    </div>
-                    <div class="neir">
-                        北京协和医院是一所位于北京市东城区，集医疗、科研、教学为一体的大型综合医院....
-                    </div>
-                </div>
-                <div class="fc3">
-                    <div class="fct">
-                        <span class="tubiao"></span>
-                        <span class="biaoti">北京协和医院</span>
-                    </div>
-                    <div class="neir">
-                        北京协和医院是一所位于北京市东城区，集医疗、科研、教学为一体的大型综合医院....
-                    </div>
-                </div>
+                    @endif
+
+                @endforeach
+                    {{--@foreach($hospital['data'] as $key=>$item)--}}
+                        {{--@if($key==1)--}}
+
+                {{--<div class="fc2">--}}
+                    {{--<div class="fct">--}}
+                        {{--<span class="tubiao"></span>--}}
+                        {{--<span class="biaoti">{{$item['name']}}</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="neir">--}}
+                        {{--{{str_limit($item['introduction'],80)}}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                        {{--@endif--}}
+                    {{--@endforeach--}}
+
+                    {{--@foreach($hospital['data'] as $key=>$item)--}}
+                        {{--@if($key==2)--}}
+                {{--<div class="fc3">--}}
+                    {{--<div class="fct">--}}
+                        {{--<span class="tubiao"></span>--}}
+                        {{--<span class="biaoti">{{$item['name']}}</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="neir">--}}
+                        {{--{{str_limit($item['introduction'],80)}}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                        {{--@endif--}}
+                    {{--@endforeach--}}
+
             </div>
         </div>
 
         <div class="context-third">
             <div class="context-third-con container">
                 <div class="context-third-con-t">
-                    <a href="11doctorlist.html">联盟医生 <img src="../img/gengduo.png" /></a>
+                    <a href="/doctors.html">联盟医生 <img src="{{ URL::asset('home/img/gengduo.png')}}" /></a>
                 </div>
                 <div class="context-third-con-u">
                     <div class="ybj">
+
+                        @foreach($doctors['data'] as $key=>$item)
                         <div class="ysxq-gr">
-                            <img src="../img/man1.png" >
+                            <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" style="width:99px;height:150px" >
                             <div class="ysxq-grjs">
-                                <span>王鑫</span>
-                                <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
+                                <span>{{$item['username']}}</span>
+                                <p>{{str_limit($item['introduction'],80)}}</p>
                             </div>
                         </div>
-                        <div class="ysxq-gr">
-                            <img src="../img/man2.png" >
-                            <div class="ysxq-grjs">
-                                <span>王鑫</span>
-                                <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                            </div>
-                        </div>
-                        <div class="ysxq-gr">
-                            <img src="../img/man3.png" >
-                            <div class="ysxq-grjs">
-                                <span>王鑫</span>
-                                <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                            </div>
-                        </div>
-                        <div class="ysxq-gr">
-                            <img src="../img/man1.png" >
-                            <div class="ysxq-grjs">
-                                <span>王鑫</span>
-                                <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                            </div>
-                        </div>
-                        <div class="ysxq-gr">
-                            <img src="../img/man2.png" >
-                            <div class="ysxq-grjs">
-                                <span>王鑫</span>
-                                <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                            </div>
-                        </div>
-                        <div class="ysxq-gr">
-                            <img src="../img/man3.png" >
-                            <div class="ysxq-grjs">
-                                <span>王鑫</span>
-                                <p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>
-                            </div>
-                        </div>
+                        @endforeach
+
+                        {{--<div class="ysxq-gr">--}}
+                            {{--<img src="../img/man2.png" >--}}
+                            {{--<div class="ysxq-grjs">--}}
+                                {{--<span>王鑫</span>--}}
+                                {{--<p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="ysxq-gr">--}}
+                            {{--<img src="../img/man3.png" >--}}
+                            {{--<div class="ysxq-grjs">--}}
+                                {{--<span>王鑫</span>--}}
+                                {{--<p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="ysxq-gr">--}}
+                            {{--<img src="../img/man1.png" >--}}
+                            {{--<div class="ysxq-grjs">--}}
+                                {{--<span>王鑫</span>--}}
+                                {{--<p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="ysxq-gr">--}}
+                            {{--<img src="../img/man2.png" >--}}
+                            {{--<div class="ysxq-grjs">--}}
+                                {{--<span>王鑫</span>--}}
+                                {{--<p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="ysxq-gr">--}}
+                            {{--<img src="../img/man3.png" >--}}
+                            {{--<div class="ysxq-grjs">--}}
+                                {{--<span>王鑫</span>--}}
+                                {{--<p>博士生导师。1984年始于北京协和医院内分泌科从事临床工作。擅长内分泌代.....</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>
@@ -185,7 +258,7 @@
         <div class="xuanfu-l" id="item">
             <div class="diban"></div>
             <div class="jiantou"></div>
-            <img class="img" src="../img/erweima7070.png" alt="">
+            <img class="img" src="{{ URL::asset('home/img/erweima7070.png')}}" alt="">
             <div class="jqqd">敬请期待!</div>
             <div class="smxz">扫描下载</div>
             <div class="ysd">医生端APP</div>
@@ -193,7 +266,7 @@
         <div class="xuanfu-l2" id="item2">
             <div class="diban"></div>
             <div class="jiantou"></div>
-            <img class="img" src="../img/erweima7070.png" alt="">
+            <img class="img" src="{{ URL::asset('home/img/erweima7070.png')}}" alt="">
             <div class="jqqd">敬请期待!</div>
             <div class="smxz">扫描下载</div>
             <div class="ysd">医生端APP</div>
@@ -201,7 +274,7 @@
         <div class="xuanfu-l3" id="item3">
             <div class="diban"></div>
             <div class="jiantou"></div>
-            <img class="img" src="../img/erweima7070.png" alt="">
+            <img class="img" src="{{ URL::asset('home/img/erweima7070.png')}}" alt="">
             <div class="jqqd">敬请期待!</div>
             <div class="smxz">扫描下载</div>
             <div class="ysd">医生端APP</div>
@@ -221,7 +294,7 @@
 
         </div>
         <div class="tc">
-            <img id="close01" class="closee" src="../img/close.png"/>
+            <img id="close01" class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
                 <img src="../img/loudou.png"/>
                 <span>即将上线，敬请期待...</span>
@@ -238,7 +311,7 @@
 
         </div>
         <div class="tc">
-            <img class="closee" src="../img/close.png"/>
+            <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
                 <img src="../img/xinxi.png"/>
                 <span>请完善账户信息</span>
@@ -255,7 +328,7 @@
 
         </div>
         <div class="tc">
-            <img class="closee" src="../img/close.png"/>
+            <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
                 <img src="../img/chongshi.png"/>
                 <span>请登录账号后重试</span>
@@ -272,7 +345,7 @@
 
         </div>
         <div class="tc">
-            <img class="closee" src="../img/close.png"/>
+            <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
                 <img src="../img/chongshi.png"/>
                 <span>暂无权限</span>

@@ -12,9 +12,9 @@ function save(type){
         success: function(data){
             if(data.status==1){
                 layer.msg(data.message);
-                // setTimeout(function(){//两秒后跳转
-                //     window.location.href = "/";
-                // },1000);
+                setTimeout(function(){//两秒后跳转
+                    window.location.href = "/";
+                },1000);
             }else{
                 //layer.msg(data.message,{time:1000});
                 var json=data.message;

@@ -275,6 +275,15 @@ var ue = UE.getEditor('content',{
                 </div>
             </div>
 
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院简介</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <textarea  id="first-name" name="introduction" value="{{$data->introduction}}" required="required" class="form-control col-md-7 col-xs-12">{{$data->introduction}}</textarea>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">医院管理员</label>
                 <div class="col-xs-3" style="width:300px !important;">

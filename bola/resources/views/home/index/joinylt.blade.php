@@ -131,6 +131,24 @@
             color: #ffffff;
             border: 0;
         }
+        #btn{
+
+            background-color: #971d25;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #ffffff;
+            display:inline-block;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+
+        }
+        a:hover {
+
+            color: #ffffff;
+            text-decoration: none;
+        }
     </style>
 @endsection
 @section("content")
@@ -138,31 +156,34 @@
         <div class="yltyy container">
             您现在的位置：<a href="/"> 首页</a> > 申请加入医联体
         </div>
+        <form id="postform">
         <div class="shenqing container">
             <div class="patientname">
                 <span>姓名:<a href="">*</a></span>
-                <input type="text" placeholder="请输入姓名"/>
+                <input type="text" placeholder="请输入姓名" name="username"/>
             </div>
             <div class="patienttel">
                 <span>手机号:<a href="">*</a></span>
-                <input type="text" placeholder="请输入手机号"/>
+                <input type="text" placeholder="请输入手机号" name="mobile"/>
             </div>
 
             <div class="uploadcase">
                 <span class="uploadcasem">申请凭证:</span>
                 <div class="upload">
-                    <input type="file" />
+                    <input type="file" name="cert" id="image"/>
                     <img src="{{ URL::asset('home/img/add.png')}}" alt="">
                     <span class="addpicture">点击添加图片</span>
                     <span class="addjieshao">可上传图片、PDF、Excel、word</span>
                 </div>
             </div>
             <div class="sc">
-                <button>上传</button>
+                <a onclick="save('hospital')" id="btn">上传</a>
             </div>
         </div>
+        </form>
     </div>
 @endsection
 @section("footerjs")
-    <script src="{{ URL::asset('home/js/info.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{request()->getSchemeAndHttpHost()}}/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ URL::asset('home/js/joinHospital.js')}}" type="text/javascript" charset="utf-8"></script>
 @endsection

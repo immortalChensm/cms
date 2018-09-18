@@ -76,7 +76,7 @@
                 @endforeach
             </div>
             <div class="but">
-                <button type="button" onclick="">立即申请</button>
+                <button type="button" onclick="window.location.href='/joinpccm.html'">立即申请</button>
             </div>
         </div>
     </div>

@@ -51,6 +51,17 @@ var ue = UE.getEditor('content',{
             </div>
           </div>
 
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">图片 <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                    <input type="hidden" id="first-name" name="image"  required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="file" id="image">
+
+                </div>
+            </div>
+
           <div class="form-group">
             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">内容</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -98,7 +109,24 @@ var ue = UE.getEditor('content',{
 </div>
    @include("admin.layout.footerjs")
    <script type="text/javascript">
-    function save(){
+
+       uploadpic({
+           element:$("#image"),
+           getbloburl:function(blobURL){
+               $("#image").parent().find("img").remove();
+               $("#image").parent().append("<img src='"+blobURL+"' style='width:100px;height:100px;'>");
+           },
+           getbase64:function (base_data) {
+               $("#image").parent().append(function (e) {
+                   $("#image").parent().find(":input[name=image]").remove();
+                   return "<input type='hidden' name='image' value='"+base_data+"'/>";
+               });
+
+           }
+       });
+
+
+       function save(){
         $.ajax({
             type: 'POST',
             url: "{{url('admin/train/')}}",

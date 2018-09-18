@@ -21,36 +21,70 @@ function showMsg($status, $message = '', $url = '', $data = array())
 }
 
 /**
-上传base64位图片
+上传base64位图片 base64各类型文件
  **/
 function uploadImageForBase64($source)
 {
     $dir = "./Uploads/".date("Ymd")."/";
-//
-//    if(!is_dir($dir)){
-//        mkdir($dir);
-//    }
-//    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif','jpg','xlsx']);
-//
-//    if($decoder->getFormat()=='png'){
-//        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".png";
-//    }
-//    if($decoder->getFormat()=='jpeg'){
-//        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".jpg";
-//    }
+
+    if(!is_dir($dir)){
+        mkdir($dir);
+    }
+
+    //先检测是否是excel文件
+    $pattern_xls = '/data\:application\/vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet/i';
+    $pattern_doc = '/application\/vnd\.openxmlformats-officedocument\.wordprocessingml\.document/i';
+    $pattern_pdf = '/data\:application\/pdf/i';
+    if(preg_match($pattern_xls,$source)){
+        $decode_con = preg_replace('/data:.*;base64,/i', '', $source);
+
+        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".xlsx";
+
+        if(file_put_contents($savePath,base64_decode($decode_con))) {
+            return $savePath;
+        }else{
+            return false;
+        }
+    }
+    if(preg_match($pattern_doc,$source)){
+        $decode_con = preg_replace('/data:.*;base64,/i', '', $source);
+
+        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".doc";
+
+        if(file_put_contents($savePath,base64_decode($decode_con))) {
+            return $savePath;
+        }else{
+            return false;
+        }
+    }
+    if(preg_match($pattern_pdf,$source)){
+        $decode_con = preg_replace('/data:.*;base64,/i', '', $source);
+
+        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".pdf";
+
+        if(file_put_contents($savePath,base64_decode($decode_con))) {
+            return $savePath;
+        }else{
+            return false;
+        }
+    }
 
 
+    $decoder = new \Melihovv\Base64ImageDecoder\Base64ImageDecoder($source,$allowedFormats = ['jpeg', 'png', 'gif','jpg','xlsx']);
 
-    $base64File = new \Hshn\Base64EncodedFile\HttpFoundation\File\Base64EncodedFile($source);
+    if($decoder->getFormat()=='png'){
+        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".png";
+    }
+    if($decoder->getFormat()=='jpeg'){
+        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".jpg";
+    }
 
-    echo $base64File->getExtension();
 
-
-//    if(file_put_contents($savePath,$decoder->getDecodedContent())) {
-//        return $savePath;
-//    }else{
-//        return false;
-//    }
+    if(file_put_contents($savePath,$decoder->getDecodedContent())) {
+        return $savePath;
+    }else{
+        return false;
+    }
 
 
 }
@@ -63,6 +97,7 @@ function configsystem()
         'webtitle'=>'公司名称',
         'address'=>'公司地址',
         'phone'=>'公司电话',
+        'copyright'=>'备案号',
     ];
 }
 

@@ -38,7 +38,7 @@ class AuthenticationController extends Controller
             "mobile"=>$input['mobile']
         ]);
 
-        Pyhsician::create([
+        $pyhsician = Pyhsician::create([
             "mobile"=>$input['mobile'],
             "username"=>$input['mobile'],
             "hospitalid"=>$input['hospitalid'],
@@ -50,11 +50,13 @@ class AuthenticationController extends Controller
             return $this->error('注册失败');
         }
         \Cache::forget($key);
+        $data = auth("api")->user();
+        $data['physician'] = Pyhsician::where("userid",$user['id'])->first();
         return $this->success('注册成功',[
             'access_token' => $token,
             'token_type' => 'Bearer',
             'expires_in' => auth("api")->factory()->getTTL() * 60,
-            'user'=>\Auth::guard("api")->user()
+            'user'=>$data
 
         ]);
 
@@ -89,6 +91,7 @@ class AuthenticationController extends Controller
         return $this->success('登录成功',[
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'user'=>auth("api")->user(),
             'expires_in' => auth("api")->factory()->getTTL() * 60
         ]);
     }

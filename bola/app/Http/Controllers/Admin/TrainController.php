@@ -45,6 +45,13 @@ class TrainController extends Controller
     public function store(TrainPost $request)
     {
         $input             = $request->except('_token','s');
+
+        if($request['image']){
+            $imageFile = uploadImageForBase64($request['image']);
+            $input['image'] = $imageFile;
+        }else{
+            unset($input['image']);
+        }
         $status = ['on'=>1,'off'=>0];
         $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         Train::create($input) ? showMsg('1', '添加成功', URL::action('Admin\TrainController@index')) : showMsg('0', '添加失败');
@@ -83,6 +90,12 @@ class TrainController extends Controller
     public function update(TrainPost $request, $id)
     {
         $input = $request->except('_token','_method','s');
+        if($request['image']){
+            $imageFile = uploadImageForBase64($request['image']);
+            $input['image'] = $imageFile;
+        }else{
+            unset($input['image']);
+        }
         $status = ['on'=>1,'off'=>0];
         $input['status'] = $status[isset($input['status'])?$input['status']:'off'];
         Train::where('id', $id)->update($input) ? showMsg('1', '修改成功',URL::action('Admin\TrainController@index')) : showMsg('0', '修改失败');

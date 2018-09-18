@@ -53,18 +53,21 @@ class UserprofileController extends Controller
         //附件图片和医生头像处理
         if($request->cert) {
             $certPath=uploadImageForBase64($request->cert);
+            $pyhsician['cert']         = $certPath;
         }
         if($request->image) {
             $imagePath=uploadImageForBase64($request->image);
+            $pyhsician['image']        = $imagePath;
         }
-        $pyhsician['cert']         = isset($certPath)?$certPath:'';
-        $pyhsician['image']        = isset($imagePath)?$imagePath:'';
+
+
+
         $user['id']   = auth("api")->id();
         $user['name'] = $request->username;
 
 
         if($this->updateHostpial($hospital)&&$this->updatePyhsician($pyhsician)&&$this->updateUser($user)){
-            return $this->success("资料更新成功",[]);
+            return $this->success("资料更新成功",['资料更新成功']);
         }else{
             return $this->error("资料更新失败");
         }
@@ -135,13 +138,16 @@ class UserprofileController extends Controller
         $dbpwd = Users::where("password",auth("api")->user()->getAuthPassword())->first();
         if($dbpwd){
             $data['password'] = bcrypt($oldpwd);
+            if(!Hash::check($oldpwd,$dbpwd['password'])){
+                return $this->error("旧密码不对");
+            }
             if(Users::where("id",auth("api")->id())->update($data)){
-                return $this->success("密码重置成功",[]);
+                return $this->success("密码重置成功",['密码重置成功']);
             }else{
                 return $this->error("密码重置失败");
             }
         }else{
-            return $this->error("原密码不对无法修改");
+            return $this->error("未登录或登录超时");
         }
 
     }

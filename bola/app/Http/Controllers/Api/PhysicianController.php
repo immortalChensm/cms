@@ -35,7 +35,7 @@ class PhysicianController extends Controller
             if($recommend){
                 $query->where("recommend",$recommend);
             }
-        })->whereRaw($whereRaw)->with(['subject','skill','position','hospital'])->orderBy("created_at")->paginate(1);
+        })->whereRaw($whereRaw)->with(['subject','skill','position','hospital'])->orderBy("created_at")->paginate(config("api.pagesize"));
 //        $data = [];
 //        foreach($ret as $k=>$item){
 //            $data[$k]['username'] = $item->username;
@@ -50,8 +50,10 @@ class PhysicianController extends Controller
     //医生详情
     public function doctorsDetails($doctorid){
 
-        $ret = Pyhsician::where("id",$doctorid)->where("status",1)->with(["subject","position","hospital"])->first();
-        $ret->skill = $this->getSkill(explode(",",$ret->skillid));
+        $ret = Pyhsician::where("id",$doctorid)->with(["subject","position","hospital"])->first();
+        if($ret->skillid){
+            $ret->skill = $this->getSkill(explode(",",$ret->skillid));
+        }
         //$ret->pospital = $ret->pospital->name;
         return $this->success("请求成功",$ret?:'');
     }

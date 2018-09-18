@@ -41,22 +41,38 @@ Route::group(['prefix' => ''], function () {
      Route::post('/joinpccm', 'Home\IndexController@Submitjoinpccm');
 
 
+     //登录、注册
+     Route::get('/login.html', 'Home\IndexController@login');
+     Route::get('/login/success.html', 'Home\IndexController@loginSuccess');
+     Route::post('/login', 'Home\IndexController@doLogin');
 
-     Route::get('/personalcenter.html', 'Home\IndexController@personalcenter');
-     Route::get('/alterpsw.html', 'Home\IndexController@alterpsw');
-     Route::get('/referralrecord.html', 'Home\IndexController@referralrecord');
-     Route::get('/bed.html', 'Home\IndexController@bed');
-     Route::get('/jinxiuapplication.html', 'Home\IndexController@jinxiuapplication');
-
-
-
-
-     Route::get('/referralapplicationprocess.html', 'Home\IndexController@referralapplicationprocess');
 
      Route::get('/register.html', 'Home\IndexController@register');
-     Route::get('/login.html', 'Home\IndexController@login');
+     Route::post('/register', 'Home\IndexController@doRegister');
+     Route::post('/getCode', 'Home\IndexController@getCode');
+     Route::get('/getZone', 'Home\IndexController@getAllZone');
+     Route::post('/zoneHospital', 'Home\IndexController@zoneHospital');
 
 
+     //个人中心
+     Route::get('/user/center.html', 'Home\IndexController@User');
+     Route::post('/profile', 'Home\IndexController@profile');
+     Route::post('/skills', 'Home\IndexController@skills');
+
+     //修改密码
+     Route::get('/alterpsw.html', 'Home\IndexController@alterpsw');
+     Route::post('/password', 'Home\IndexController@password');
+
+
+     Route::get('/referralrecord.html', 'Home\IndexController@referralrecord');
+     //床位管理
+     Route::get('/bed.html', 'Home\IndexController@bed');
+     Route::post('/bed', 'Home\IndexController@bedStore');
+
+     Route::get('/jinxiuapplication.html', 'Home\IndexController@jinxiuapplication');
+
+     //转诊申请
+     Route::get('/referralaplprocess.html', 'Home\IndexController@referralapplicationprocess');
 
     Route::get('/region/city', 'Home\IndexController@getCityData');
 
