@@ -56,7 +56,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="01home.html"> 首页</a> > <a href="">医联体医院</a> > 医联体加入流程
+            您现在的位置：<a href="/"> 首页</a> > <a href="">医联体医院</a> > 医联体加入流程
         </div>
         <div class="teachtrainxq container">
             <div class="xqtitle">医联体加入流程</div>

@@ -41,6 +41,7 @@ class TrainController extends Controller
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
         $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
         $nav = "教学培训";
+        $this->getUserInfo();
         return view('home/index/teachtrain',compact('train','paginator','nav'));
     }
 
@@ -53,6 +54,7 @@ class TrainController extends Controller
             $data = $doctor['body']['data'];
         }
         //print_r($data);
+        $this->getUserInfo();
         return view('home/index/train_details',compact('data'));
 
     }

@@ -26,11 +26,13 @@
                 <button type="button" onclick="login('login')">登录</button>
             </div>
             <div class="zckdl">
-                <a class="wjmm" href="04forgetpsw.html">忘记密码？</a>
+                <a class="wjmm" href="/frogotpwd.html">忘记密码？</a>
                 <a class="ljzc" href="/register.html">立即注册</a>
             </div>
         </div>
     </div>
+
+    <input type="hidden" name="prevurl" value="{{request()->get('prevurl')}}"/>
 
 @endsection
 @section("footerjs")

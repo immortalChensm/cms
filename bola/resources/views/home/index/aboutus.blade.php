@@ -8,7 +8,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href=""> 首页</a> > 关于我们
+            您现在的位置：<a href="/"> 首页</a> > 关于我们
         </div>
         <div class="yltwhat container">
             <div class="yltss">

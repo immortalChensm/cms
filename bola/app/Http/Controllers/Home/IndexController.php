@@ -8,9 +8,10 @@ use JasonGrimes\Paginator;
 class IndexController extends Controller
 {
 
+
     function index()
     {
-
+        $this->getUserInfo();
         $hospital = $this->getApi("GET","hospitals",['recommend'=>1])['body']['data'];
         $doctors  = $this->getApi("GET","physicians",['recommend'=>1])['body']['data'];
         $banner   = $this->getApi("GET","banners",[])['body']['data'];
@@ -20,16 +21,26 @@ class IndexController extends Controller
         return view('home/index/index',compact('hospital','doctors','banner','num','train','article'));
     }
 
-//
-//    function getCityData()
-//    {
-//        if(request()->areaid!=0){
-//            $this->region_parent_id = request()->areaid;
-//            $ret = $this->getCity();
-//            showMsg("success",$ret);
-//        }
-//
-//    }
+    function refreshToken()
+    {
+        $ret = $this->getApi("GET","refresh/token",['token'=>session("user")['access_token']]);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+    function getCityData()
+    {
+        if(request()->areaid!=0){
+            $this->region_parent_id = request()->areaid;
+            $ret = $this->getCity();
+            showMsg("success",$ret);
+        }
+
+    }
 //
 //    function hospitalsDetails()
 //    {
@@ -103,17 +114,73 @@ class IndexController extends Controller
     function referralapplicationprocess()
     {
         $data = $this->getContact();
+        $this->getUserInfo();
         return view('home/index/referralapplicationprocess',compact('data'));
     }
 
+    //转诊申请
+    function transfer()
+    {
+
+            $param = request()->post();
+            $param = array_merge(['token'=>session("user")['access_token']],$param);
+            $ret = $this->getApi("POST","user/referrals/application",$param);
+            if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+                $result = $ret['body']['data'];
+                session(['message'=>'恭喜您提交成功！']);
+                session(['title'=>'提交成功']);
+                session(['url'=>'/']);
+                showMsg(1,$result);
+            }else{
+                if($ret['body']['status_code'] == 401){
+                    showMsg(202,$ret['body']);
+                }
+
+            }
+    }
+
+    //转诊记录
     function referralrecord()
     {
-        return view('home/index/referralrecord');
+        if(request()->session()->has("userinfo")) {
+            $ret = $this->getApi("GET", "user/referrals", ['name' => request()->name ?? '', 'token' => session("user")['access_token']]);
+
+            if (isset($ret['body']['status_code']) && $ret['body']['status_code'] == 1) {
+                $record = $ret['body']['data'];
+
+            } else {
+                if ($ret['body']['status_code'] == 401) {
+                    return redirect("/login.html");
+                }
+
+            }
+            $this->getUserInfo();
+            return view('home/index/referralrecord', compact('record'));
+        }else{
+            return redirect("/login.html");
+        }
     }
+
+    //转诊取消
+    function cancel()
+    {
+        $ret = $this->getApi("POST","user/referrals/cancel/".request()->id,['token'=>session("user")['access_token']]);
+
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $record= $ret['body']['data'];
+            showMsg(1,"取消成功");
+        }else{
+            if($ret['body']['status_code'] == 401){
+                showMsg(202,"登录超时");
+            }
+
+        }
+    }
+
     function aboutus()
     {
         $data = $this->getContact();
-
+        $this->getUserInfo();
         return view('home/index/aboutus',compact('data'));
     }
 
@@ -129,22 +196,33 @@ class IndexController extends Controller
     function joinprocess()
     {
         $data = $this->getContact();
+        $this->getUserInfo();
         return view('home/index/joinprocess',compact('data'));
     }
 
     function joinylt()
     {
+        $this->getUserInfo();
         return view('home/index/joinylt');
     }
+
+    function jointrain()
+    {
+        $this->getUserInfo();
+        return view('home/index/jointrain');
+    }
+
 
     function joinpccmorocess()
     {
         $data = $this->getContact();
+        $this->getUserInfo();
         return view('home/index/joinpccmorocess',compact('data'));
     }
 
     function joinpccm()
     {
+        $this->getUserInfo();
         return view('home/index/joinpccm');
     }
 
@@ -155,12 +233,15 @@ class IndexController extends Controller
             $type = 2;
         }elseif(request()->post("type")=='hospital'){
             $type = 1;
+        }elseif(request()->post("type")=='train'){
+            $type = 3;
         }
         $data = [
             'username'=>request()->post("username"),
             'mobile'=>request()->post("mobile"),
             'cert'=>request()->post("image"),
             'type'=>$type,
+            'trainid'=>request()->trainid?request()->trainid:'',
 
         ];
         $ret = $this->getApi("POST","user/join/hospital",$data);
@@ -175,14 +256,22 @@ class IndexController extends Controller
 
     function register()
     {
-        $ret = $this->getApi("GET","getAllCity",[]);
-        $zone = $ret['body']['data'];
-        return view('home/index/register',compact('zone'));
+        if(!request()->session()->has("userinfo")) {
+            $ret = $this->getApi("GET", "getAllCity", []);
+            $zone = $ret['body']['data'];
+            return view('home/index/register', compact('zone'));
+        }else{
+            return redirect("/");
+        }
     }
 
     function login()
     {
-        return view('home/index/login');
+        if(!request()->session()->has("userinfo")) {
+            return view('home/index/login');
+        }else{
+            return redirect("/");
+        }
     }
 
     function doLogin()
@@ -227,13 +316,16 @@ class IndexController extends Controller
 
     function loginSuccess()
     {
+        $this->getUserInfo();
         return view('home/index/loginsuccess');
     }
 
     //个人中心
     function User()
     {
-        if(request()->session()->has("user")){
+        $this->getUserInfo();
+        if(request()->session()->has("userinfo")){
+
             $profile = $this->getApi("GET","user/profile",['token'=>session("user")['access_token']]);
 
             if($profile['body']['status_code']==1){
@@ -252,9 +344,15 @@ class IndexController extends Controller
 
     function alterpsw()
     {
-        return view('home/index/alterpsw');
+        if(request()->session()->has("userinfo")) {
+            $this->getUserInfo();
+            return view('home/index/alterpsw');
+        }else{
+            return redirect("/login.html");
+        }
     }
 
+    //修改密码
     function password()
     {
         $param = request()->post();
@@ -264,7 +362,10 @@ class IndexController extends Controller
             $result = $ret['body']['data'];
             showMsg(1,$result);
         }else{
-            showMsg(0,$ret['body']);
+            if($ret['body']['status_code'] == 401){
+                showMsg(202,$ret['body']);
+            }
+            showMsg(0,'提交失败');
         }
     }
 
@@ -290,6 +391,9 @@ class IndexController extends Controller
             $result = $ret['body']['data'];
             showMsg(1,$result);
         }else{
+            if($ret['body']['status_code'] == 401){
+                showMsg(202,$ret['body']);
+            }
             showMsg(0,'提交失败');
         }
     }
@@ -330,9 +434,15 @@ class IndexController extends Controller
 
     function bed()
     {
-        return view('home/index/bed');
+        if(request()->session()->has("userinfo")) {
+            $this->getUserInfo();
+            return view('home/index/bed');
+        }else{
+            return redirect("/login.html");
+        }
     }
 
+    //医院床位
     function bedStore()
     {
         $param = request()->post();
@@ -342,7 +452,36 @@ class IndexController extends Controller
             $result = $ret['body']['data'];
             showMsg(1,$result);
         }else{
-            showMsg(0,$ret['body']);
+            if($ret['body']['status_code'] == 401){
+                showMsg(202,$ret['body']);
+            }
+            showMsg(0,'提交失败');
+        }
+    }
+
+    function forgotpwd()
+    {
+        return view("home/index/forgotpwd");
+    }
+
+    function resetPwd()
+    {
+        $param = request()->post();
+        $param = array_merge(['token'=>session("user")['access_token']],$param);
+        $ret = $this->getApi("POST","user/forgotpassword",$param);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+
+            session(['url'=>'/login.html']);
+            session(['message'=>'恭喜您修改成功！']);
+            session(['title'=>'修改成功']);
+
+            showMsg(1,$result);
+        }else{
+            if($ret['body']['status_code'] == 401){
+                showMsg(202,$ret['body']);
+            }
+            showMsg(0,'提交失败');
         }
     }
 

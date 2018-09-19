@@ -37,7 +37,7 @@ class DoctorsController extends Controller
             $link = "";
             $urlPattern = '?page=(:num)';
         }
-
+        $this->getUserInfo();
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
         $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
         return view('home/index/doctors',compact('doctors','paginator'));
@@ -51,6 +51,7 @@ class DoctorsController extends Controller
             $data = $doctor['body']['data'];
         }
         //print_r($data);
+        $this->getUserInfo();
         return view('home/index/doctors_details',compact('data'));
 
     }

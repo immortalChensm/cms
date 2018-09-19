@@ -1,6 +1,6 @@
 @extends("home.public.main")
 @section("title")
-    科研项目
+    {{$data['title']}}
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/teachtraindetail.css')}}"/>
@@ -8,7 +8,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="01home.html"> 首页</a> > 科研项目 > 科研项目详情
+            您现在的位置：<a href="01home.html"> 首页</a> > <a href="/information.html">科研项目</a> > 科研项目详情
         </div>
         <div class="teachtrainxq container">
             <div class="xqtitle">{{$data['title']}}</div>

@@ -1,7 +1,7 @@
 @extends("home.public.main")
 @section("title")
 
-    医院详情
+    {{$data['name']}}
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/hospitaldetail.css')}}"/>
@@ -9,7 +9,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="/"> 首页</a> > 医联体医院 > {{$data['name']}}
+            您现在的位置：<a href="/"> 首页</a> > <a href="/hospitals.html">医联体医院</a> > {{$data['name']}}
         </div>
         <div class="yyxq">
             <img class="yyxqimg" src="{{request()->getSchemeAndHttpHost().$data['image']}}" style="max-width: 720px;max-height: 541px;">

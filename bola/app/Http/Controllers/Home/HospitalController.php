@@ -47,6 +47,7 @@ class HospitalController extends Controller
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
         $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
         $provinceS = $this->getProvince();
+        $this->getUserInfo();
         return view('home/index/hospitals',compact('hospital','paginator','provinceS'));
     }
 
@@ -68,6 +69,7 @@ class HospitalController extends Controller
             $data = $hospital['body']['data'];
         }
         //print_r($data);
+        $this->getUserInfo();
         return view('home/index/hospitals_details',compact('data'));
     }
 

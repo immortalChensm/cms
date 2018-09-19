@@ -21,17 +21,17 @@
 
 
 
-                @if(request()->session()->has("user"))
+                @if(request()->session()->has("userinfo"))
 
                     <div class="head-icon">
 
-                        @if(isset(request()->session()->get("user")['user']['physician']['image']))
-                            <img src="{{request()->getSchemeAndHttpHost().request()->session()->get("user")['user']['physician']['image']}}" width="60px" height="36" alt="">
+                        @if(isset(request()->session()->get("userinfo")['image']))
+                            <img src="{{request()->getSchemeAndHttpHost().request()->session()->get("userinfo")['image']}}" width="60px" height="36" alt="">
                         @else
                             <img src="{{ URL::asset('home/img/photo.png')}}" alt="">
                         @endif
 
-                    <span><a href="/user/center.html">{{request()->session()->get("user")['user']['name']}}</a></span>
+                    <span><a href="/user/center.html">{{request()->session()->get("userinfo")['username']}}</a></span>
                     </div>
                 @else
                     <div class="head-icon">
@@ -57,11 +57,11 @@
             <ul>
 
 
-                <li class="fs18" onclick="window.location.href='/'">首页</li>
+                <li class="fs18 @if(request()->getPathInfo()=='/') xuanzhong  @endif" onclick="window.location.href='/'">首页</li>
 
 
-                <li onclick="window.location.href='/hospitals.html'" class="fs18  @if(request()->getPathInfo()=='/hospitals.html' || request()->getPathInfo()=='/joinprocess.html' || request()->getPathInfo() == '/joinylt.html' || request()->getPathInfo() == '/joinpccmorocess.html' ||request()->getPathInfo() == '/joinpccm.html') xuanzhong  @endif" id="dhyy">
-                    医联体医院
+                <li  class="fs18  @if(request()->getPathInfo()=='/hospitals.html' || request()->getPathInfo()=='/joinprocess.html' || request()->getPathInfo() == '/joinylt.html' || request()->getPathInfo() == '/joinpccmorocess.html' ||request()->getPathInfo() == '/joinpccm.html') xuanzhong  @endif" id="dhyy">
+                    <span onclick="window.location.href='/hospitals.html'">医联体医院</span>
                     <div class="xiala" id="xiala">
                         <div class="xiala1 " onclick="window.location.href='/hospitals.html'">医联体医院</div>
                         <div class="xiala1" onclick="window.location.href='/joinprocess.html'">加入医联体流程</div>
@@ -76,8 +76,8 @@
                <li class="fs18 @if(request()->getPathInfo() == '/doctors.html') xuanzhong @endif" onclick="window.location.href='/doctors.html'">医联体医生</li>
 
 
-               <li class="fs18" id="dhzz">
-                   转诊申请
+               <li class="fs18 @if(request()->getPathInfo() == '/referralaplprocess.html' || request()->getPathInfo() == '/application.html') xuanzhong @endif" id="dhzz">
+                   <span onclick="window.location.href='/application.html'">转诊申请</span>
                    <div class="xiala2" id="xiala2">
                        <div class="xiala3" onclick="window.location.href='/application.html'">转诊申请</div>
                        <div class="xiala3" onclick="window.location.href='/referralaplprocess.html'">申请流程</div>

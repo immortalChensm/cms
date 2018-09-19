@@ -35,7 +35,21 @@ function uploadImageForBase64($source)
     $pattern_xls = '/data\:application\/vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet/i';
     $pattern_doc = '/application\/vnd\.openxmlformats-officedocument\.wordprocessingml\.document/i';
     $pattern_pdf = '/data\:application\/pdf/i';
+
+    $pattern_xls_n = '/data\:application\/vnd\.ms-excel/';
+
     if(preg_match($pattern_xls,$source)){
+        $decode_con = preg_replace('/data:.*;base64,/i', '', $source);
+
+        $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".xlsx";
+
+        if(file_put_contents($savePath,base64_decode($decode_con))) {
+            return $savePath;
+        }else{
+            return false;
+        }
+    }
+    if(preg_match($pattern_xls_n,$source)){
         $decode_con = preg_replace('/data:.*;base64,/i', '', $source);
 
         $savePath = $dir.md5(mt_rand(1,1000)).mt_rand(1,9999).".xlsx";

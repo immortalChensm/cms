@@ -29,7 +29,7 @@ function login(type){
             if(data.status==1){
                 //layer.msg(data.message);
                 setTimeout(function(){//两秒后跳转
-                     window.location.href = "/login/success.html";
+                     window.location.href = "/login/success.html?prevurl="+$(":input[name=prevurl]").val();
                 },1000);
             }else{
                 //layer.msg(data.message,{time:1000});

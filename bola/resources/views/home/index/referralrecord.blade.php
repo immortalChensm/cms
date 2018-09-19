@@ -4,7 +4,13 @@
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/referralrecord.css')}}"/>
+    <style>
 
+        .hzbq{
+            text-align: left;
+            padding-left: 65px;
+        }
+    </style>
 @endsection
 @section("content")
     <div class="context">
@@ -18,8 +24,8 @@
         </div>
         <div class="zhsz container">
             <div class="searchk">
-                <input type="text" placeholder="病人姓名"/>
-                <button type="button"></button>
+                <input type="text" placeholder="病人姓名" name="name" value="{{request()->name}}"/>
+                <button type="button" id="search"></button>
             </div>
             <div class="tab">
                 <table cellspacing="" cellpadding="">
@@ -33,36 +39,40 @@
                         <th width="12%"><div>转诊医院</div></th>
                         <th width="9%">操作</th>
                     </tr>
+
+                    @foreach($record as $item)
                     <tr>
-                        <td>王琦</td>
-                        <td>18923684568</td>
-                        <td>多无发热、咳痰等典型症状，也有少数有症状或无症状。首发症状为呼吸急促及呼吸困难，或有意识障碍、嗜睡、脱水、食欲减退等。</td>
-                        <td>应根据病菌种类及药敏结果选择用药。如有缺氧等症状给予吸氧和对症处理。防治并发症。加强老年患者的护理工作，饮食宜清淡，易消化。</td>
-                        <td>未处理</td>
-                        <td><img src="../img/download.png" ></td>
-                        <td>暂无</td>
-                        <td><button id="button4" type="button">取消</button></td>
+                        <td>{{$item['name']}}</td>
+                        <td>{{$item['mobile']}}</td>
+                        <td>{{$item['description']}}</td>
+                        <td class="hzbq">
+                            <p>患者病情:<span>{{$item['ill_desc']}}</span></p>
+                            <p>呼吸支持:<span>{{$item['ill_breath']}}</span></p>
+                            <p>病房需求:<span>{{$item['ill_room']}}</span></p>
+                            <p>转运需求:<span>{{$item['ill_transfer']}}</span></p>
+                            <p>时间需求:<span>{{$item['ill_ntime']}}</span></p>
+                        </td>
+                        <td>
+
+                            @if($item['status'] == 3)
+                                未处理
+                                @elseif($item['status'] == 2)
+                                已取消
+                                @elseif($item['status'] == 1)
+                                已处理
+                                @endif
+                        </td>
+                        <td>
+                            @if($item['case_illfile'])
+                            <a href="{{request()->getSchemeAndHttpHost().$item['case_illfile']}}" target="_blank"><img src="{{ URL::asset('home/img/download.png')}}" ></a>
+                                @else
+                                无附件
+                            @endif
+                        </td>
+                        <td>{{$item['ill_transfer']}}</td>
+                        <td><button id="button" onclick="submitS('{{$item['id']}}')" type="button" data-id="{{$item['id']}}">取消</button></td>
                     </tr>
-                    <tr>
-                        <td>张莉</td>
-                        <td>18923684568</td>
-                        <td>多无发热、咳痰等典型症状，也有少数有症状或无症状。首发症状为呼吸急促及呼吸困难，或有意识障碍、嗜睡、脱水、食欲减退等。</td>
-                        <td>应根据病菌种类及药敏结果选择用药。如有缺氧等症状给予吸氧和对症处理。防治并发症。加强老年患者的护理工作，饮食宜清淡，易消化。</td>
-                        <td>已取消</td>
-                        <td><img src="../img/download.png" ></td>
-                        <td>暂无</td>
-                        <td><button id="button5" type="button">取消</button></td>
-                    </tr>
-                    <tr>
-                        <td>张莉</td>
-                        <td>18923684568</td>
-                        <td>多无发热、咳痰等典型症状，也有少数有症状或无症状。首发症状为呼吸急促及呼吸困难，或有意识障碍、嗜睡、脱水、食欲减退等。</td>
-                        <td>应根据病菌种类及药敏结果选择用药。如有缺氧等症状给予吸氧和对症处理。防治并发症。加强老年患者的护理工作，饮食宜清淡，易消化。</td>
-                        <td>已处理</td>
-                        <td><img src="../img/download.png" ></td>
-                        <td>上海同济医院</td>
-                        <td><button id="button6" type="button">取消</button></td>
-                    </tr>
+                    @endforeach
 
 
                 </table>
@@ -75,7 +85,7 @@
         </div>
         <div class="tc">
             <div class="qidai">
-                <img src="../img/tisi.png" >
+                <img src="{{ URL::asset('home/img/tisi.png')}}" >
                 <span>确认取消转诊申请？</span>
                 <div class="butt">
                     <button id="button1" class="button1">确认</button>
@@ -88,5 +98,5 @@
     @endsection
     @section("footerjs")
         <script src="{{request()->getSchemeAndHttpHost()}}/layer/layer.js" type="text/javascript" charset="utf-8"></script>
-        <script src="{{ URL::asset('home/js/profile.js')}}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ URL::asset('home/js/record.js')}}" type="text/javascript" charset="utf-8"></script>
 @endsection

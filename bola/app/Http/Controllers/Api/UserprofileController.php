@@ -99,7 +99,12 @@ class UserprofileController extends Controller
     //转诊记录
     function referrals()
     {
-        $ret = Consulation::where("userid",auth("api")->user()->physician->id)->get();
+
+        $ret = Consulation::where("userid",auth("api")->user()->physician->id)->where(function($query){
+            if(request()->name){
+                $query->where("name",request()->name);
+            }
+        })->get();
         return $this->success("请求成功",$ret);
     }
 
@@ -122,7 +127,10 @@ class UserprofileController extends Controller
 
         $data['userid']       = auth("api")->user()->physician->id;
 
-
+        $hospital = Hospital::where("id",uth("api")->user()->physician->hospitalid)->first();
+        if($hospital->hospital_adminid!=auth("api")->id()){
+            return $this->error("您不是该医院的管理员无法操作");
+        }
         if($this->addreferApp($data)){
             return $this->success("添加成功",[]);
         }else{

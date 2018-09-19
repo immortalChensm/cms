@@ -14,7 +14,16 @@
             </div>
             <div class="tz">
                 <p>页面跳转中......</p>
-                <p>点击 <a href="/">立即跳转</a> 首页</p>
+
+                @if(request()->get("prevurl"))
+                    <p>点击 <a href="{{request()->get("prevurl")}}">立即跳转</a></p>
+
+                    @else
+                    <p>点击 <a href="{{session("url")}}">立即跳转</a></p>
+                    @endif
+
+
+
             </div>
         </div>
     </div>
@@ -23,7 +32,16 @@
     <script src="{{request()->getSchemeAndHttpHost()}}/layer/layer.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         setTimeout(function(){//两秒后跳转
-            window.location.href = "{{session("url")}}";
+
+            if("{{request()->get("prevurl")}}"){
+
+                window.location.href = "{{request()->get("prevurl")}}";
+            }else{
+                window.location.href = "{{session("url")}}";
+            }
+
+
+
         },1000);
 
     </script>

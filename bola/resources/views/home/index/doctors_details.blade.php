@@ -1,6 +1,6 @@
 @extends("home.public.main")
 @section("title")
-    联盟医生详情
+    {{$data['username']}}
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/doctordetail.css')}}"/>
@@ -8,7 +8,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="/"> 首页</a> > 医联体医生 > {{$data['username']}}
+            您现在的位置：<a href="/"> 首页</a> > <a href="/doctors.html">医联体医生</a> > {{$data['username']}}
         </div>
         <div class="doctorxq container">
             <div class="ysxq-gr">

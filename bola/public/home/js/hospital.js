@@ -98,10 +98,14 @@ $(function () {
 
     var location_urls = window.location.href.substring(window.location.href.indexOf("city")).split("=");
 
-    if(location_urls[1].split("&")[0]){
-        console.log($(":input[name=city]").val());
-        createAddressHtml(location_urls[1].split("&")[0],$(":input[name=county]"),$(":input[name=county]"));
+    if(location_urls[1]!=undefined){
+        if(location_urls[1].split("&")[0]){
+            console.log($(":input[name=city]").val());
+            createAddressHtml(location_urls[1].split("&")[0],$(":input[name=county]"),$(":input[name=county]"));
+        }
+
     }
+
 
 
 
@@ -110,15 +114,21 @@ $(function () {
     //console.log(location_urls[1].split("&"));
     var cityList = $(":input[name=city]").find("option");
     for(var i=0;i<cityList.length;i++){
-        if(location_urls[1].split("&")[0] == $(cityList).eq(i).val()){
-            $(cityList).eq(i).get(0).selected = "selected";
+        if(location_urls[1]!=undefined){
+            if(location_urls[1].split("&")[0] == $(cityList).eq(i).val()){
+                $(cityList).eq(i).get(0).selected = "selected";
+            }
         }
+
     }
 
     var countyList = $(":input[name=county]").find("option");
     for(var i=0;i<countyList.length;i++){
-        if(city_urls[1].split("&")[0] == $(countyList).eq(i).val()){
-            $(countyList).eq(i).get(0).selected = "selected";
+        if(city_urls[1]!=undefined){
+            if(city_urls[1].split("&")[0] == $(countyList).eq(i).val()){
+                $(countyList).eq(i).get(0).selected = "selected";
+            }
         }
+
     }
 });

@@ -1,5 +1,19 @@
 function submitS(){
 
+
+    if($(":input[name=bed_num]").val().length==0){
+        layer.msg('请填写床位数量',{time:1000});
+        return ;
+    }
+    if($(":input[name=general_seat]").val().length==0){
+        layer.msg('请填普通床位数',{time:1000});
+        return ;
+    }
+    if($(":input[name=icu_seat]").val().length==0){
+        layer.msg('请填写ICU床位数',{time:1000});
+        return ;
+    }
+
     var form = new FormData(document.getElementById("postform"));
     $.ajax({
         type: 'POST',
@@ -15,14 +29,16 @@ function submitS(){
                     window.location.reload();
                 },1000);
             }else{
-                if(data.message.status_code==401){
+
+                if(data.status==202){
                     layer.msg("登录超时，正在跳转到登录页面",{time:1000});
                     setTimeout(function(){//两秒后跳转
-                        window.location.href = "/login.html";
+                        window.location.href = "/login.html?prevurl=/bed.html";
                     },1000);
                 }else if(data.message.status_code==0){
                     //layer.msg("旧密码不对",{time:1000});
                 }
+
 
                 var json=data.message;
                 json = json.errors;

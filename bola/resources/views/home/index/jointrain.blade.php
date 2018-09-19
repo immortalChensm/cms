@@ -1,6 +1,6 @@
 @extends("home.public.main")
 @section("title")
-    申请加入PCCM
+    申请加入教学培训
 @endsection
 @section("css")
     <style type="text/css">
@@ -131,7 +131,6 @@
             color: #ffffff;
             border: 0;
         }
-
         #btn{
 
             background-color: #971d25;
@@ -155,9 +154,12 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="/"> 首页</a> > 申请加入PCCM
+            您现在的位置：<a href="/"> 首页</a> > 申请加入教学培训
         </div>
         <form id="postform">
+
+            <input type="hidden"  name="trainid" value="{{request()->id}}"/>
+
         <div class="shenqing container">
             <div class="patientname">
                 <span>姓名:<a href="">*</a></span>
@@ -178,14 +180,13 @@
                 </div>
             </div>
             <div class="sc">
-                <a onclick="save('pccm')" id="btn">上传</a>
+                <a onclick="save('train')" id="btn">上传</a>
             </div>
         </div>
         </form>
     </div>
-
 @endsection
 @section("footerjs")
     <script src="{{request()->getSchemeAndHttpHost()}}/layer/layer.js" type="text/javascript" charset="utf-8"></script>
-    <script src="{{ URL::asset('home/js/joinHospital.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ URL::asset('home/js/joinTrain.js')}}" type="text/javascript" charset="utf-8"></script>
 @endsection

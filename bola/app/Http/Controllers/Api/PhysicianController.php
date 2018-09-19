@@ -62,4 +62,15 @@ class PhysicianController extends Controller
     {
         return Categorys::whereIn("id",$id)->get();
     }
+
+    //登录的医生信息
+    public function userInfo()
+    {
+        $ret = Pyhsician::where("userid",auth("api")->user()->id)->with(["subject","position","hospital"])->first();
+        if($ret->skillid){
+            $ret->skill = $this->getSkill(explode(",",$ret->skillid));
+        }
+        $ret['access_token'] = request()->bearerToken();
+        return $this->success("请求成功",$ret?:[]);
+    }
 }

@@ -41,6 +41,7 @@ class InfoController extends Controller
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
         $paginator->setMaxPagesToShow(config("api.setMaxPagesToShow"));
         $nav = "科研项目";
+        $this->getUserInfo();
         return view('home/index/information',compact('train','paginator','nav'));
     }
 
@@ -53,6 +54,7 @@ class InfoController extends Controller
             $data = $doctor['body']['data'];
         }
         //print_r($data);
+        $this->getUserInfo();
         return view('home/index/info_details',compact('data'));
 
     }

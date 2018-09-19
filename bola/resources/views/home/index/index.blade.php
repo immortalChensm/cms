@@ -7,12 +7,12 @@
 @endsection
 @section("search")
     <div class="search">
-        <select class="select">
-            <option class="option" value="医院">医院</option>
-            <option class="option" value="医生">医生</option>
+        <select class="select" name="searchtype">
+            <option class="option" value="1">医院</option>
+            <option class="option" value="2">医生</option>
         </select>
-        <input class="input" type="text" placeholder="医院/医生">
-        <button class="button"></button>
+        <input class="input" type="text" placeholder="医院/医生" name="keyword">
+        <button class="button" id="search"></button>
     </div>
     @endsection
 @section("content")
@@ -89,7 +89,7 @@
 
                         @foreach($train['data'] as $key=>$item)
                             @if($key<2)
-                        <div class="banner-r-ud-u">
+                        <div class="banner-r-ud-u" onclick="window.location.href='teachtrain/detail/{{$item['id']}}.html'">
                             <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" >
                             <span>{{$item['title']}}</span>
                         </div>
@@ -109,7 +109,7 @@
 
                         @foreach($article['data'] as $key=>$item)
                             @if($key<2)
-                        <div class="banner-r-ud-u">
+                        <div class="banner-r-ud-u" onclick="window.location.href='information/detail/{{$item['id']}}.html'">
                             <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" >
                             <span>{{$item['title']}}</span>
                         </div>
@@ -136,7 +136,7 @@
 
                 @foreach($hospital['data'] as $key=>$item)
                     @if($key<3)
-                <img class="imgr{{$key+1}}" src="{{ request()->getSchemeAndHttpHost().$item['image']}}" />
+                <img class="imgr{{$key+1}}" src="{{ request()->getSchemeAndHttpHost().$item['image']}}" onclick="window.location.href='hospital/detail/{{$item['id']}}.html'"/>
                     @endif
                 @endforeach
                 {{--<img class="imgr2" src="{{ URL::asset('home/img/VCG21c5d61410c.png')}}"/>--}}
@@ -148,7 +148,7 @@
             <div class="context-second-st">
                 @foreach($hospital['data'] as $key=>$item)
                     @if($key<3)
-                <div class="fc{{$key+1}}">
+                <div class="fc{{$key+1}}" onclick="window.location.href='hospital/detail/{{$item['id']}}.html'">
                     <div class="fct">
                         <!--<img class="tubiao" src="img/jux01.png"/>-->
                         <span class="tubiao"></span>
@@ -202,7 +202,7 @@
                     <div class="ybj">
 
                         @foreach($doctors['data'] as $key=>$item)
-                        <div class="ysxq-gr">
+                        <div class="ysxq-gr" onclick="window.location.href='doctor/detail/{{$item['id']}}.html'">
                             <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" style="width:99px;height:150px" >
                             <div class="ysxq-grjs">
                                 <span>{{$item['username']}}</span>
@@ -361,7 +361,35 @@
     <script src="{{ URL::asset('home/js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ URL::asset('home/bootstrap@3.3.7/js/bootstrap.min.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ URL::asset('home/js/app.js')}}" type="text/javascript" charset="utf-8"></script>
+
+    <script src="{{request()->getSchemeAndHttpHost()}}/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+
     <script>
+
+
+        $("#search").on("click",function(e){
+
+            var search_type = $(":input[name=searchtype]").val();
+
+            var keyword  = $(":input[name=keyword]").val();
+            if(keyword.length==0){
+                layer.msg('请填写要搜索的关键字',{time:1000});
+            }
+            if(search_type == 1){
+                if(keyword){
+                    window.location.href = "/hospitals.html?keyword="+keyword;
+
+                }
+
+            }else if(search_type == 2){
+                if(keyword){
+                    window.location.href = "/doctors.html?keyword="+keyword;
+                }
+
+            }
+
+        });
+
 
         //悬浮窗效果
 

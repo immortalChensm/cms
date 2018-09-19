@@ -63,7 +63,7 @@
 @section("content")
     <div class="context">
         <div class="yltyy container">
-            您现在的位置：<a href="01home.html"> 首页</a> > 转诊申请流程
+            您现在的位置：<a href="/"> 首页</a> > 转诊申请流程
         </div>
         <div class="teachtrainxq container">
             <div class="xqtitle">转诊流程</div>
@@ -76,7 +76,7 @@
                 @endforeach
             </div>
             <div class="but">
-                <button type="button">立即申请</button>
+                <button type="button" onclick="window.location.href='/application.html'">立即申请</button>
             </div>
         </div>
     </div>

@@ -28,7 +28,20 @@ class Controller extends BaseController
     {
         $sys = DB::table("config")->get();
 
+    }
 
+    function getUserInfo()
+    {
+        $urlS = ['/login.html','/login/success.html','/login','/register.html','/register','/getCode','/getZone','/zoneHospital','/region/city'];
+        if(!in_array(request()->getRequestUri(),$urlS)){
+            $doctor = $this->getApi("GET","user/info",['token'=>session("user")['access_token']]);
+            if($doctor['body']['status_code']==1){
+                session(['userinfo'=>$doctor['body']['data']]);
+            }else{
+                return redirect("/login.html?prevurl=".request()->getRequestUri());
+            }
+
+        }
     }
 
     public function getProvince()
@@ -53,14 +66,25 @@ class Controller extends BaseController
                 $response = $client->get($api,['query'=>$param]);
             }catch (RequestException  $exception){
 
+                $errors = json_decode($exception->getResponse()->getBody()->getContents(),true);
+
                 if($exception->getCode() == 500 && $exception->getMessage() == 'Trying to get property of non-object'){
-                    return [
-                        'code'=>$exception->getCode(),
+                    $response = [
+                        'code'=>401,
                         'msg'=>"传递参数错误",
-                        'body'=>$exception->getResponse()->getBody()->getContents(),
+                        'body'=>$errors,
                     ];
                 }
+                if($errors['message'] == 'The token has been blacklisted'){
 
+                    $response = [
+                        'code'=>402,
+                        'msg'=>"token已过期",
+                        'body'=>$errors,
+                    ];
+
+                }
+                return $response;
 
             }
 
@@ -68,13 +92,26 @@ class Controller extends BaseController
             try{
                 $response = $client->post($api,['form_params'=>$param]);
             }catch (RequestException  $exception){
+
+                $errors = json_decode($exception->getResponse()->getBody()->getContents(),true);
+
                 if($exception->getCode() == 500  && $exception->getMessage() == 'Trying to get property of non-object' || $exception->getCode() == 422){
-                    return [
-                        'code'=>200,
+                    $response = [
+                        'code'=>401,
                         'msg'=>"传递参数错误",
-                        'body'=>json_decode($exception->getResponse()->getBody()->getContents(),true),
+                        'body'=>$errors,
                     ];
                 }
+                if($errors['message'] == 'The token has been blacklisted'){
+
+                    $response = [
+                        'code'=>402,
+                        'msg'=>"token已过期",
+                        'body'=>$errors,
+                    ];
+
+                }
+                return $response;
             }
 
         }

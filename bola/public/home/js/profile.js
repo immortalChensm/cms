@@ -16,6 +16,13 @@ function submitS(type){
                     window.location.reload();
                 },1000);
             }else{
+                if(data.status==202){
+                    layer.msg("登录超时，正在跳转到登录页面",{time:1000});
+                    setTimeout(function(){//两秒后跳转
+                        window.location.href = "/login.html?prevurl=/user/center.html";
+                    },1000);
+                }
+
                 layer.msg(data.message,{time:1000});
                 // var json=data.message;
                 // //json = json.errors;
