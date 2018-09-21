@@ -11,6 +11,17 @@ $(function () {
 
     });
 
+    $(":input[name=province],:input[name=city],:input[name=county]").on("change",function (e) {
+
+        var keyword  = $(":input[name=keyword]").val();
+        var province = $(":input[name=province]").val();
+        var city     = $(":input[name=city]").val();
+        var county   = $(":input[name=county]").val();
+        window.location.href = "/hospitals.html?keyword="+keyword+"&province="+(province?province:'')+"&city="+(city?city:'')+"&county="+(county?county:'');
+
+    });
+
+
     //跳转到详情页面
     $("div.yylistt-xq").click(function(){
         window.location.href = "hospital/detail/"+$(this).attr("data-id")+".html";

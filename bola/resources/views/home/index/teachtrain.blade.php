@@ -17,6 +17,7 @@
             </div>
             <div class="teachlist">
 
+                @if(count($train['data'])>0)
                 @foreach($train['data'] as $item)
                 <div class="oneteachlist" data-id="{{$item['id']}}">
                     <span class="qianzhui"></span>
@@ -24,6 +25,9 @@
                     <span class="datetime">{{date("Y-m-d",strtotime($item['created_at']))}}</span>
                 </div>
                     @endforeach
+                    @else
+                    搜索不到数据
+                    @endif
 
             </div>
 

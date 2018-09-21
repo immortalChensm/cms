@@ -18,10 +18,11 @@ class GuestController extends Controller
         $data['status']   = 0;
         $data['type']     = $request->type;
         $data['trainid']     = $request->trainid;
-        if($request->cert) {
-            $certPath=uploadImageForBase64($request->cert);
-        }
-        $data['cert'] = isset($certPath)?$certPath:'';
+        $data['image']     = $request->image;
+//        if($request->cert) {
+//            $certPath=uploadImageForBase64($request->cert);
+//        }
+//        $data['cert'] = isset($certPath)?$certPath:'';
 
         if($record=Joinrecord::create($data)){
             return $this->success("添加成功",$record);

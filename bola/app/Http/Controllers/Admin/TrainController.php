@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Admin\Joinrecord;
 use App\Model\Admin\Train;
 use Illuminate\Http\Request;
 use App\Http\Requests\TrainPost;
@@ -120,5 +121,11 @@ class TrainController extends Controller
         //print_r($post);exit;
         $res  = Train::where('id', $post['id'])->update(array('status' => $post['status']));
         $res ? showMsg('1', '修改成功') : showMsg('0', '修改失败');
+    }
+
+    function record()
+    {
+        $join = Joinrecord::where("trainid",request()->id)->get();
+        return view('admin/joinrecord/train',compact('join'));
     }
 }

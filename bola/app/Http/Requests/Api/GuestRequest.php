@@ -31,7 +31,7 @@ class GuestRequest extends FormRequest
                 "regex:/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/",
                 //"unique:joinrecord"
             ],
-            "cert"=>"required"
+            //"cert"=>"required"
         ];
     }
 
@@ -43,7 +43,7 @@ class GuestRequest extends FormRequest
             "mobile.required"=>"请填写手机号",
             "mobile.regex"=>"请填写正确的手机号码",
             "mobile.unique"=>"该手机号已存在",
-            "cert.required"=>"请上传凭证",
+            //"cert.required"=>"请上传凭证",
         ];
 
     }

@@ -37,10 +37,10 @@
             <li><a><i class="fa fa-file-text-o"></i> 资讯管理 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" @if(request()->is("*/article/*") || request()->is("*/train/*")) style='display:block;' @endif>
                     @can("article-list")
-                    <li @if(request()->is("*/article/*")) class="current-page" @endif><a href="/admin/article">最新资讯管理</a></li>
+                    <li @if(request()->is("*/article/*")) class="current-page" @endif><a href="/admin/article">科研项目</a></li>
                     @endcan
                         @can("train-list")
-                    <li @if(request()->is("*/train/*")) class="current-page" @endif><a href="/admin/train">最新培训管理</a></li>
+                    <li @if(request()->is("*/train/*")) class="current-page" @endif><a href="/admin/train">教学培训</a></li>
                         @endcan
                 </ul>
             </li>
@@ -55,7 +55,7 @@
                         <li @if(request()->is("*/categorys/*")) class="current-page" @endif><a href="/admin/categorys" >科室列表</a></li>
                         @endcan
                         @can("subject-list")
-                            <li @if(request()->is("*/skill/*")) class="current-page" @endif><a href="/admin/skill" >专长列表</a></li>
+{{--                            <li @if(request()->is("*/skill/*")) class="current-page" @endif><a href="/admin/skill" >专长列表</a></li>--}}
                         @endcan
                             @can("position-list")
                         <li @if(request()->is("*/position/*")) class="current-page" @endif><a href="/admin/position">职称列表</a></li>

@@ -109,20 +109,20 @@ uploadpic({
     }
 });
 
-uploadpic({
-    element:$("#certFile"),
-    getbloburl:function(blobURL){
-        //$("#image").parent().find("img").remove();
-        //$("#image").parent().append("<img src='"+blobURL+"' style='width:100px;height:100px;'>");
-    },
-    getbase64:function (base_data) {
-        $("#certFile").parent().append(function (e) {
-            //$("#image").parent().find(":input[name=image]").remove();
-            return "<input type='hidden' name='cert' value='"+base_data+"'/>";
-        });
-
-    }
-});
+// uploadpic({
+//     element:$("#certFile"),
+//     getbloburl:function(blobURL){
+//         //$("#image").parent().find("img").remove();
+//         //$("#image").parent().append("<img src='"+blobURL+"' style='width:100px;height:100px;'>");
+//     },
+//     getbase64:function (base_data) {
+//         $("#certFile").parent().append(function (e) {
+//             //$("#image").parent().find(":input[name=image]").remove();
+//             return "<input type='hidden' name='cert' value='"+base_data+"'/>";
+//         });
+//
+//     }
+// });
 
 
 $(function(e){

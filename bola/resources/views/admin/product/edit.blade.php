@@ -84,13 +84,17 @@ var ue = UE.getEditor('content',{
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院等级</span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">PCCM等级</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select class="form-control" required="" name="grade">
 
 
-                            <option value="" @if($data->grade == '') selected @endif>医院等级</option>
+                    <select class="form-control" required="" name="pccm">
+
+
+                        <option value="" @if($data->pccm == '') selected @endif>PCCM等级</option>
+
+
 
                         <option value="示范单位" @if($data->grade == '示范单位') selected @endif>示范单位</option>
                         <option value="优秀单位" @if($data->grade == '优秀单位') selected @endif>优秀单位</option>
@@ -102,13 +106,12 @@ var ue = UE.getEditor('content',{
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">PCCM等级</span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">医院等级</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select class="form-control" required="" name="pccm">
+                    <select class="form-control" required="" name="grade">
 
-
-                        <option value="" @if($data->pccm == '') selected @endif>PCCM等级</option>
+                        <option value="" @if($data->grade == '') selected @endif>医院等级</option>
 
                         <option value="三甲"  @if($data->pccm == '三甲') selected @endif>三甲</option>
                         <option value="三乙"  @if($data->pccm == '三乙') selected @endif>三乙</option>
@@ -121,6 +124,7 @@ var ue = UE.getEditor('content',{
                         <option value="一甲"  @if($data->pccm == '一甲') selected @endif>一甲</option>
                         <option value="一乙"  @if($data->pccm == '一乙') selected @endif>一乙</option>
                         <option value="一丙"  @if($data->pccm == '一丙') selected @endif>一丙</option>
+
 
                     </select>
                 </div>

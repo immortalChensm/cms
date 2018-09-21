@@ -6,7 +6,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
               <div class="x_title">
-                  <h2>专长列表<small><a href="{{route('skill.create')}}" class="btn btn-info" >添加</a></small></h2>
+                  <h2>专长列表<small><a href="/admin/skill/create/{{request()->id}}" class="btn btn-info" >添加</a></small><a href="/admin/categorys" class="btn btn-info" >返回</a></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -37,14 +37,14 @@
                           @foreach($data as $key=>$item)
                           <tr class="even pointer">
                               <td class=" ">{{$key+1}}</th>
-                              <td class=" " style="float:left;">{{str_repeat('----',$item->level)}}{{$item->name}}</td>
+                              <td class=" " style="float:left;">{{$item->name}}</td>
 
                               {{--@if($item->parent_id!=0)--}}
                               {{--<td class=" ">{{$item->created_at}}</td>--}}
                               {{--@endif--}}
 
                               @if($item->parent_id!=0)
-                              <td><a href="{{route('skill.edit',$item->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$item->id}}">移除</a></td>
+                              <td><a href="{{route('skill.edit',$item->id)}} " class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$item->id}}">移除</a></td>
                               @endif
 
 

@@ -84,6 +84,10 @@ Route::group(['prefix' => ''], function () {
      Route::get('/frogotpwd.html', 'Home\IndexController@forgotpwd');
      Route::post('/forgotpwd', 'Home\IndexController@resetPwd');
 
+     //upload
+     Route::post('/upload', 'Home\IndexController@upload');
+     Route::get('/logout.html', 'Home\IndexController@logout');
+
 
 });
    

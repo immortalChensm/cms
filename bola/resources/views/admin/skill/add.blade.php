@@ -50,29 +50,29 @@
                 {{--</div>--}}
             {{--</div>--}}
 
-            <div class="form-group">
-                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">科室</label>
-                <div class="col-xs-3">
+            {{--<div class="form-group">--}}
+                {{--<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">科室</label>--}}
+                {{--<div class="col-xs-3">--}}
 
-                    <select class="form-control" name="parent_id" required="">
-                        <option value="0">
-                            科室
-                        </option>
-                        @foreach($category as $item)
+                    {{--<select class="form-control" name="parent_id" required="">--}}
+                        {{--<option value="0">--}}
+                            {{--科室--}}
+                        {{--</option>--}}
+                        {{--@foreach($category as $item)--}}
 
-                            <option value="{{$item->id}}">
-                                {{str_repeat('----',$item->level)}}
-                                {{$item->name}}
-                            </option>
+                            {{--<option value="{{$item->id}}">--}}
+                                {{--{{str_repeat('----',$item->level)}}--}}
+                                {{--{{$item->name}}--}}
+                            {{--</option>--}}
 
-                        @endforeach
-                    </select>
+                        {{--@endforeach--}}
+                    {{--</select>--}}
 
-                </div>
-            </div>
+                {{--</div>--}}
+            {{--</div>--}}
 
 
-
+            <input type="hidden" id="first-name" name="parent_id" required="required" value="{{request()->id}}">
 
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">名称 <span class="required">*</span>
@@ -87,8 +87,9 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="button" onclick="save()" class="btn btn-success">提交</button>
               <button class="btn btn-primary" type="reset" onclick="javascript:history.back();">取消</button>
-              <button type="button" onclick="save()" class="btn btn-success">提交</button>
+
             </div>
           </div>
 

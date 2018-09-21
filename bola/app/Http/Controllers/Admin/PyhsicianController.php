@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use Apfelbox\FileDownload\FileDownload;
 use App\Http\Requests\PyhsicianPost;
 use App\Model\Admin\Categorys;
 
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\URL;
+use ZanySoft\Zip\Zip;
 
 
 class PyhsicianController extends Controller
@@ -56,6 +58,26 @@ class PyhsicianController extends Controller
         }
 
         return view('admin/pyhsician/index',compact('data','subject','hospital'));
+    }
+
+    function createFileAndDownload($id)
+    {
+        $files = Pyhsician::where("id",$id)->value("cert");
+        $fileList = explode(",",$files);
+        $zipFile = './Uploads/zip/cert.zip';
+        $zip = Zip::create($zipFile);
+        $pattern = request()->getSchemeAndHttpHost();
+        //echo substr($file,strlen($pattern));
+        foreach($fileList as $file){
+            $zip->add(substr($file,strlen($pattern)));
+        }
+        if (file_exists($zipFile))
+        {
+            $fileDownload = FileDownload::createFromFilePath($zipFile);
+            $fileDownload->sendDownload($zipFile);
+        }
+        return redirect()->back();
+
     }
 
     private function getSkill($skillids)

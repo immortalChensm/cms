@@ -92,6 +92,10 @@
       <path value="$PROJECT_DIR$/bola/vendor/tymon/jwt-auth" />
       <path value="$PROJECT_DIR$/bola/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/bola/vendor/hshn/base64-encoded-file" />
+      <path value="$PROJECT_DIR$/bola/vendor/codeguy/upload" />
+      <path value="$PROJECT_DIR$/bola/vendor/zanysoft/laravel-zip" />
+      <path value="$PROJECT_DIR$/bola/vendor/apfelbox/php-file-download" />
+      <path value="$PROJECT_DIR$/bola/vendor/skyzyx/mimetypes" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />

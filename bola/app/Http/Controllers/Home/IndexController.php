@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Home;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use JasonGrimes\Paginator;
+use Upload\File;
+use Upload\Storage\FileSystem;
 
 class IndexController extends Controller
 {
@@ -123,6 +127,7 @@ class IndexController extends Controller
     {
 
             $param = request()->post();
+            $param['image'] = implode(",",$param['image']);
             $param = array_merge(['token'=>session("user")['access_token']],$param);
             $ret = $this->getApi("POST","user/referrals/application",$param);
             if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
@@ -135,7 +140,7 @@ class IndexController extends Controller
                 if($ret['body']['status_code'] == 401){
                     showMsg(202,$ret['body']);
                 }
-
+                showMsg(0,$ret['body']);
             }
     }
 
@@ -236,15 +241,18 @@ class IndexController extends Controller
         }elseif(request()->post("type")=='train'){
             $type = 3;
         }
+        $img = implode(",",(isset(request()->image)?request()->image:[]));
         $data = [
             'username'=>request()->post("username"),
             'mobile'=>request()->post("mobile"),
             'cert'=>request()->post("image"),
             'type'=>$type,
             'trainid'=>request()->trainid?request()->trainid:'',
+            'image'=>$img
 
         ];
         $ret = $this->getApi("POST","user/join/hospital",$data);
+
         if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
             $result = $ret['body']['data'];
             showMsg(1,"提交成功",$ret);
@@ -385,6 +393,7 @@ class IndexController extends Controller
     function profile()
     {
         $param = request()->post();
+        $param['cert'] = implode(",",$param['cert']?:[]);
         $param = array_merge(['token'=>session("user")['access_token']],$param);
         $ret = $this->getApi("POST","user/profile",$param);
         if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
@@ -482,6 +491,56 @@ class IndexController extends Controller
                 showMsg(202,$ret['body']);
             }
             showMsg(0,'提交失败');
+        }
+    }
+
+    function upload()
+    {
+        $baseDir = './Uploads/join/';
+        $store = new FileSystem($baseDir);
+        $file = new File('file',$store);
+        $new_filename = uniqid();
+        $file->setName($new_filename);
+        $data = array(
+            'name'       => request()->getSchemeAndHttpHost().$baseDir.$file->getNameWithExtension(),
+            'extension'  => $file->getExtension(),
+            'mime'       => $file->getMimetype(),
+            'size'       => $file->getSize(),
+            'md5'        => $file->getMd5(),
+            'dimensions' => $file->getDimensions(),
+            'sourcename'=>request()->file("file")->getClientOriginalName()
+        );
+        try {
+            $file->upload();
+            showMsg(1,$data);
+        } catch (\Exception $e) {
+            showMsg(0);
+        }
+
+    }
+
+    function logout()
+    {
+
+        $ret = $this->getApi("POST","logout",['token'=>session("user")['access_token']]);
+        if(isset($ret['body']['status_code'])&&$ret['body']['status_code']==1){
+            $result = $ret['body']['data'];
+
+            session(['url'=>'/login.html']);
+            session(['message'=>'退出成功！']);
+            session(['title'=>'退出登录']);
+
+            request()->session()->forget('userinfo');
+            request()->session()->forget('user');
+
+            return redirect("/login.html");
+        }else{
+            if($ret['body']['status_code'] == 401){
+                request()->session()->forget('userinfo');
+                request()->session()->forget('user');
+                return redirect("/login.html");
+            }
+            return redirect("/login.html");
         }
     }
 

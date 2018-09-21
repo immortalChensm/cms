@@ -65,6 +65,8 @@ $api->version('v1', [
         $api->post("user/forgotpassword","UserprofileController@resetPassword");
         //登录的医生数据
         $api->get("user/info","PhysicianController@userInfo");
+        //退出
+        $api->post("logout","AuthenticationController@destroy");
 
 
     });

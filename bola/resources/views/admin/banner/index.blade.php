@@ -67,11 +67,14 @@
 
                                       <div class="">
                                           <label>
-                                              @if($banner->status==1)
-                                                  <input type="checkbox" class="js-switch status"   checked data-id="{{$banner->id}}" data-status="0" />
-                                              @else
-                                                  <input type="checkbox" class="js-switch status"   data-id="{{$banner->id}}" data-status="1" />
-                                              @endif
+                                              {{--@if($banner->status==1)--}}
+                                                  {{--<input type="checkbox" class="js-switch status"   checked data-id="{{$banner->id}}" data-status="0" />--}}
+                                              {{--@else--}}
+                                                  {{--<input type="checkbox" class="js-switch status"   data-id="{{$banner->id}}" data-status="1" />--}}
+                                              {{--@endif--}}
+
+                                              <input type="checkbox" class="js-switch status"   checked data-id="{{$banner->id}}" data-status="0" />
+
                                           </label>
                                       </div>
 
@@ -94,23 +97,24 @@
   <script>
 
       $(".status").on("click",function(){
-          var id = $(this).attr('data-id');
-          var status = $(this).attr('data-status');
+          //var id = $(this).attr('data-id');
+          //var status = $(this).attr('data-status');
+
+          console.log($(this).next("span").find("small").attr("style"));
+
+          {{--$.post("{{url('admin/banner/status')}}",{'id':id,'status':status,'_token':"{{csrf_token()}}"},function (data) {--}}
+              {{--if(data.status==1){--}}
+                  {{--layer.msg(data.message, {icon: 6},function(){--}}
+                      {{--//window.location.reload();--}}
+                  {{--});--}}
+
+              {{--}else{--}}
+                  {{--layer.msg(data.message, {icon: 5});--}}
+              {{--}--}}
+          {{--},'json');--}}
 
 
-          $.post("{{url('admin/banner/status')}}",{'id':id,'status':status,'_token':"{{csrf_token()}}"},function (data) {
-              if(data.status==1){
-                  layer.msg(data.message, {icon: 6},function(){
-                      window.location.reload();
-                  });
-
-              }else{
-                  layer.msg(data.message, {icon: 5});
-              }
-          },'json');
-
-
-          return false;
+          {{--return false;--}}
       });
 
       $('.delete').click(function(){

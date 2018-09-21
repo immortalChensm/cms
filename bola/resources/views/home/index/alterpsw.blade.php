@@ -4,27 +4,6 @@
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/alterpsw.css')}}"/>
-<style>
-
-    #btn{
-
-        background-color: #971d25;
-        border-radius: 4px;
-        font-size: 16px;
-        color: #ffffff;
-        display:inline-block;
-        width: 200px;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-
-    }
-    a:hover {
-
-        color: #ffffff;
-        text-decoration: none;
-    }
-</style>
 @endsection
 @section("content")
 

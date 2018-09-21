@@ -47,14 +47,15 @@ class UserprofileController extends Controller
         $pyhsician['positionid']   = $request->positionid;
         $pyhsician['introduction'] = $request->introduction;
         $pyhsician['username']     = $request->username;
+        $pyhsician['cert']         = $request->cert;
         $pyhsician['status']       = 1;
         $pyhsician['recommend']    = 0;
         $pyhsician['is_validate']  = 1;
         //附件图片和医生头像处理
-        if($request->cert) {
-            $certPath=uploadImageForBase64($request->cert);
-            $pyhsician['cert']         = $certPath;
-        }
+//        if($request->cert) {
+//            $certPath=uploadImageForBase64($request->cert);
+//            $pyhsician['cert']         = $certPath;
+//        }
         if($request->image) {
             $imagePath=uploadImageForBase64($request->image);
             $pyhsician['image']        = $imagePath;
@@ -119,6 +120,7 @@ class UserprofileController extends Controller
         $data['ill_room']     = $request->ill_room;
         $data['ill_transfer'] = $request->ill_transfer;
         $data['ill_ntime']    = $request->ill_ntime;
+        $data['image']        = $request->image;
         //患者病例附件处理
         if($request->case_illfile) {
             $certPath=uploadImageForBase64($request->case_illfile);
@@ -127,7 +129,7 @@ class UserprofileController extends Controller
 
         $data['userid']       = auth("api")->user()->physician->id;
 
-        $hospital = Hospital::where("id",uth("api")->user()->physician->hospitalid)->first();
+        $hospital = Hospital::where("id",auth("api")->user()->physician->hospitalid)->first();
         if($hospital->hospital_adminid!=auth("api")->id()){
             return $this->error("您不是该医院的管理员无法操作");
         }

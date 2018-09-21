@@ -25,12 +25,38 @@
                       <ul class="search-header">
                           <li>申请/列表</li>
                           {{--<li><small ><a  class="btn btn-info search" >搜索</a></small></li>--}}
+
+                          <li><div class="ait-search"><label><input type="search" name="username" value="{{ request()->get("username") }}" placeholder="名字" class="form-control input-xm" placeholder=""></label></div></li>
+                          <li>
+
+                              <div class="col-xs-3" style="width:200px!important;">
+
+
+                                  <select class="form-control" required="" id="typeid" name="typeid" >
+                                      <option value="">选择类型</option>
+                                      <option value="1" @if(request()->typeid == 1) selected @endif> 医联体申请</option>
+                                      <option value="2" @if(request()->typeid == 2) selected @endif> PCCM申请</option>
+                                      <option value="3" @if(request()->typeid == 3) selected @endif> 教学培训申请</option>
+
+                                  </select>
+
+
+                              </div>
+
+                          </li>
+                          <li><small ><a  class="btn btn-info search" >搜索</a></small></li>
+
                       </ul>
 
                   </h2>
                   <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
+
+
+
+
+
                       <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                       </li>
@@ -64,7 +90,7 @@
                                     <td class="column-title" >{{$item->mobile}}</td>
                                     <td class="column-title" >
                                         @if($item->cert)
-                                            <a href="{{request()->getSchemeAndHttpHost().$item->cert}}" class="btn btn-info btn-sm">下载</a>
+                                            <a href="{{request()->getSchemeAndHttpHost().$item->cert}}" target="_blank" class="btn btn-info btn-sm">下载</a>
                                             @else
                                             没有附件
                                             @endif
@@ -102,12 +128,13 @@
                   </div>
               </div>
               <div class="page">
-                    {{$join->links()}}
+                    {{$join->appends(['username'=>request()->username,'typeid'=>request()->typeid])->links()}}
               </div>
           </div>
       </div>
   </div>
     @include("admin.layout.footerjs")
+    <script src="{{URL::asset('js/admin/joinrecord.js')}}"></script>
     <script type="text/javascript">
         //index page
 

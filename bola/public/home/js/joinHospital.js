@@ -38,7 +38,8 @@ function save(type){
                     }
                 }
             } else {
-                layer.msg('提交错误',{time:1000});
+                console.log(data);
+                layer.msg(data.message,{time:1000});
                 return ;
             }
         }
@@ -91,20 +92,20 @@ function uploadpic(obj)
 
 
 
-uploadpic({
-    element:$("#image"),
-    getbloburl:function(blobURL){
-        //$("#image").parent().find("img").remove();
-        //$("#image").parent().append("<img src='"+blobURL+"' style='width:100px;height:100px;'>");
-    },
-    getbase64:function (base_data) {
-        $("#image").parent().append(function (e) {
-            //$("#image").parent().find(":input[name=image]").remove();
-            return "<input type='hidden' name='image' value='"+base_data+"'/>";
-        });
-
-    }
-});
+// uploadpic({
+//     element:$("#image"),
+//     getbloburl:function(blobURL){
+//         //$("#image").parent().find("img").remove();
+//         //$("#image").parent().append("<img src='"+blobURL+"' style='width:100px;height:100px;'>");
+//     },
+//     getbase64:function (base_data) {
+//         $("#image").parent().append(function (e) {
+//             //$("#image").parent().find(":input[name=image]").remove();
+//             return "<input type='hidden' name='image' value='"+base_data+"'/>";
+//         });
+//
+//     }
+// });
 
 
 

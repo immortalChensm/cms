@@ -21,10 +21,12 @@ class SkillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
-        $data = $this->getCategorys();
+        //$data = $this->getCategorys();
+        $data = Categorys::where("parent_id",$id)->get();
+
         return view("admin.skill.index",compact('data'));
     }
 
@@ -37,7 +39,7 @@ class SkillController extends Controller
     {
         //
         $category = $this->getCategorys();
-
+        //$category = Categorys::where("id",$id)->first();
         return view("admin.skill.add",compact('category'));
     }
 
@@ -65,7 +67,7 @@ class SkillController extends Controller
         if($input['parent_id']==0){
             showMsg('0', '请选择科室');
         }
-        Categorys::create($input) ? showMsg('1', '添加成功', URL::action('Admin\SkillController@index')) : showMsg('0', '添加失败');;
+        Categorys::create($input) ? showMsg('1', '添加成功', '/admin/skill/index/'.$input['parent_id']) : showMsg('0', '添加失败');;
     }
 
     /**
@@ -106,12 +108,12 @@ class SkillController extends Controller
         $category       = Categorys::where('id', $id)->first();
         $category->name = $Postrequest->post("name");
         $category->link = $Postrequest->post("link");
-        $category->parent_id = $Postrequest->post("parent_id");
-        if($category->parent_id==0){
-            showMsg('0', '请选择科室');
-        }
+        //$category->parent_id = $Postrequest->post("parent_id");
+        //if($category->parent_id==0){
+        //    showMsg('0', '请选择科室');
+        //}
         $category->sort = $Postrequest->post("sort");
-        $category->save() ? showMsg('1', '修改成功', URL::action('Admin\SkillController@index')) : showMsg('0', '暂无修改');
+        $category->save() ? showMsg('1', '修改成功', '/admin/skill/index/'.$category->parent_id) : showMsg('0', '暂无修改');
     }
 
     /**

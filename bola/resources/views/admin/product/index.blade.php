@@ -107,18 +107,17 @@
                               <div class="col-xs-3" style="width:200px!important;">
 
 
-                                  <select class="form-control" required="" name="grade" >
 
-                                      <option value="">医院等级</option>
+
+                                  <select class="form-control" required="" name="pccm" >
+
+                                      <option value="">PCCM等级</option>
+
                                       <option value="示范单位" @if(request()->grade == '示范单位') selected @endif>示范单位</option>
                                       <option value="优秀单位" @if(request()->grade == '优秀单位') selected @endif>优秀单位</option>
                                       <option value="达标单位" @if(request()->grade == '达标单位') selected @endif>达标单位</option>
                                       <option value="培育单位" @if(request()->grade == '培育单位') selected @endif>培育单位</option>
-
-
                                   </select>
-
-
                               </div>
 
                           </li>
@@ -127,9 +126,10 @@
                               <div class="col-xs-3" style="width:200px!important;">
 
 
-                                  <select class="form-control" required="" name="pccm" >
+                                  <select class="form-control" required="" name="grade" >
 
-                                      <option value="">PCCM等级</option>
+                                      <option value="">医院等级</option>
+
                                       <option value="三甲"  @if(request()->pccm == '三甲') selected @endif>三甲</option>
                                       <option value="三乙"  @if(request()->pccm == '三乙') selected @endif>三乙</option>
                                       <option value="三丙"  @if(request()->pccm == '三丙') selected @endif>三丙</option>
@@ -141,6 +141,7 @@
                                       <option value="一甲"  @if(request()->pccm == '一甲') selected @endif>一甲</option>
                                       <option value="一乙"  @if(request()->pccm == '一乙') selected @endif>一乙</option>
                                       <option value="一丙"  @if(request()->pccm == '一丙') selected @endif>一丙</option>
+
                                   </select>
                               </div>
 

@@ -135,7 +135,7 @@
                                   <td class="column-title" >{{$news->mobile}}</td>
                                   <td class="column-title" >
                                     @if($news->cert)
-                                          <a href="{{request()->getSchemeAndHttpHost().$news->cert}}" class="btn btn-success btn-sm">下载</a>
+                                          <a href="download/file/{{$news->id}}" class="btn btn-success btn-sm">下载</a>
                                         @else
                                         没有资质凭证
                                         @endif

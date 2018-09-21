@@ -5,7 +5,7 @@ function submitS(){
         layer.msg('电话手机号不对',{time:1000});
         return ;
     }
-    var pattern = /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/;
+    var pattern = /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,1,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/;
 
     if(!pattern.test($(":input[name=mobile]").val())){
         layer.msg('电话手机号格式不对',{time:1000});
@@ -53,6 +53,7 @@ function submitS(){
         dataType: 'json',
         data: form,
         success: function(data){
+            console.log(data);
             if(data.status==1){
                 layer.msg('添加成功');
                 setTimeout(function(){//两秒后跳转
@@ -64,17 +65,23 @@ function submitS(){
                     window.location.href = "/login.html";
                 },1000);
             }else{
-                var json=data.message;
-                json = json.errors;
-                for ( var item in json) {
-                    for ( var i = 0; i < json[item].length; i++) {
-                        layer.msg(json[item][i],{time:1000});
-                        return ; //遇到验证错误，就退出
+                if(data.status==0){
+                    layer.msg(data.message.message,{time:1000});
+                }else{
+                    var json=data.message;
+                    json = json.errors;
+                    for ( var item in json) {
+                        for ( var i = 0; i < json[item].length; i++) {
+                            layer.msg(json[item][i],{time:1000});
+                            return ; //遇到验证错误，就退出
+                        }
                     }
                 }
+
             }
         },
         error:function(data){
+            console.log(data);
             if (data.status == 422) {
                 var json=JSON.parse(data.responseText);
                 json = json.errors;
@@ -85,7 +92,7 @@ function submitS(){
                     }
                 }
             } else {
-                layer.msg('提交错误',{time:1000});
+                layer.msg(data.message,{time:1000});
                 return ;
             }
         }
@@ -106,7 +113,7 @@ function uploadpic(obj)
         if (files && files.length) {
             file = files[0];
 
-            if (/^image\/\w+$/.test(file.type)) {
+            //if (/^image\/\w+$/.test(file.type)) {
                 blobURL = URL.createObjectURL(file);
                 obj.getbloburl(blobURL);
 
@@ -119,9 +126,11 @@ function uploadpic(obj)
                     obj.getbase64(base64);
                 }
 
-            } else {
-                layer.msg('只能上传图片',{time:1000});
-            }
+               layer.msg('上传成功',{time:1000});
+
+            //} else {
+            //    layer.msg('只能上传图片',{time:1000});
+            //}
         }
     })
 
@@ -130,24 +139,37 @@ function uploadpic(obj)
 
 
 
-uploadpic({
-    element:$("#image"),
-    getbloburl:function(blobURL){
-        //$("#image").parent().find("img").remove();
-        // $("#headimg").attr("src",blobURL).css({
-        //     "width":100,
-        //     "hegiht":100
-        // });
-        //$("#image").parent().append("<img src='"+blobURL+"' style='width:100px;height:100px;'>");
-    },
-    getbase64:function (base_data) {
-        $("#image").parent().append(function (e) {
-            //$("#image").parent().find(":input[name=image]").remove();
-            return "<input type='hidden' name='case_illfile' value='"+base_data+"'/>";
-        });
+// uploadpic({
+//     element:$("#image"),
+//     getbloburl:function(blobURL){
+//
+//         //if(/image/.test(blobURL)){
+//             $("#image").parent().find("img").remove();
+//
+//         var box = '<div class="imgxa" id="imgxa">'+
+//                     '<img class="imgxaa" src="'+blobURL+'"/>'+
+//                     '<img class="cl" id="cl" src="../img/cl.gif"/>'+
+//                 '</div>';
+//
+//         $("#image").parent().append(box);
+//         //}
+//
+//     },
+//     getbase64:function (base_data) {
+//         if(/image/.test(base_data)){
+//             $(".imgxa").show();
+//         }else{
+//             $(".imgxa").hide();
+//         }
+//         $("#image").parent().append(function (e) {
+//             //$("#image").parent().find(":input[name=image]").remove();
+//             return "<input type='hidden' name='case_illfile' value='"+base_data+"'/>";
+//         });
+//
+//     }
+// });
 
-    }
-});
+
 
 
 

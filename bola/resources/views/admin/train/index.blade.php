@@ -76,7 +76,7 @@
                                       </div>
 
                                   </td>
-                                  <td><a href="{{route('train.edit',$article->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$article->id}}">移除</a></td>
+                                  <td><a href="train/record/{{$article->id}}" class="btn btn-success btn-sm">培训申请记录</a><a href="{{route('train.edit',$article->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$article->id}}">移除</a></td>
                               </tr>
                           @endforeach
 

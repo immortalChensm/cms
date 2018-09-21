@@ -610,3 +610,20 @@
 	border: 0;
 }
 
+
+.imgxa{
+	width: 200px;
+	height: 144px;
+	position: relative;
+}
+.imgxaa{
+	width: 200px;
+	height: 144px;
+	position: absolute;
+
+}
+.cl{
+	position: absolute;
+	z-index: 9;
+	right: 0;
+}

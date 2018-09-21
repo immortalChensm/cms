@@ -10,7 +10,14 @@ class JoinrecordController extends Controller
     //
     public function index()
     {
-        $join = Joinrecord::paginate(10);
+        $join = Joinrecord::where(function($query){
+            if(request()->username){
+                $query->where('username',request()->username);
+            }
+            if(request()->typeid){
+                $query->where('type',request()->typeid);
+            }
+        })->paginate(10);
         return view('admin/joinrecord/index',compact('join'));
     }
 

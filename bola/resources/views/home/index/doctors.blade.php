@@ -17,6 +17,7 @@
             </div>
             <div class="ysxq container">
                 <div class="ybj">
+                    @if(count($doctors['data'])>1)
                     @foreach($doctors['data'] as $item)
                     <div class="ysxq-gr" data-id="{{$item['id']}}">
                         <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" style="width:99px;height:150px;">
@@ -26,6 +27,9 @@
                         </div>
                     </div>
                    @endforeach
+                        @else
+                        <p style="text-align:center;margin:50px auto;">没有满足搜索条件的医生</p>
+                        @endif
                 </div>
             </div>
             <div class="fenye">

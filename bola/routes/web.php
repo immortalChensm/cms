@@ -15,7 +15,12 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
 
         //分类管理
         Route::resource('categorys', 'Admin\CategorysController');
+        Route::get('skill/create/{id}', 'Admin\SkillController@create');
+        Route::get('skill/index/{id}', 'Admin\SkillController@index');
+        //Route::get('skill/edit/{id}/{cateid}', 'Admin\SkillController@index');
         Route::resource('skill', 'Admin\SkillController');
+        Route::any('uploads/index', 'Admin\UploadController@baidu')->name("upload.config");
+
         Route::any('uploads/index', 'Admin\UploadController@baidu')->name("upload.config");
         //单页管理
         Route::resource('page', 'Admin\PageController');
@@ -35,6 +40,8 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
         Route::get('iconui', 'Admin\IconuiController@index');
 
         //医生管理
+        //打包文件下载
+        Route::get('download/file/{id}', 'Admin\PyhsicianController@createFileAndDownload');
         Route::post('pyhsician/{hospital}/skill', 'Admin\HospitalController@skill');
         Route::post('pyhsician/status', 'Admin\PyhsicianController@status');
         Route::resource('pyhsician', 'Admin\PyhsicianController');
@@ -75,6 +82,7 @@ Route::group(['middleware'=>'web','prefix' => 'admin'], function () {
         Route::post('article/status', 'Admin\ArticleController@status');
         Route::post('train/status', 'Admin\TrainController@status');
         Route::resource('article', 'Admin\ArticleController');
+        Route::get('train/record/{id}', 'Admin\TrainController@record');
         Route::resource('train', 'Admin\TrainController');
 
         //职位管理模块

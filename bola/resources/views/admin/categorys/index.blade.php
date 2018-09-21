@@ -42,7 +42,7 @@
 
 
                               <td class=" ">{{$item->created_at}}</td>
-                              <td><a href="{{route('categorys.edit',$item->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$item->id}}">移除</a></td>
+                              <td><a href="skill/index/{{$item->id}}" class="btn btn-success btn-sm">专业特长管理</a><a href="{{route('categorys.edit',$item->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm" href="#" data-id="{{$item->id}}">移除</a></td>
                           </tr>
                           @endforeach
 

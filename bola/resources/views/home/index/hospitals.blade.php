@@ -4,6 +4,7 @@
 @endsection
 @section("css")
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('home/css/hospitallist.css')}}"/>
+
 @endsection
 
 @section("content")
@@ -37,6 +38,7 @@
             </div>
             <div class="yylistt">
 
+                @if(count($hospital['data'])>1)
                 @foreach($hospital['data'] as $item)
                 <div class="yylistt-xq" data-id="{{$item['id']}}">
                     <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" style="width:270px;height:203px;">
@@ -52,6 +54,10 @@
                     </div>
                 </div>
                 @endforeach
+                    @else
+                    <p style="text-align:center;margin:50px auto;">没有满足搜索条件的医院</p>
+                    @endif
+
 
             </div>
             <div class="fenye">

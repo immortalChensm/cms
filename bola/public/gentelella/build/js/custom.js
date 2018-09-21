@@ -49,8 +49,11 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
     $NAV_MENU = $('.nav_menu'),
     $FOOTER = $('footer');
 
-	
-	
+//console.log(sessionStorage.getItem("body"));
+
+
+
+
 // Sidebar
 function init_sidebar() {
 // TODO: This is some kind of easy fix, maybe we can improve this
@@ -69,8 +72,33 @@ var setContentHeight = function () {
 	$RIGHT_COL.css('min-height', contentHeight);
 };
 
+/**************body sliup************************/
+
+    if (sessionStorage.getItem("body") == 'nav-sm') {
+
+        $SIDEBAR_MENU.find('li.active ul').hide();
+        //$SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
+
+        //sessionStorage.setItem("body","nav-sm");
+        $BODY.removeClass("nav-md");
+        $BODY.addClass('nav-sm');
+        console.log( $('li.active').length);
+    } else {
+        //$SIDEBAR_MENU.find('li.active-sm ul').show();
+        //$SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
+        //sessionStorage.setItem("body","nav-md");
+		$BODY.removeClass("nav-sm");
+        $BODY.addClass('nav-md');
+    }
+
+
+
   $SIDEBAR_MENU.find('a').on('click', function(ev) {
 	  console.log('clicked - sidebar_menu');
+
+      console.log(sessionStorage.getItem("body"));
+
+
         var $li = $(this).parent();
 
         if ($li.is('.active')) {
@@ -106,11 +134,25 @@ $MENU_TOGGLE.on('click', function() {
 		if ($BODY.hasClass('nav-md')) {
 			$SIDEBAR_MENU.find('li.active ul').hide();
 			$SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
+
+            sessionStorage.setItem("body","nav-sm");
 		} else {
 			$SIDEBAR_MENU.find('li.active-sm ul').show();
 			$SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
+            sessionStorage.setItem("body","nav-md");
 		}
 
+    if ( $BODY.is( ".nav-sm" ) )
+    {
+        //$li.parent().find( "li" ).removeClass( "active active-sm" );
+        //$li.parent().find( "li ul" ).slideUp();
+
+		//sessionStorage.setItem("body","nav-sm");
+    }else{
+       // sessionStorage.setItem("body","nav-md");
+	}
+
+	console.log(sessionStorage.getItem("body"));
 	$BODY.toggleClass('nav-md nav-sm');
 
 	setContentHeight();
@@ -121,16 +163,18 @@ $MENU_TOGGLE.on('click', function() {
 	// check active menu
 	$SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
 
-	$SIDEBAR_MENU.find('a').filter(function () {
-		return this.href == CURRENT_URL;
-	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
-		setContentHeight();
-	}).parent().addClass('active');
+    if (sessionStorage.getItem("body") == 'nav-md') {
+        $SIDEBAR_MENU.find('a').filter(function () {
+            return this.href == CURRENT_URL;
+        }).parent('li').addClass('current-page').parents('ul').slideDown(function () {
+            setContentHeight();
+        }).parent().addClass('active');
 
-	// recompute content when resizing
-	$(window).smartresize(function(){  
-		setContentHeight();
-	});
+        // recompute content when resizing
+        $(window).smartresize(function () {
+            setContentHeight();
+        });
+    }
 
 	setContentHeight();
 
@@ -5110,6 +5154,6 @@ if (typeof NProgress != 'undefined') {
 		init_autosize();
 		init_autocomplete();
 				
-	});	
-	
+	});
+
 

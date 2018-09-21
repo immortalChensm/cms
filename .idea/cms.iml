@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/bola/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/bola/baidu" isTestSource="false" packagePrefix="baidu\" />
       <sourceFolder url="file://$MODULE_DIR$/bola/app" isTestSource="false" packagePrefix="App\" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/apfelbox/php-file-download" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/codeguy/upload" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/dingo/api" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/dingo/blueprint" />
@@ -71,6 +73,7 @@
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/skyzyx/mimetypes" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/symfony/console" />
@@ -95,6 +98,7 @@
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/tymon/jwt-auth" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/bola/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/bola/vendor/zanysoft/laravel-zip" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,11 +1,11 @@
 @include("admin.layout.header")
-<body class="nav-md docs-buttons" data-method="getCroppedCanvas">
+<body class="nav-md docs-buttons" data-method="getCroppedCanvas" >
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
 
-                <div class="navbar nav_title" style="border: 0;">
+                <div class="navbar nav_title" onclick="nav(this)" style="border: 0;">
                     <a href="/" class="site_title"><!--<i class="fa fa-paw"></i> --><span>
 
                             @foreach($sys as $item)
@@ -68,4 +68,10 @@
 
         <!-- footer content -->
         @include("admin.layout.footer")
+        <script>
+
+            // function nav(nav) {
+            //     console.log($(body).attr('class'));
+            // }
+        </script>
 

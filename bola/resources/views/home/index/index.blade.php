@@ -43,7 +43,9 @@
 
                         @foreach($banner as $key=>$item)
                         <div class="item @if($key == 1) active @endif">
-                            <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" alt="{{$num[$key]}} slide">
+
+
+                            <img src="{{request()->getSchemeAndHttpHost().$item['image']}}" alt="{{$num[$key]}} slide" onclick="window.location.href='{{$item['url']}}'">
 
                         </div>
                         @endforeach
@@ -252,7 +254,7 @@
         </div>
     </div>
 
-
+    @include("home.public.footer")
 
     <div class="xuanfu">
         <div class="xuanfu-l" id="item">
@@ -296,7 +298,7 @@
         <div class="tc">
             <img id="close01" class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
-                <img src="../img/loudou.png"/>
+                <img src="{{ URL::asset('home/img/loudou.png')}}"/>
                 <span>即将上线，敬请期待...</span>
                 <div class="butt">
                     <button  id="close02">确定</button>
@@ -313,7 +315,7 @@
         <div class="tc">
             <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
-                <img src="../img/xinxi.png"/>
+                <img src="{{ URL::asset('home/img/xinxi.png')}}"/>
                 <span>请完善账户信息</span>
                 <div class="butt">
                     <button>去完善</button>
@@ -330,7 +332,7 @@
         <div class="tc">
             <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
-                <img src="../img/chongshi.png"/>
+                <img src="{{ URL::asset('home/img/chongshi.png')}}"/>
                 <span>请登录账号后重试</span>
                 <div class="butt">
                     <button>登录</button>
@@ -347,7 +349,7 @@
         <div class="tc">
             <img class="closee" src="{{ URL::asset('home/img/close.png')}}"/>
             <div class="qidai">
-                <img src="../img/chongshi.png"/>
+                <img src="{{ URL::asset('home/img/chongshi.png')}}"/>
                 <span>暂无权限</span>
                 <div class="butt">
                     <button>登录</button>

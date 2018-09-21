@@ -75,24 +75,7 @@ var ue = UE.getEditor('content',{
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
 
-
-                        <select class="form-control" required="" name="grade">
-                                <option value="示范单位">示范单位</option>
-                                <option value="优秀单位">优秀单位</option>
-                                <option value="达标单位">达标单位</option>
-                                <option value="培育单位">培育单位</option>
-
-                        </select>
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">PCCM等级</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-
-                    <select class="form-control" required="" name="pccm">
+                    <select class="form-control" required="" name="grade">
 
                         <option value="三甲">三甲</option>
                         <option value="三乙">三乙</option>
@@ -107,6 +90,26 @@ var ue = UE.getEditor('content',{
                         <option value="一丙">一丙</option>
 
                     </select>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> <span class="required">PCCM等级</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+
+
+                    <select class="form-control" required="" name="pccm">
+                        <option value="示范单位">示范单位</option>
+                        <option value="优秀单位">优秀单位</option>
+                        <option value="达标单位">达标单位</option>
+                        <option value="培育单位">培育单位</option>
+
+                    </select>
+
                 </div>
             </div>
 

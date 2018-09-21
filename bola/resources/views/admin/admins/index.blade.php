@@ -43,13 +43,28 @@
              
                 <td>{{$admins->created_at}}</td>
                 <td>
-                    @if ($admins->status == 0)
-                  <button type="button" class="btn btn-round btn-danger status" data-id="{{$admins->id}}" data-status="1">启用</button>
-                    @else 
-                  <button type="button"  class="btn btn-primary status" data-id="{{$admins->id}}" data-status="0" >停用</button>
-                    @endif
+
+                    {{----}}
+                    {{--@if ($admins->status == 0)--}}
+                  {{--<button type="button" class="btn btn-round btn-danger status" data-id="{{$admins->id}}" data-status="1">启用</button>--}}
+                    {{--@else --}}
+                  {{--<button type="button"  class="btn btn-primary status" data-id="{{$admins->id}}" data-status="0" >停用</button>--}}
+                    {{--@endif--}}
+
+                    <div class="">
+                        <label>
+                            @if($admins->status==1)
+                                <input type="checkbox" class="js-switch status"   checked data-id="{{$admins->id}}" data-status="0" />
+                            @else
+                                <input type="checkbox" class="js-switch status"   data-id="{{$admins->id}}" data-status="1" />
+                            @endif
+                        </label>
+                    </div>
+
+
+
                 </td>
-                <td><a href="{{route('admins.edit',$admins->id)}}" class="btn btn-default">编辑</a><a class="delete" href="#" data-id="{{$admins->id}}">移除</a> <a  href="/admin/admins/{{$admins->id}}/role" class="btn btn-default" >角色管理</a></td>
+                <td><a href="{{route('admins.edit',$admins->id)}}" class="btn btn-success btn-sm">编辑</a><a class="delete btn btn-danger btn-sm delete" href="#" data-id="{{$admins->id}}">移除</a> <a  href="/admin/admins/{{$admins->id}}/role" class="btn btn-default" >角色管理</a></td>
               </tr>
                @endforeach
               </tbody>

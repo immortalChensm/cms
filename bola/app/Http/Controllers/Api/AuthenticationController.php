@@ -73,7 +73,8 @@ class AuthenticationController extends Controller
     public function destroy()
     {
         auth("api")->logout();
-        return $this->response->noContent();
+        //return $this->response->noContent();
+        return $this->success('退出成功',[]);
     }
 
     function login(LoginRequest $request)
